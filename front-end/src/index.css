@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aboutus */
+.custom-gold {color: #D9A86D;}
+.navbar_bg{background-color: #201D1C;}
+.main_bg{background-color: #2C2623;}
+.navbar_font{color:#AC9984}
+a.active hr{display:block}
+.border{background-color: #AC9984;}
+.navbar_btn{background-color: #D9A86D;}
+.navbar_btn:hover{background-color: #AC9984;}
+.bg_form{background-color: #EEE9E4;}
+/*  */
+.content_color{color:#EEE9E4; font-family: montserrat;}
+.about_content{background-color: #534941 ; width: 80%; margin: 0 auto; padding: 30px}
+.meaning{ padding: 50px}
+.border_bot::after {content: '';display: block;width: 75%; border-bottom: 2px solid #AC9984; 
+}
+.about_title{ padding: 20px} 
+.warranty{background-color: #6c5f53; }
+
+
