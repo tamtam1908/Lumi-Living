@@ -17,7 +17,7 @@ import table2 from './table2.png'
 import table3 from './table3.png'
 import profile from './profile.png'
 import wishlist from './wishlist.png'
-
+import cart from './cart.png'
 import col_banner from './col_banner.jpg'
 import col_sago from './col_sagoconcept.jpg'
 import col_2 from './col_2.jpg'
