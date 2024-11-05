@@ -58,7 +58,7 @@ const Promotion = () => {
           </div>
         </div>
     </div>
-    <Footer/>
+
   </div>
   )
 }
