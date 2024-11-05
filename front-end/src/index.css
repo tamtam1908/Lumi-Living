@@ -22,5 +22,8 @@ a.active hr{display:block}
 }
 .about_title{ padding: 20px} 
 .warranty{background-color: #6c5f53; }
+/* banner */
+.banner-content{color:#201D1C; font-family: montserrat;}
+.banner-content-color{color:#201D1C; }
 
 
