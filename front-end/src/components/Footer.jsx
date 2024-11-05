@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {NavLink} from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -18,11 +19,19 @@ const Footer = () => {
         <div className = "px-2">
           <h3 className="text-lg font-semibold navbar_font">Về chúng tôi</h3>
           <ul className="mt-4 navbar_font space-y-2">
-            <li><a href="#" className="hover:navbar_font">Bộ sưu tập</a></li>
+            <NavLink to = '/collection'>
+              <li><a href="#" className="hover:navbar_font">Bộ sưu tập</a></li>
+            </NavLink>
             <li><a href="#" className="hover:navbar_font">Sản phẩm bán chạy</a></li>
-            <li><a href="#" className="hover:navbar_font">Blog</a></li>
-            <li><a href="#" className="hover:navbar_font">Tips</a></li>
-            <li><a href="#" className="hover:navbar_font">Hỗ trợ</a></li>
+            <NavLink to = '/sharing'>
+              <li><a href="#" className="hover:navbar_font">Blog</a></li>
+            </NavLink>
+            <NavLink to = '/sharing'>
+              <li><a href="#" className="hover:navbar_font">Tips</a></li>
+            </NavLink>
+            <NavLink to = '/contact'>
+              <li><a href="#" className="hover:navbar_font">Hỗ trợ</a></li>
+            </NavLink>
           </ul>
         </div>
 
