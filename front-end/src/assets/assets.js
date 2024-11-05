@@ -18,7 +18,17 @@ import table3 from './table3.png'
 import profile from './profile.png'
 import wishlist from './wishlist.png'
 import cart from './cart.png'
-
+import bfsale from './bfsale.png'
+import gardensale from './gardensale.png'
+import table4 from './table4.png'
+import table5 from './table5.png'
+import table6 from './table6.png'
+import sofa3 from './sofa3.png'
+import cabinet3 from './cabinet3.png'
 export const assets = {
-    logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, 
+    logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1,
+    chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist,
+    profile, banner4, banner5, banner6, banner7, bfsale, gardensale,
+    table4,table5, table6, sofa3, cabinet3
+
 }
