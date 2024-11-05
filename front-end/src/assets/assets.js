@@ -22,7 +22,17 @@ import tip1 from './tip1.jpg'
 import tip2 from './tip2.jpg'
 import tip3 from './tip3.jpg'
 import tip4 from './tip4.jpg'
-
+import bfsale from './bfsale.png'
+import gardensale from './gardensale.png'
+import table4 from './table4.png'
+import table5 from './table5.png'
+import table6 from './table6.png'
+import sofa3 from './sofa3.png'
+import cabinet3 from './cabinet3.png'
 export const assets = {
-    logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, tip1, tip2, tip3, tip4
+    logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, tip1, tip2, tip3, tip4, bfsale, gardensale,
+    table4,table5, table6, sofa3, cabinet3
 }
+
+
+
