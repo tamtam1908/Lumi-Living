@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { assets } from '../assets/assets';
-import Footer from '../components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck, faHeadset, faCheckCircle, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
@@ -195,6 +194,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
+    </div>
   );
 };
 
