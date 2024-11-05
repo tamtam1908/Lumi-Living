@@ -31,6 +31,7 @@ const App = () => {
         <Route path = '/sharing' element = {<Sharing/>} />
         <Route path = '/wishlist' element = {<WishList/>} />
       </Routes>
+      <Footer/>
     </div>
   )
 }
