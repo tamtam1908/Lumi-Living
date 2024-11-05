@@ -4,24 +4,46 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --text-color: #AC9984;--bg-color:#2C2623; --content-color:#EEE9E4; --content-font:  montserrat; 
+    --attention-color: #d9a86d; --text-label: #2C2623;  }
+
+.content_font {font-family: var(--content-font);}
+.navbar_font{
+    color: var(--text-color);}
+.text_label{color: var(--text-label)}
+.main_bg{
+    background-color: var(--bg-color);}
+
+.content_color{color: var(--content-color);}
+
+.attention_content{color: var(--attention-color)}
+.btn_color{background-color: #917F6C;}
+.btn_color:hover{background-color: #6c5f53;}
 /* Aboutus */
 .custom-gold {color: #D9A86D;}
 .navbar_bg{background-color: #201D1C;}
-.main_bg{background-color: #2C2623;}
 .navbar_font{color:#AC9984}
-a.active hr{display:block}
+a.active hr{display:block} 
 .border{background-color: #AC9984;}
 .navbar_btn{background-color: #D9A86D;}
 .navbar_btn:hover{background-color: #AC9984;}
 .bg_form{background-color: #EEE9E4;}
 /*  */
-.content_color{color:#EEE9E4; font-family: montserrat;}
+.content_color{font-family: montserrat;}
 .about_content{background-color: #534941 ; width: 80%; margin: 0 auto; padding: 30px}
 .meaning{ padding: 50px}
 .border_bot::after {content: '';display: block;width: 75%; border-bottom: 2px solid #AC9984; 
 }
 .about_title{ padding: 20px} 
 .warranty{background-color: #6c5f53; }
+/* banner */
+.banner-content{color:#201D1C; font-family: montserrat;}
+.banner-content-color{color:#201D1C; }
+
+
+
+
 
 
 /*collection*/

@@ -195,13 +195,6 @@ const Collection = () => {
           </div>
         </div>
       </div>
-
-
-
-      <Footer />
-      
-
-    </div>
   );
 };
 
