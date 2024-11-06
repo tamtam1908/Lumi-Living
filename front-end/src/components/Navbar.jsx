@@ -17,7 +17,7 @@ const Navbar = () => {
           <p>VỀ CHÚNG TÔI</p>
           <hr className = 'w-2/4 border-none h-[1.5px] border hidden'/>
         </NavLink>
-        <NavLink to = '/product/:productId' className = 'flex flex-col items-center gap-1 navbar_font'>
+        <NavLink to = '/product/' className = 'flex flex-col items-center gap-1 navbar_font'>
           <p>SẢN PHẨM</p>
           <hr className = 'w-2/4 border-none h-[1.5px] border hidden'/>
         </NavLink>
