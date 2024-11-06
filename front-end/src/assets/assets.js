@@ -52,6 +52,7 @@ import table5 from './table5.png'
 import table6 from './table6.png'
 import sofa3 from './sofa3.png'
 import cabinet3 from './cabinet3.png'
+import contact from './contact.jpg'
 
 
 import p_img1 from './p_img1.jpg'
@@ -80,7 +81,7 @@ export const assets = {
     logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, col_banner, col_sago, col_2,col_3,
     col_banan, col_banannho, col_bancafe, col_bancafelabu,col_bst1,col_bst2,col_bst3,col_bst4, col_banda,
     col_sofa1, col_sofa2, col_sofa3,  col_sofa4, col_sofa5,  tip1, tip2, tip3, tip4, bfsale, gardensale,
-    table4,table5, table6, sofa3, cabinet3
+    table4,table5, table6, sofa3, cabinet3, contact
 }
 
 
