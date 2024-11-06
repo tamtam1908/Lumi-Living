@@ -54,6 +54,29 @@ import sofa3 from './sofa3.png'
 import cabinet3 from './cabinet3.png'
 import contact from './contact.jpg'
 
+
+import p_img1 from './p_img1.jpg'
+import p_img1_2 from './p_img1_2.jpg'
+import p_img1_3 from './p_img1_3.jpg'
+import p_img1_4 from './p_img1_4.jpg'
+import p_img2 from './p_img2.jpg'
+import p_img2_2 from './p_img2_1.jpg'
+import p_img2_3 from './p_img2_3.jpg'
+import p_img2_4 from './p_img2_4.jpg'
+import p_img3 from './p_img3.jpg'
+import p_img3_2 from './p_img3_2.jpg'
+import p_img3_3 from './p_img3_3.jpg'
+import p_img3_4 from './p_img3_4.jpg'
+import p_img4 from './p_img4.jpg'
+import p_img4_2 from './p_img4_2.jpg'
+import p_img4_3 from './p_img4_3.jpg'
+import p_img4_4 from './p_img4_4.jpg'
+import p_img5 from './p_img5.jpg'
+import p_img5_2 from './p_img5_2.jpg'
+import p_img5_3 from './p_img5_3.jpg'
+import p_img5_4 from './p_img5_4.jpg'
+import dropdown_icon from './dropdown_icon.png'
+
 export const assets = {
     logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, col_banner, col_sago, col_2,col_3,
     col_banan, col_banannho, col_bancafe, col_bancafelabu,col_bst1,col_bst2,col_bst3,col_bst4, col_banda,
@@ -61,3 +84,122 @@ export const assets = {
     table4,table5, table6, sofa3, cabinet3, contact
 }
 
+
+
+export const products = [
+    {
+        _id: "aaaaa",
+        name: "bàn ăn, bàn làm việc lớn HONEY PLUS",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment. ",
+        price: 2950000,
+        image: [p_img1, p_img1_2, p_img1_3, p_img1_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+    {
+        _id: "aaaab",
+        name: "bàn ăn CHAMOMILE",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment. ",
+        price: 1950000,
+        image: [p_img2,p_img2_2,p_img2_3, p_img2_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+    {
+        _id: "aaaac",
+        name: "bàn sofa, bàn góc PUER",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 3620000,
+        image: [p_img3,p_img3_2, p_img3_3, p_img3_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+   
+    {
+        _id: "aaaad",
+        name: "Bàn sofa, bàn góc CEYLON",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 362000,
+        image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+    {
+        _id: "aaaae",
+        name: "Ghế đôn JOY",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 990000,
+        image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
+        category: "ghe",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+   
+    {
+        _id: "aaaaf",
+        name: "Bàn sofa, bàn góc CEYLON",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 362000,
+        image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+    {
+        _id: "aaaag",
+        name: "Ghế đôn JOY",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 990000,
+        image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
+        category: "ghe",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+   
+    {
+        _id: "aaaah",
+        name: "Bàn sofa, bàn góc CEYLON",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 362000,
+        image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+    {
+        _id: "aaaai",
+        name: "Ghế đôn JOY",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 990000,
+        image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
+        category: "ghe",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+   
+    {
+        _id: "aaaak",
+        name: "Bàn sofa, bàn góc CEYLON",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 362000,
+        image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
+        category: "ban",
+        subCategory: "kimloai",
+        bestseller: true
+    },
+    {
+        _id: "aaaal",
+        name: "Ghế đôn JOY",
+        description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
+        price: 990000,
+        image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
+        category: "ghe",
+        subCategory: "kimloai",
+        bestseller: true
+    }
+]
+    
