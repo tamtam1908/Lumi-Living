@@ -16,16 +16,21 @@ import Footer from './components/Footer'
 import Promotion from './pages/Promotion'
 import PromotionDetails from './pages/PromotionDetails'
 import './index.css';
+import ShopContextProvider from './context/ShopContext'
+import ProductDetail from './pages/ProductDetail'
+
 const App = () => {
   return (
-    <div className = ''>
+    <ShopContextProvider>
+      <>
       <Navbar/>
       <Routes>
         <Route path = '/' element = {<Home/>} />
         <Route path = '/collection' element={<Collection/>}/>
         <Route path = '/about' element = {<About/>} />
         <Route path = '/contact' element = {<Contact/>} />
-        <Route path = '/product/:productId' element = {<Product/>} />
+        <Route path = '/product/' element = {<Product/>} />
+        <Route path = '/product/:productId' element = {<ProductDetail/>} />
         <Route path = '/cart' element = {<Cart/>} />
         <Route path = '/login' element = {<Login/>} />
         <Route path = '/place-order' element = {<PlaceOrder/>} />
@@ -36,7 +41,8 @@ const App = () => {
         <Route path = '/promotiondetails' element = {<PromotionDetails/>}/>
       </Routes>
       <Footer/>
-    </div>
+      </>
+      </ShopContextProvider>
   )
 }
 
