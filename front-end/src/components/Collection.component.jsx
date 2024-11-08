@@ -21,7 +21,7 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-10 right-2 w-full text-center   text-center "
+              className="product-label absolute bottom-10 right-2 w-full text-center text-center "
             >
               <h1 className = "text-4xl	 text_product font-bold">CLOUDY SOFA</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -34,7 +34,7 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-2 right-2 w-full text-center   text-center"
+              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
             >
               <h1 className = "text-4xl	 content_color font-bold" >MILD CALE TABLE</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -52,9 +52,11 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-0 w-full text-center bg-black bg-opacity-50 text-white text-lg font-semibold py-2"
+              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
             >
-              MENTAL CHAIR
+              <p className='text-4xl	 text_product font-bold'>MENTAL CHAIR</p>
+              
+              <p className = "text-sm content_color ">Xem chi tiết</p>
             </NavLink>
           </div>
           <div className="relative group w-[424px] h-[668px] overflow-hidden">
@@ -64,9 +66,10 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-0 w-full text-center bg-black bg-opacity-50 text-white text-lg font-semibold py-2"
+              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
             >
-              WOPA DINING
+              <p className='text-4xl	 content_color font-bold'>WOPA DINING</p>
+              <p className = "text-sm content_color">Xem chi tiết</p>
             </NavLink>
           </div>
         </div>

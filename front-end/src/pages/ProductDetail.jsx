@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
+import { MdFavorite } from "react-icons/md";
 import ProductItem from '../components/ProductItem';
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart, addToWishlist, wishlist } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState('');
 
@@ -25,6 +26,10 @@ const ProductDetail = () => {
       fetchProductData();
     }
   }, [productId, products]);
+
+  const handleAddToWishlist = (product) => {
+    addToWishlist(product);
+  };
 
   return productData ? (
     <div style={{ padding: '20px' }} className='main_bg content_color'>
@@ -69,11 +74,18 @@ const ProductDetail = () => {
 
           {/* Wishlist and Add to Cart buttons */}
           <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
-            <button onClick={() => addToCart(productId)}  style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
-            Thêm giỏ hàng
+            <button onClick={() => addToCart(productId)} style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+              Thêm giỏ hàng
             </button>
             <button style={{ backgroundColor: '#d2b48c', color: '#1c1c1c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
               Mua ngay
+            </button> <br />
+            
+            {/* Wishlist button with color change */}
+            <button onClick={() => handleAddToWishlist(productData)}>
+              <MdFavorite
+                className={`text-xl cursor-pointer ${wishlist.find(item => item._id === productData._id) ? 'text-red-500' : 'text-gray-500'}`}
+              />
             </button>
           </div>
         </div>
