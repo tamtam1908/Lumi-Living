@@ -6,7 +6,7 @@ import ProductItem from '../components/ProductItem';
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState('');
 
@@ -61,20 +61,19 @@ const ProductDetail = () => {
               <img key={i} src={assets.star_icon} alt="" style={{ width: '20px' }} />
             ))}
             <img src={assets.star_dull_icon} alt="" style={{ width: '20px' }} />
-            <p style={{ marginLeft: '10px', color: '#999999' }}>(109)</p>
           </div>
-          <p style={{ fontSize: '32px', fontWeight: '600', marginTop: '20px' }}>
+          <p style={{ fontSize: '32px', fontWeight: '600', }}>
             {productData.price} {currency}
           </p>
           <p style={{ marginTop: '20px', color: '#999999', maxWidth: '500px' }}>{productData.description}</p>
 
           {/* Wishlist and Add to Cart buttons */}
           <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
-            <button style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
-              Add to wishlist
+            <button onClick={() => addToCart(productId)}  style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+            Thêm giỏ hàng
             </button>
             <button style={{ backgroundColor: '#d2b48c', color: '#1c1c1c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
-              Add to cart
+              Mua ngay
             </button>
           </div>
         </div>
