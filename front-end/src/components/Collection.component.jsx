@@ -12,8 +12,17 @@ const CollectionSection = () => {
       </p>
 
       <div className="flex justify-center">
+        <div className="flex flex-col items-end relative">
+        <div className='absolute top-[170px] left-[-55px] h-[791px] w-[345px] border-b	border-t	 border-[#AB967F] bg-transparent'>
+        <NavLink
+              to="#details"
+              className="product-label absolute top-[285px] left-[-6px]  w-full text-center   text-center"
+            >
+              <h1 className = "text-4xl	 content_color font-semibold" >LOVESAC TABLE</h1>
+              <p className = "text-sm content_color ">Xem chi tiết</p>
 
-        <div className="flex flex-col items-end">
+            </NavLink>
+        </div>
           <div className="relative group w-[447px] h-[767px] overflow-hidden">
             <img
               src={assets.cloudysofa}
@@ -23,7 +32,7 @@ const CollectionSection = () => {
               to="#details"
               className="product-label absolute bottom-10 right-2 w-full text-center   text-center "
             >
-              <h1 className = "text-4xl	 text_product font-bold">CLOUDY SOFA</h1>
+              <h1 className = "text-4xl	 text_product font-semibold">CLOUDY SOFA</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
             </NavLink>
           </div>
@@ -36,7 +45,7 @@ const CollectionSection = () => {
               to="#details"
               className="product-label absolute bottom-2 right-2 w-full text-center   text-center"
             >
-              <h1 className = "text-4xl	 content_color font-bold" >MILD CALE TABLE</h1>
+              <h1 className = "text-4xl	 content_color font-semibold" >MILD CALE TABLE</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
 
             </NavLink>
@@ -52,9 +61,10 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-0 w-full text-center bg-black bg-opacity-50 text-white text-lg font-semibold py-2"
+              className="product-label product-label absolute top-2 right-2 w-full text-center   text-center"
             >
-              MENTAL CHAIR
+              <h1 className = "text-4xl	 text_product font-semibold" >MENTAL CHAIR</h1>
+              <p className = "text-sm content_color ">Xem chi tiết</p>
             </NavLink>
           </div>
           <div className="relative group w-[424px] h-[668px] overflow-hidden">
@@ -64,9 +74,10 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-0 w-full text-center bg-black bg-opacity-50 text-white text-lg font-semibold py-2"
+              className="product-label absolute bottom-2 right-2 w-full text-center   text-center"
             >
-              WOPA DINING
+              <h1 className = "text-4xl	 content_color font-semibold" >WOPA DINNING</h1>
+              <p className = "text-sm content_color ">Xem chi tiết</p>
             </NavLink>
           </div>
         </div>
