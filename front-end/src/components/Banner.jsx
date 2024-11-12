@@ -55,7 +55,7 @@ const Banner = () => {
             Discover the perfect balance of style and value. Quality furniture, suitable for every space from living room to bedroom.
         </p>
         <NavLink to='/collection'>
-            <button className="px-6 py-3 main_bg text-white font-semibold rounded-md hover:bg-gray-800 mx-auto block">
+            <button className="px-6 py-3 main_bg text-white font-semibold  rounded-md hover:bg-gray-800 mx-auto block">
                 EXPLORE OUR COLLECTION
             </button>
         </NavLink>
@@ -63,26 +63,26 @@ const Banner = () => {
 
       {/* Bottom Section: Service Icons */}
         <div className="absolute bottom-0 w-full border border-transparent flex items-center py-7 px-7">
-            <div className="flex items-center justify-between w-full">
+            <div className="flex  items-center justify-between w-full ">
                 <div className="flex items-center banner-content mr-8">
-                <FontAwesomeIcon icon={faTruck} className="w-10 h-10 mr-2" /> {/* Thêm margin bên phải */}
+                <FontAwesomeIcon icon={faTruck} className="w-10 h-10 mr-2 text-[#d9a86d]" /> {/* Thêm margin bên phải */}
                 <div className="flex flex-col">
-                    <span className="font-semibold">GIAO HÀNG MIỄN PHÍ</span>
-                    <span className="text-sm">cho mọi đơn hàng từ 3.000.000</span>
+                    <span className="font-semibold text-[#d9a86d]">GIAO HÀNG MIỄN PHÍ</span>
+                    <span className="text-sm text-[#d9a86d]">cho mọi đơn hàng từ 3.000.000</span>
                 </div>
                 </div>
                 <div className="flex items-center banner-content mr-8">
-                <FontAwesomeIcon icon={faHeadset} className="w-10 h-10 mr-2" /> {/* Thêm margin bên phải */}
+                <FontAwesomeIcon icon={faHeadset} className="w-10 h-10 mr-2 text-[#d9a86d]" /> {/* Thêm margin bên phải */}
                 <div className="flex flex-col">
-                    <span className="font-semibold">HỖ TRỢ 24/7</span>
-                    <span className="text-sm">giải đáp mọi thắc mắc của khách hàng</span>
+                    <span className="font-semibold text-[#d9a86d]">HỖ TRỢ 24/7</span>
+                    <span className="text-sm text-[#d9a86d]">giải đáp mọi thắc mắc của khách hàng</span>
                 </div>
                 </div>
                 <div className="flex items-center banner-content">
-                <FontAwesomeIcon icon={faCheckCircle} className="w-10 h-10 mr-2" /> {/* Thêm margin bên phải */}
+                <FontAwesomeIcon icon={faCheckCircle} className="w-10 h-10 mr-2 text-[#d9a86d]" /> {/* Thêm margin bên phải */}
                 <div className="flex flex-col">
-                    <span className="font-semibold">100% CHÍNH HÃNG</span>
-                    <span className="text-sm">cung cấp sản phẩm chất lượng cao</span>
+                    <span className="font-semibold text-[#d9a86d]">100% CHÍNH HÃNG</span>
+                    <span className="text-sm text-[#d9a86d]">cung cấp sản phẩm chất lượng cao</span>
                 </div>
                 </div>
             </div>

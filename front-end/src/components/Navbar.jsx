@@ -54,7 +54,6 @@ const Navbar = () => {
         <div>
           <NavLink to = "./cart">
             <FontAwesomeIcon icon={faShoppingCart} className='w-5 h-5 cursor-pointer navbar_font ' alt="Cart" />
-            <p className = " absolute  right-[50px] top-[18px] w-4 h-4 text-center leading-4 bg-black rounded-full text-[8px] content_color">10</p>
           </NavLink>
         </div>
         <div>

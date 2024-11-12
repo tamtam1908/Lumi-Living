@@ -39,6 +39,7 @@ const App = () => {
         <Route path = '/wishlist' element = {<WishList/>} />
         <Route path = '/promotion' element = {<Promotion/>}/>
         <Route path = '/promotiondetails' element = {<PromotionDetails/>}/>
+        
       </Routes>
       <Footer/>
       </>
