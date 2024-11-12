@@ -82,11 +82,19 @@ import mildcale from './mildcale.png'
 import mentalchair from './mentalchair.jpg'
 import cloudysofa from './cloudysofa.jpg'
 import bin_icon from './bin_icon.png'
+import cod from './cod.png'
+import bank from './bank.png'
+import vnpay from './vnpay.png'
+import visa from './visa.png'
+import jcb from './jcb.png'
+import mastercard from './mastercard.png'
+import momo from './momo.png'
 export const assets = {
     logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, col_banner, col_sago, col_2,col_3,
     col_banan, col_banannho, col_bancafe, col_bancafelabu,col_bst1,col_bst2,col_bst3,col_bst4, col_banda,
     col_sofa1, col_sofa2, col_sofa3,  col_sofa4, col_sofa5,  tip1, tip2, tip3, tip4, bfsale, gardensale,
-    table4,table5, table6, sofa3, cabinet3, contact, dinningtable, mildcale, mentalchair, cloudysofa, bin_icon
+    table4,table5, table6, sofa3, cabinet3, contact, dinningtable, mildcale, mentalchair, cloudysofa, bin_icon, cod, 
+    bank, vnpay, visa, jcb, mastercard, momo, 
 }
 
 
@@ -94,7 +102,7 @@ export const assets = {
 export const products = [
     {
         _id: "aaaaa",
-        name: "bàn ăn, bàn làm việc lớn HONEY PLUS",
+        name: "Bàn ăn, bàn làm việc lớn HONEY PLUS",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment. ",
         price: 2950000,
         image: [p_img1, p_img1_2, p_img1_3, p_img1_4],
@@ -104,7 +112,7 @@ export const products = [
     },
     {
         _id: "aaaab",
-        name: "bàn ăn CHAMOMILE",
+        name: "Bàn ăn CHAMOMILE",
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment. ",
         price: 1950000,
         image: [p_img2,p_img2_2,p_img2_3, p_img2_4],
@@ -114,7 +122,7 @@ export const products = [
     },
     {
         _id: "aaaac",
-        name: "bàn sofa, bàn góc PUER",
+        name: "Bàn sofa, bàn góc PUER",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
         price: 3620000,
         image: [p_img3,p_img3_2, p_img3_3, p_img3_4],
