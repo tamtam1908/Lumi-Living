@@ -8,7 +8,8 @@
     --text-color: #AC9984;--bg-color:#2C2623; --content-color:#EEE9E4; --content-font:  montserrat; 
     --attention-color: #d9a86d; --text-label: #2C2623; --text--product: #36302C; --custom-bg:#594f45; --product-bg: #FFFAF6; --product-color: #201D1C;
      --discount-border:#D9A86D;  --pre--color: #ac8a60; --text-form: #a08257; --btn-order: #605040; --pre-bar: #453c36;
-    --discount-checkout: #a08257; }
+    --discount-checkout: #a08257; --bg-login: #EEE9E4; }
+.bg_login{background-color: var(--bg-login);}
 .border-checkout{border-color: #a08257 ;}
 .pre_bar{background-color: var(--pre-bar);}
 .pre_text{color: var(--text-color)}

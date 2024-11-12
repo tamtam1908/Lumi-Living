@@ -38,7 +38,9 @@ const Footer = () => {
         <div className = "">
           <h3 className="text-lg font-semibold navbar_font">Sản phẩm</h3>
           <ul className="mt-4 navbar_font space-y-2">
+            <NavLink to = '/login'>
             <li><a href="#" className="hover:navbar_font">Ghế</a></li>
+            </NavLink>
             <li><a href="#" className="hover:navbar_font">Sofa</a></li>
             <li><a href="#" className="hover:navbar_font">Bàn</a></li>
             <li><a href="#" className="hover:navbar_font">Tủ</a></li>
