@@ -77,11 +77,16 @@ import p_img5_3 from './p_img5_3.jpg'
 import p_img5_4 from './p_img5_4.jpg'
 import dropdown_icon from './dropdown_icon.png'
 
+import dinningtable from './dinningtablejpg.jpg'
+import mildcale from './mildcale.png'
+import mentalchair from './mentalchair.jpg'
+import cloudysofa from './cloudysofa.jpg'
+import bin_icon from './bin_icon.png'
 export const assets = {
     logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, col_banner, col_sago, col_2,col_3,
     col_banan, col_banannho, col_bancafe, col_bancafelabu,col_bst1,col_bst2,col_bst3,col_bst4, col_banda,
     col_sofa1, col_sofa2, col_sofa3,  col_sofa4, col_sofa5,  tip1, tip2, tip3, tip4, bfsale, gardensale,
-    table4,table5, table6, sofa3, cabinet3, contact
+    table4,table5, table6, sofa3, cabinet3, contact, dinningtable, mildcale, mentalchair, cloudysofa, bin_icon
 }
 
 
@@ -122,7 +127,7 @@ export const products = [
         _id: "aaaad",
         name: "Bàn sofa, bàn góc CEYLON",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 362000,
+        price: 3620000,
         image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
         category: "ban",
         subCategory: "kimloai",
@@ -132,7 +137,7 @@ export const products = [
         _id: "aaaae",
         name: "Ghế đôn JOY",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 990000,
+        price: 1990000,
         image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
         category: "ghe",
         subCategory: "kimloai",
@@ -143,7 +148,7 @@ export const products = [
         _id: "aaaaf",
         name: "Bàn sofa, bàn góc CEYLON",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 362000,
+        price: 3620000,
         image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
         category: "ban",
         subCategory: "kimloai",
@@ -153,7 +158,7 @@ export const products = [
         _id: "aaaag",
         name: "Ghế đôn JOY",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 990000,
+        price: 2990000,
         image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
         category: "ghe",
         subCategory: "kimloai",
@@ -164,7 +169,7 @@ export const products = [
         _id: "aaaah",
         name: "Bàn sofa, bàn góc CEYLON",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 362000,
+        price: 3620000,
         image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
         category: "ban",
         subCategory: "kimloai",
@@ -174,7 +179,7 @@ export const products = [
         _id: "aaaai",
         name: "Ghế đôn JOY",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 990000,
+        price: 9900000,
         image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
         category: "ghe",
         subCategory: "kimloai",
@@ -185,7 +190,7 @@ export const products = [
         _id: "aaaak",
         name: "Bàn sofa, bàn góc CEYLON",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 362000,
+        price: 3620000,
         image: [p_img4, p_img4_2, p_img4_3, p_img4_4],
         category: "ban",
         subCategory: "kimloai",
@@ -195,7 +200,7 @@ export const products = [
         _id: "aaaal",
         name: "Ghế đôn JOY",
         description: "Điểm đặc biệt của dòng sản phẩm bàn đá chính là bạn có thể tuỳ chọn chân và mặt bàn trong bộ sưu tập chất liệu của LumiLiving",
-        price: 990000,
+        price: 1990000,
         image: [p_img5,p_img5_2,p_img5_3,p_img5_4],
         category: "ghe",
         subCategory: "kimloai",

@@ -1,13 +1,32 @@
 import React, { useEffect, useState } from 'react';
 // import { products } from '../assets/assets';
 import { createContext } from 'react';
+import { useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
-export const ShopContext = createContext()
+
+export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const currency = 'VND' ;
   const delivery_fee = 10;
+
+  const [cartItems, setCartItems] = useState({});
+  const addToCart = (productId) => {
+    setCartItems((preItems) => ({
+      ...preItems, [productId]: (preItems[productId] || 0) + 1
+    }));
+  };
+  const removeFromCart = (productId) => {
+    setCartItems((prevItems) => {
+      const newCartItems = { ...prevItems };
+      delete newCartItems[productId]; 
+      return newCartItems;
+    });
+  };
+  const navigate = useNavigate();
+  
   const backendUrl = import.meta.env.VITE_BACKEND_URL
   const [products, setProducts] = useState([]);
   
@@ -32,7 +51,7 @@ const ShopContextProvider = (props) => {
   })
 
   const value = {
-    products, currency, delivery_fee, backendUrl
+    products, currency, delivery_fee, backendUrl, cartItems, addToCart,removeFromCart,navigate
   } 
   
   return (

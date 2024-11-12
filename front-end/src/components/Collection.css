@@ -1,11 +1,6 @@
-/* Collection.css */
 
-.collection-comp {
-    text-align: center;
-    color: #ffffff;
-    background-color: #1a1a1a;
-    padding: 50px 20px;
-  }
+
+
   
   .collection-comp h2 {
     font-size: 36px;
@@ -29,7 +24,6 @@
   .collection-item {
     position: relative;
     overflow: hidden;
-    /* border-radius: 10px; */ /* Remove this line to remove rounded corners */
   }
   
   .collection-item img {
