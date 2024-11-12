@@ -43,7 +43,8 @@ const ProductItem = ({ id, image, name, price }) => {
                 {name}
             </p>
             <p style={{ fontSize: '0.9rem', color: '#666', marginTop: '5px' }}>
-                {price} {currency}
+                {price.toLocaleString('vi-VN')} VND
+
             </p>
         </Link>
     );

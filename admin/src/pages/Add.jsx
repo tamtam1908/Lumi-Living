@@ -3,7 +3,7 @@ import {assets} from '../assets/assets'
 import axios from 'axios'
 import { backendUrl } from '../App'
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Đảm bảo đã import CSS cho react-toastify
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const Add = ({token}) => {
   
@@ -91,34 +91,38 @@ const Add = ({token}) => {
     {/* tên sản phẩm */}
     <div className='w-full'>
       <p>Tên sản phẩm</p>
-      <input onChange={(e)=>setName(e.target.value)} value={name} type="text" name="" id="" placeholder='Nhập ở đây'required className='w-full max-w-[500px] px-3 py-2'/>
+      <input onChange={(e)=>setName(e.target.value)} value={name} type="text" name="" id="" placeholder='Nhập tên sản phẩm'required className='w-full max-w-[500px] px-3 py-2'/>
     </div>
     <br />
     {/* Mo ta sản phẩm */}
     <div className='w-full'>
       <p>Mô tả sản phẩm</p>
-      <textarea onChange={(e)=>setDescription(e.target.value)} value={description} type="text" name="" id="" placeholder='Viết nội dung ở đây'required className='w-full max-w-[500px] px-3 py-2'/>
+      <textarea onChange={(e)=>setDescription(e.target.value)} value={description} type="text" name="" id="" placeholder='Nhập mô tả sản phẩm'required className='w-full max-w-[500px] px-3 py-2'/>
     </div>
     <br />
     <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
       <div>
         <p>Danh mục</p>
         <select onChange={(e)=>setCategory(e.target.value)} name="" id="" className='w-full px-3 py-2'>
-          <option value="table">Bàn</option>
-          <option value="chair">Ghế</option>
-          <option value="board">Tủ</option>
-          <option value="self">Kệ</option>
-          <option value="lamp">Đèn</option>
+          <option value="Bàn">Bàn</option>
+          <option value="Ghế">Ghế</option>
+          <option value="Tủ">Tủ</option>
+          <option value="Kệ">Kệ</option>
+          <option value="Đèn">Đèn</option>
         </select>
       </div>
       <br />
       <div>
         <p>Chất liệu sản phẩm</p>
         <select onChange={(e)=>setMaterial(e.target.value)} name="" id="" className='w-full px-3 py-2' multiple>
-          <option value="kimloai">Kim loại</option>
-          <option value="gotunhien">Gỗ tự nhiên</option>
-          <option value="dalon">Da lộn</option>
-          <option value="cotton">Vải cotton</option>
+          <option value="Kim loại">Kim loại</option>
+          <option value="Gỗ tự nhiên">Gỗ tự nhiên</option>
+          <option value="Gỗ công nghiệp">Gỗ công nghiệp</option>
+          <option value="Da lộn">Da lộn</option>
+          <option value="Vải cotton">Vải cotton</option>
+          
+          <option value="Nhựa">Nhựa</option>
+          <option value="Đá cẩm thạnh">Đá cẩm thạch</option>
         </select>
       </div> <br />
 
