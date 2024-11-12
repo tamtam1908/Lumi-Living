@@ -30,7 +30,7 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-10 right-2 w-full text-center   text-center "
+              className="product-label absolute bottom-10 right-2 w-full text-center text-center "
             >
               <h1 className = "text-4xl	 text_product font-semibold">CLOUDY SOFA</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -43,7 +43,7 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-2 right-2 w-full text-center   text-center"
+              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
             >
               <h1 className = "text-4xl	 content_color font-semibold" >MILD CALE TABLE</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -61,9 +61,11 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label product-label absolute top-2 right-2 w-full text-center   text-center"
+
+              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
             >
-              <h1 className = "text-4xl	 text_product font-semibold" >MENTAL CHAIR</h1>
+              <p className='text-4xl	 text_product font-bold'>MENTAL CHAIR</p>
+              
               <p className = "text-sm content_color ">Xem chi tiết</p>
             </NavLink>
           </div>
@@ -74,10 +76,12 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-2 right-2 w-full text-center   text-center"
+
+              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
             >
-              <h1 className = "text-4xl	 content_color font-semibold" >WOPA DINNING</h1>
-              <p className = "text-sm content_color ">Xem chi tiết</p>
+              <p className='text-4xl	 content_color font-bold'>WOPA DINING</p>
+              <p className = "text-sm content_color">Xem chi tiết</p>
+
             </NavLink>
           </div>
         </div>
