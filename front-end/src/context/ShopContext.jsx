@@ -1,22 +1,43 @@
-import React, { createContext, useState } from 'react';
-import { products } from '../assets/assets';
+import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { products as localProducts } from '../assets/assets'; // Đổi tên để tránh trùng lặp
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const currency = 'VND';
   const delivery_fee = 10;
-  
-  // Khởi tạo state cho giỏ hàng và wishlist
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  // Khởi tạo state cho giỏ hàng, wishlist và sản phẩm
   const [cartItems, setCartItems] = useState({});
-  const [wishlist, setWishlist] = useState([]);  // Khởi tạo wishlist với mảng rỗng
+  const [wishlist, setWishlist] = useState([]);
+  const [products, setProducts] = useState(localProducts); // Khởi tạo với sản phẩm cục bộ
+
+  // Lấy dữ liệu sản phẩm từ API
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get(backendUrl + '/api/product/list');
+      if (response.data.success) {
+        setProducts(response.data.products);
+      } else {
+        console.error(response.data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getProductsData();
+  }, []);
 
   // Hàm thêm sản phẩm vào giỏ hàng
   const addToCart = (productId) => {
-    setCartItems((preItems) => ({
-      ...preItems, 
-      [productId]: (preItems[productId] || 0) + 1
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [productId]: (prevItems[productId] || 0) + 1,
     }));
   };
 
@@ -24,7 +45,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (productId) => {
     setCartItems((prevItems) => {
       const newCartItems = { ...prevItems };
-      delete newCartItems[productId]; 
+      delete newCartItems[productId];
       return newCartItems;
     });
   };
