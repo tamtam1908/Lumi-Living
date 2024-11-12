@@ -19,7 +19,7 @@ const ShopContextProvider = (props) => {
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
   
-  // Cart
+  // Giỏ hàng
   const [cartData, setCartData] = useState([]);
   const [selectedItems, setSelectedItems] = useState({});
 
