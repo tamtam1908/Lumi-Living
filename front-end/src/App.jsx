@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/home'
+import Home from './pages/Home'
 import Collection from './pages/Collection'
 import About from './pages/About'
 import Cart from './pages/Cart'
@@ -13,25 +13,37 @@ import Product from './pages/Product'
 import Sharing from './pages/Sharing'
 import WishList from './pages/WishList'
 import Footer from './components/Footer'
+import Promotion from './pages/Promotion'
+import PromotionDetails from './pages/PromotionDetails'
 import './index.css';
+import ShopContextProvider from './context/ShopContext'
+import ProductDetail from './pages/ProductDetail'
+
 const App = () => {
   return (
-    <div className = ''>
+    <ShopContextProvider>
+      <>
       <Navbar/>
       <Routes>
         <Route path = '/' element = {<Home/>} />
         <Route path = '/collection' element={<Collection/>}/>
         <Route path = '/about' element = {<About/>} />
         <Route path = '/contact' element = {<Contact/>} />
-        <Route path = '/product/:productId' element = {<Product/>} />
+        <Route path = '/product/' element = {<Product/>} />
+        <Route path = '/product/:productId' element = {<ProductDetail/>} />
         <Route path = '/cart' element = {<Cart/>} />
         <Route path = '/login' element = {<Login/>} />
         <Route path = '/place-order' element = {<PlaceOrder/>} />
         <Route path = '/orders' element = {<Orders/>} />
         <Route path = '/sharing' element = {<Sharing/>} />
         <Route path = '/wishlist' element = {<WishList/>} />
+        <Route path = '/promotion' element = {<Promotion/>}/>
+        <Route path = '/promotiondetails' element = {<PromotionDetails/>}/>
+        
       </Routes>
-    </div>
+      <Footer/>
+      </>
+      </ShopContextProvider>
   )
 }
 

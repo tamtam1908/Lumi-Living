@@ -17,7 +17,7 @@ const Navbar = () => {
           <p>VỀ CHÚNG TÔI</p>
           <hr className = 'w-2/4 border-none h-[1.5px] border hidden'/>
         </NavLink>
-        <NavLink to = '/product/:productId' className = 'flex flex-col items-center gap-1 navbar_font'>
+        <NavLink to = '/product/' className = 'flex flex-col items-center gap-1 navbar_font'>
           <p>SẢN PHẨM</p>
           <hr className = 'w-2/4 border-none h-[1.5px] border hidden'/>
         </NavLink>
@@ -54,7 +54,6 @@ const Navbar = () => {
         <div>
           <NavLink to = "./cart">
             <FontAwesomeIcon icon={faShoppingCart} className='w-5 h-5 cursor-pointer navbar_font ' alt="Cart" />
-            <p className = " absolute  right-[50px] top-[18px] w-4 h-4 text-center leading-4 bg-black rounded-full text-[8px] content_color">10</p>
           </NavLink>
         </div>
         <div>
