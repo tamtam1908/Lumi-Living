@@ -65,6 +65,7 @@ const ProductDetail = () => {
         <div className="flex-1 content_color">
           <h1 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '10px' }}>{productData.name}</h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            {/* Option to add more star icons */}
             <img src={assets.star_dull_icon} alt="" style={{ width: '20px' }} />
           </div>
           <p style={{ fontSize: '32px', fontWeight: '600', marginTop: '20px' }}>
@@ -79,7 +80,7 @@ const ProductDetail = () => {
             </button>
             <button style={{ backgroundColor: '#d2b48c', color: '#1c1c1c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
               Mua ngay
-            </button> <br />
+            </button>
             
             {/* Wishlist button with color change */}
             <button onClick={() => handleAddToWishlist(productData)}>
