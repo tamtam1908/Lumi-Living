@@ -5,44 +5,7 @@ import { MdHome } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 
 const Cart = () => {
-  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate } = useContext(ShopContext);
-  const [cartData, setCartData] = useState([]);
-  const [selectedItems, setSelectedItems] = useState({});
-
-  useEffect(() => {
-    const tempData = [];
-
-    for (const productId in cartItems) {
-      const product = products.find((item) => item._id === productId);
-      if (product && cartItems[productId] > 0) {
-        tempData.push({
-          _id: productId,
-          name: product.name,
-          price: product.price,
-          quantity: cartItems[productId],
-        });
-      }
-    }
-
-    setCartData(tempData);
-  }, [cartItems, products]);
-
-  const calculateTotal = () => {
-    return cartData.reduce((total, item) => {
-      if (selectedItems[item._id]) {
-        const productData = products.find((product) => product._id === item._id);
-        return total + (productData.price * item.quantity);
-      }
-      return total;
-    }, 0);
-  };
-
-  const handleCheckboxChange = (productId) => {
-    setSelectedItems((prevState) => ({
-      ...prevState,
-      [productId]: !prevState[productId],
-    }));
-  };
+  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate,cartData, setCartData,selectedItems, setSelectedItems,calculateTotal, handleCheckboxChange } = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
 
@@ -63,9 +26,9 @@ const Cart = () => {
           <div className='mt-5'>
             <div className="grid grid-cols-[0.5fr_3fr_1fr_1fr_0.5fr] py-2">
               <span></span>
-              <span className="font-medium content_color text-lg">Sản phẩm</span>
+              <span className="font-medium content_color text-lg ml-5">Sản phẩm</span>
               <span className="font-medium content_color text-lg">Số lượng</span>
-              <span className="font-medium content_color text-lg">Thành tiền</span>
+              <span className="font-medium content_color text-lg ml-3">Thành tiền</span>
               <span></span>
             </div>
 
