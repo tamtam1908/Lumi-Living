@@ -100,13 +100,13 @@ const Product = () => {
                     <input className="w-3" type="checkbox" value={'ghe'} onChange={toggleCategory}/> Ghế
                   </p>
                   <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Gotunhien'} onChange={toggleCategory}/> Gỗ tự nhiên
+                    <input className="w-3" type="checkbox" value={'gotunhien'} onChange={toggleCategory}/> Gỗ tự nhiên
                   </p>
                   <p className='flex gap-2'>
                     <input className="w-3" type="checkbox" value={'dalon'} onChange={toggleCategory}/> Da lộn
                   </p>
                   <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'vaicotton'} onChange={toggleCategory}/> Vải cotton
+                    <input className="w-3" type="checkbox" value={'cotton'} onChange={toggleCategory}/> Vải cotton
                   </p>
                   <p className='flex gap-2'>
                     <input className="w-3" type="checkbox" value={'kimloai'} onChange={toggleCategory}/> Kim loại
@@ -122,7 +122,7 @@ const Product = () => {
                     <input className="w-3" type="checkbox" value={'kimloai'} onChange={toggleSubCategory}/> Kim loại
                   </p>
                   <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'go'} onChange={toggleSubCategory}/> Gỗ tự nhiên
+                    <input className="w-3" type="checkbox" value={'gotunhien'} onChange={toggleSubCategory}/> Gỗ tự nhiên
                   </p>
                   <p className='flex gap-2'>
                     <input className="w-3" type="checkbox" value={'dalon'} onChange={toggleSubCategory}/> Da lộn

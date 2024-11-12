@@ -68,7 +68,7 @@ const List = (token) => {
               <img className='w-12 h-12 object-cover' src={item.image[0]} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
-              <p>{item.price}{currency}</p>
+              <p>{item.price.toLocaleString('vi-VN')}{currency}</p>
               <p>{item.material}</p>
               <p>{item.size}</p>
               <p onClick={()=>removeProduct(item._id)} className='text-right md:text-center cursor-pointer text-lg'><FontAwesomeIcon icon={faTrashCan} /></p>

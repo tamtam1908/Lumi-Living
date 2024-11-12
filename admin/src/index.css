@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .button_logout {
-    @apply bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-200 ease-in-out shadow-md;
+    @apply bg-[#ab7839] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#2c2623] transition duration-200 ease-in-out shadow-md;
   }
 
 .navlink {
