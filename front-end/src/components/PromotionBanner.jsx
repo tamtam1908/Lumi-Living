@@ -24,7 +24,7 @@ const PromotionBanner = () => {
   // Render
   return (
     <div className="main_bg">
-      <h1 className = "text-6xl text-center content_color font-bold p-5">ƯU ĐÃI</h1>
+      <h1 className = "text-4xl text-center content_color font-bold p-5">ƯU ĐÃI</h1>
       <div className="relative w-full h-[550px] overflow-hidden">
         {promotions.map((promotion, index) => (
           <NavLink 

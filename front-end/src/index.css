@@ -6,17 +6,26 @@
 
 :root {
     --text-color: #AC9984;--bg-color:#2C2623; --content-color:#EEE9E4; --content-font:  montserrat; 
-    --attention-color: #d9a86d; --text-label: #2C2623;  }
+    --attention-color: #d9a86d; --text-label: #2C2623; --text--product: #36302C; --custom-bg:#594f45; --product-bg: #FFFAF6; --product-color: #201D1C; --discount-border:#D9A86D;  --pre--color: #ac8a60; --text-form: #a08257; --btn-order: #605040;   }
+.btn_order{background-color: var(--btn-order);}
+.btn_order:hover{background-color: var(--custom-bg);}
 
+.text_form{color: var(--text-form)}
+.pre_color{color: var(--pre--color)}
+.discount_border {border: 1px solid var(--discount-border);}
+.discount_btn:hover{background-color:#6c5f53 }
+.product_bg{background-color: var(--product-bg);}
+.product_color{color: var(--product-color)}
+.opt_color{color: var(--product-color)}
 .content_font {font-family: var(--content-font);}
 .navbar_font{
     color: var(--text-color);}
 .text_label{color: var(--text-label)}
 .main_bg{
     background-color: var(--bg-color);}
-
+.custom_bg{background-color: var(--custom-bg);}
 .content_color{color: var(--content-color);}
-
+.text_product{color: var(--text--product)}
 .attention_content{color: var(--attention-color)}
 .btn_color{background-color: #917F6C;}
 .btn_color:hover{background-color: #6c5f53;}
@@ -25,7 +34,7 @@
 .navbar_bg{background-color: #201D1C;}
 .navbar_font{color:#AC9984}
 a.active hr{display:block} 
-.border{background-color: #AC9984;}
+.border_bg{background-color: #AC9984;}
 .navbar_btn{background-color: #D9A86D;}
 .navbar_btn:hover{background-color: #AC9984;}
 .bg_form{background-color: #EEE9E4;}
