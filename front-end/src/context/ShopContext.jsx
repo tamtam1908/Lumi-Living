@@ -6,25 +6,26 @@ import { toast } from 'react-toastify';
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const currency = 'VND';
   const delivery_fee = 50000;
 
+  // Khởi tạo state cho giỏ hàng, wishlist, sản phẩm và thông tin địa phương
   const [cartItems, setCartItems] = useState({});
+  const [wishlist, setWishlist] = useState([]);
+  const [products, setProducts] = useState([]); // Khởi tạo với sản phẩm từ API
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedPayment, setSelectedPayment] = useState(null);
+  
   // Cart
   const [cartData, setCartData] = useState([]);
   const [selectedItems, setSelectedItems] = useState({});
-  // Products
-  const [products, setProducts] = useState([]);
-  
+
   const navigate = useNavigate();
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
-  // Get product data
+  // Lấy dữ liệu sản phẩm từ API
   const getProductsData = async () => {
     try {
       const response = await axios.get(`${backendUrl}/api/product/list`);
@@ -44,28 +45,40 @@ const ShopContextProvider = (props) => {
     getProductsData();
   }, []); // Empty dependency array ensures this runs only once
 
-  // Update cart data when cart items or products change
+  // Lấy dữ liệu tỉnh thành
   useEffect(() => {
-    if (products.length > 0) {
-      const tempData = [];
-  
-      for (const productId in cartItems) {
-        const product = products.find((item) => item._id === productId);
-        if (product && cartItems[productId] > 0) {
-          tempData.push({
-            _id: productId,
-            name: product.name,
-            price: product.price,
-            quantity: cartItems[productId],
-          });
-        }
-      }
-  
-      setCartData(tempData);
+    fetch('https://provinces.open-api.vn/api/p/')
+      .then((response) => response.json())
+      .then((data) => setProvinces(data));
+  }, []);
+
+  // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
+  useEffect(() => {
+    if (selectedProvince) {
+      fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
+        .then((response) => response.json())
+        .then((data) => setDistricts(data));
     }
+  }, [selectedProvince]);
+
+  // Tạo cartData từ cartItems và sản phẩm
+  useEffect(() => {
+    const tempData = [];
+    for (const productId in cartItems) {
+      const product = products.find((item) => item._id === productId);
+      if (product && cartItems[productId] > 0) {
+        tempData.push({
+          _id: productId,
+          name: product.name,
+          price: product.price,
+          quantity: cartItems[productId],
+        });
+      }
+    }
+    setCartData(tempData);
   }, [cartItems, products]);
 
-  // Calculate the total price of selected items
+  // Tính tổng tiền
   const calculateTotal = () => {
     return cartData.reduce((total, item) => {
       if (selectedItems[item._id]) {
@@ -76,7 +89,7 @@ const ShopContextProvider = (props) => {
     }, 0);
   };
 
-  // Handle checkbox changes to select items
+  // Hàm thay đổi trạng thái checkbox
   const handleCheckboxChange = (productId) => {
     setSelectedItems((prevState) => ({
       ...prevState,
@@ -84,7 +97,7 @@ const ShopContextProvider = (props) => {
     }));
   };
 
-  // Add a product to the cart
+  // Hàm thêm sản phẩm vào giỏ hàng
   const addToCart = (productId) => {
     setCartItems((prevItems) => ({
       ...prevItems,
@@ -92,7 +105,7 @@ const ShopContextProvider = (props) => {
     }));
   };
 
-  // Remove a product from the cart
+  // Hàm xóa sản phẩm khỏi giỏ hàng
   const removeFromCart = (productId) => {
     setCartItems((prevItems) => {
       const newCartItems = { ...prevItems };
@@ -101,47 +114,52 @@ const ShopContextProvider = (props) => {
     });
   };
 
-  // Get provinces data
-  useEffect(() => {
-    fetch('https://provinces.open-api.vn/api/p/')
-      .then((response) => response.json())
-      .then((data) => setProvinces(data));
-  }, []);
+  // Hàm thêm sản phẩm vào wishlist
+  const addToWishlist = (product) => {
+    setWishlist((prevWishlist) => {
+      if (prevWishlist.find((item) => item._id === product._id)) {
+        return prevWishlist;
+      }
+      return [...prevWishlist, product];
+    });
+  };
 
-  // Get districts data when a province is selected
-  useEffect(() => {
-    if (selectedProvince) {
-      fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
-        .then((response) => response.json())
-        .then((data) => setDistricts(data));
-    }
-  }, [selectedProvince]);
+  // Hàm xóa sản phẩm khỏi wishlist
+  const removeFromWishlist = (productId) => {
+    setWishlist((prevWishlist) =>
+      prevWishlist.filter((item) => item._id !== productId)
+    );
+  };
+
+  // Cung cấp các giá trị cho context
+  const value = {
+    products,
+    currency,
+    delivery_fee,
+    cartItems,
+    wishlist,
+    addToCart,
+    removeFromCart,
+    addToWishlist,
+    removeFromWishlist,
+    navigate,
+    provinces,
+    districts,
+    selectedProvince,
+    selectedPayment,
+    setSelectedProvince,
+    setSelectedPayment,
+    cartData,
+    setCartData,
+    selectedItems,
+    setSelectedItems,
+    calculateTotal,
+    handleCheckboxChange,
+    backendUrl,
+  };
 
   return (
-    <ShopContext.Provider
-      value={{
-        currency,
-        delivery_fee,
-        cartItems,
-        setCartItems,
-        cartData,
-        setCartData,
-        selectedItems,
-        setSelectedItems,
-        addToCart,
-        removeFromCart,
-        calculateTotal,
-        handleCheckboxChange,
-        products,
-        provinces,
-        districts,
-        selectedProvince,
-        setSelectedProvince,
-        selectedPayment,
-        setSelectedPayment,
-        navigate,
-      }}
-    >
+    <ShopContext.Provider value={value}>
       {props.children}
     </ShopContext.Provider>
   );
