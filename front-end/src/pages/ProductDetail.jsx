@@ -31,10 +31,13 @@ const ProductDetail = () => {
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         {/* Sidebar images */}
         <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
-          <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between">
+          <div className="flex sm:flex-col overflow-hidden justify-between">
             {productData.image.map((item, index) => (
               <img
-                onClick={() => setImage(item)}
+              onClick={() => {
+                console.log(item); // Log the selected image
+                setImage(item);
+              }}
                 src={item}
                 key={index}
                 alt=""
@@ -57,14 +60,14 @@ const ProductDetail = () => {
         <div className="flex-1 content_color">
           <h1 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '10px' }}>{productData.name}</h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            {[...Array(4)].map((_, i) => (
+            {/* {[...Array(4)].map((_, i) => (
               <img key={i} src={assets.star_icon} alt="" style={{ width: '20px' }} />
-            ))}
+            ))} */}
             <img src={assets.star_dull_icon} alt="" style={{ width: '20px' }} />
-            <p style={{ marginLeft: '10px', color: '#999999' }}>(109)</p>
+            {/* <p style={{ marginLeft: '10px', color: '#999999' }}>(109)</p> */}
           </div>
           <p style={{ fontSize: '32px', fontWeight: '600', marginTop: '20px' }}>
-            {productData.price} {currency}
+            {productData.price.toLocaleString('vi-VN')} {currency}
           </p>
           <p style={{ marginTop: '20px', color: '#999999', maxWidth: '500px' }}>{productData.description}</p>
 
