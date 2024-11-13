@@ -10,7 +10,6 @@ const ShopContextProvider = (props) => {
   const currency = 'VND';
   const delivery_fee = 50000;
 
-  const [token,setToken] = useState('')
 
   // Khởi tạo state cho giỏ hàng, wishlist, sản phẩm và thông tin địa phương
   const [cartItems, setCartItems] = useState({});
