@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -40,7 +41,7 @@ const Login = () => {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     }
   };

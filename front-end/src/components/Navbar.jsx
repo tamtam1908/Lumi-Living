@@ -1,3 +1,4 @@
+
 import React, { useContext, useState, useEffect } from 'react';
 import { assets } from '../assets/assets';
 import { NavLink } from 'react-router-dom';
@@ -29,6 +30,7 @@ const Navbar = () => {
     setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị mặc định
   }, []);
 
+
   return (
     <div className='flex items-center justify-between py-5 navbar_bg px-5'>
       <NavLink to='/'>
@@ -39,6 +41,8 @@ const Navbar = () => {
           <p>VỀ CHÚNG TÔI</p>
           <hr className='w-2/4 border-none h-[1.5px] border hidden' />
         </NavLink>
+    
+
         <NavLink to='/product/' className='flex flex-col items-center gap-1 navbar_font'>
           <p>SẢN PHẨM</p>
           <hr className='w-2/4 border-none h-[1.5px] border hidden' />
@@ -104,6 +108,8 @@ const Navbar = () => {
       </div>
     </div>
   );
+
 };
 
 export default Navbar;
+
