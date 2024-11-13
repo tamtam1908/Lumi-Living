@@ -25,11 +25,11 @@ const Navbar = () => {
     toast.success('Bạn đã đăng xuất');
   };
 
-  // Đảm bảo rằng menu profile không hiển thị khi trang được load lại
   useEffect(() => {
-    setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị mặc định
-  }, []);
-
+    if (token) {
+      setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị khi đăng nhập thành công
+    }
+  }, [token]);  // Phụ thuộc vào `token`
 
   return (
     <div className='flex items-center justify-between py-5 navbar_bg px-5'>
@@ -69,13 +69,27 @@ const Navbar = () => {
       </div>
       <div className='flex items-center gap-5'>
         <div className='group relative'>
-          <NavLink to="./wishlist">
-            <FontAwesomeIcon icon={faHeart} className='w-5 h-5 cursor-pointer navbar_font' alt="Wishlist" />
+          <NavLink
+            to={token ? "/wishlist" : "/login"}
+            className="group relative"
+          >
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="w-5 h-5 cursor-pointer navbar_font"
+              alt="Wishlist"
+            />
           </NavLink>
         </div>
         <div>
-          <NavLink to="./cart">
-            <FontAwesomeIcon icon={faShoppingCart} className='w-5 h-5 cursor-pointer navbar_font' alt="Cart" />
+          <NavLink
+            to={token ? "/cart" : "/login"}
+            className="group relative"
+          >
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              className="w-5 h-5 cursor-pointer navbar_font"
+              alt="Cart"
+            />
           </NavLink>
         </div>
         <div className='relative'>
@@ -87,7 +101,7 @@ const Navbar = () => {
               if (!token) {
                 navigate('/login');
               } else {
-                toggleProfileMenu(); // Chỉ mở menu khi người dùng click vào biểu tượng
+                toggleProfileMenu(); 
               }
             }}
           />
