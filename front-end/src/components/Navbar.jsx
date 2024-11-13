@@ -27,8 +27,10 @@ const Navbar = () => {
 
   // Đảm bảo rằng menu profile không hiển thị khi trang được load lại
   useEffect(() => {
-    setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị mặc định
-  }, []);
+    if (token) {
+      setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị khi đăng nhập thành công
+    }
+  }, [token]);  // Phụ thuộc vào token
 
 
   return (

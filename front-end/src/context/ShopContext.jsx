@@ -24,7 +24,6 @@ const ShopContextProvider = (props) => {
   // Giỏ hàng
   const [cartData, setCartData] = useState([]);
   const [selectedItems, setSelectedItems] = useState({});
-  const [token, setToken] = useState('')
 
   const navigate = useNavigate();
 
