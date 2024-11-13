@@ -18,7 +18,10 @@ import PromotionDetails from './pages/PromotionDetails'
 import './index.css';
 import ShopContextProvider from './context/ShopContext'
 import ProductDetail from './pages/ProductDetail'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import Account from './pages/account'
+
 
 const App = () => {
   return (
@@ -45,8 +48,10 @@ const App = () => {
         
       </Routes>
       <Footer/>
+      <ToastContainer />
       </>
       </ShopContextProvider>
+      
   )
 }
 
