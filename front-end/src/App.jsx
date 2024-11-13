@@ -18,6 +18,7 @@ import PromotionDetails from './pages/PromotionDetails'
 import './index.css';
 import ShopContextProvider from './context/ShopContext'
 import ProductDetail from './pages/ProductDetail'
+import Account from './pages/account'
 
 const App = () => {
   return (
@@ -39,6 +40,8 @@ const App = () => {
         <Route path = '/wishlist' element = {<WishList/>} />
         <Route path = '/promotion' element = {<Promotion/>}/>
         <Route path = '/promotiondetails' element = {<PromotionDetails/>}/>
+        <Route path = '/account' element={<Account/>}/>
+
         
       </Routes>
       <Footer/>

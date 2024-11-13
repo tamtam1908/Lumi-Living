@@ -19,6 +19,7 @@ const ShopContextProvider = (props) => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [cartData, setCartData] = useState([]);
   const [selectedItems, setSelectedItems] = useState({});
+  const [token, setToken] = useState('')
 
   // Lấy dữ liệu sản phẩm từ API
   const getProductsData = async () => {
@@ -100,12 +101,35 @@ const ShopContextProvider = (props) => {
   };
 
   // Hàm thêm sản phẩm vào giỏ hàng
-  const addToCart = (productId) => {
+  // const addToCart = (productId) => {
+  //   setCartItems((prevItems) => ({
+  //     ...prevItems,
+  //     [productId]: (prevItems[productId] || 0) + 1,
+  //   }));
+  //   // if (token) {
+  //   //   try {
+  //   //     await axios.post(backendUrl + '/api/cart/add', {itemId, price}, {headers: {token}}) 
+  //   //   } catch (error) {
+  //   //     TransformStream.error(error.message)
+  //   //   }
+  //   // }
+  // };
+  const addToCart = async (productId, price) => {
     setCartItems((prevItems) => ({
       ...prevItems,
       [productId]: (prevItems[productId] || 0) + 1,
     }));
+  
+    // Gửi yêu cầu POST đến API nếu có token
+    if (token) {
+      try {
+        await axios.post(backendUrl + '/api/cart/add', { itemId: productId, price }, { headers: { token } });
+      } catch (error) {
+        console.error("Error adding to cart:", error.message);
+      }
+    }
   };
+  
 
   // Hàm xóa sản phẩm khỏi giỏ hàng
   const removeFromCart = (productId) => {
@@ -160,6 +184,8 @@ const ShopContextProvider = (props) => {
     calculateTotal,
     handleCheckboxChange,
     backendUrl,
+    setToken,
+    token,
   };
 
   return (
