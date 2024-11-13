@@ -29,7 +29,7 @@ const Login = () => {
         }
 
       } else {
-        const response = await axios.post(backendUrl + '/api/user/ĐĂNG NHẬP TÀI KHOẢN', { email, password });
+        const response = await axios.post(backendUrl + '/api/user/login', { email, password });
 
         if (response.data.success) {
           setToken(response.data.token);
@@ -67,7 +67,7 @@ const Login = () => {
           onChange={(e) => setName(e.target.value)} 
           value={name} 
           type="text" 
-          className='w-full px-3 py-2 border border-gray-800' 
+          className='w-full px-3 py-2 text_label bg_login' 
           placeholder='Nhập tên' 
           required 
         />
@@ -77,7 +77,7 @@ const Login = () => {
         onChange={(e) => setEmail(e.target.value)} 
         value={email} 
         type="email" 
-        className='w-full px-3 py-2 border border-gray-800' 
+        className='w-full px-3 py-2 text_label bg_login' 
         placeholder='Nhập email' 
         required 
       />
@@ -86,7 +86,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)} 
         value={password} 
         type="password" 
-        className='w-full px-3 py-2 border border-gray-800' 
+        className='w-full px-3 py-2 text_label bg_login' 
         placeholder='Nhập mật khẩu' 
         required 
       />
