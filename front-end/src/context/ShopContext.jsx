@@ -10,6 +10,8 @@ const ShopContextProvider = (props) => {
   const currency = 'VND';
   const delivery_fee = 50000;
 
+  const [token,setToken] = useState('')
+
   // Khởi tạo state cho giỏ hàng, wishlist, sản phẩm và thông tin địa phương
   const [cartItems, setCartItems] = useState({});
   const [wishlist, setWishlist] = useState([]);
@@ -45,6 +47,12 @@ const ShopContextProvider = (props) => {
     getProductsData();
   }, []); // Empty dependency array ensures this runs only once
 
+  useEffect(()=>{
+    if (!token && localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'))
+
+    }
+  },[])
   // Lấy dữ liệu tỉnh thành
   useEffect(() => {
     fetch('https://provinces.open-api.vn/api/p/')
@@ -156,6 +164,7 @@ const ShopContextProvider = (props) => {
     calculateTotal,
     handleCheckboxChange,
     backendUrl,
+    setToken, token,
   };
 
   return (
