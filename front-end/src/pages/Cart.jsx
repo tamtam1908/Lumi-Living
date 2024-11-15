@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 const Cart = () => {
   // const [cartData, setCartData] = useState([]);
 
-  const { products, currency, cartData, setCartData, removeFromCart, delivery_fee, navigate, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange} = useContext(ShopContext);
+  const { products, currency, cartData, setCartData, removeFromCart, delivery_fee, navigate, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange, handleInputChange, handleBlurUpdate} = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
 
@@ -21,6 +21,7 @@ const Cart = () => {
   //     setCartData([]); // Nếu cartData không phải mảng, gán là mảng rỗng
   //   }
   // }, [cartData, products]);  // Dựa vào cartData và products để cập nhật
+
 
   return (
     <div className='content_font pb-10 flex flex-col md:flex-row justify-center gap-10 px-5 '>
@@ -67,12 +68,16 @@ const Cart = () => {
                     <p className="text-xs sm:text-lg font-medium">{productData.name}</p>
                   </div>
 
-                  <input
-                    className="bg-transparent border-none text-center w-[60px] sm:w-[80px] py-1 text-lg font-medium"
+                  <input className="bg-transparent border-none text-center w-[60px] sm:w-[80px] py-1 text-lg font-medium"
                     type="number"
                     min={1}
-                    defaultValue={item.quantity}
-                    // onChange={(e) => handleQuantityChange(item._id, e.target.value)}
+                    value={item.quantity}
+                    onChange={(e) => handleInputChange(e, item._id)} // For state update
+                    onBlur={(e) => handleBlurUpdate(e, item._id)} // For backend update on blur
+                    onKeyDown={(e) => {
+                      if (e.key === "-" || e.key === "e" || e.key === ".") e.preventDefault(); // Restrict invalid keys
+                    }}
+                    step={1}
                   />
 
                   <div className="flex justify-center items-center">
