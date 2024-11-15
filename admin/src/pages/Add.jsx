@@ -15,8 +15,8 @@ const Add = ({token}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("table");
-  const [material, setMaterial] = useState("kimloai");
+  const [category, setCategory] = useState("Bàn");
+  const [material, setMaterial] = useState("");
   const [bestseller, setBestseller] = useState(false);
   const [size, setSize] = useState("");
 

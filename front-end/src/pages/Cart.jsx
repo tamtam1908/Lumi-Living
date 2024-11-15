@@ -1,26 +1,51 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { ImBin } from "react-icons/im";
 import { MdHome } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 
-const Cart = () => {
-  // const [cartData, setCartData] = useState([]);
 
-  const { products, currency, cartData, setCartData, removeFromCart, delivery_fee, navigate, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange} = useContext(ShopContext);
+const Cart = () => {
+  const {
+    products,
+    currency,
+    cartData,
+    setCartData,
+    removeFromCart,
+    delivery_fee,
+    navigate,
+    selectedItems,
+    setSelectedItems,
+    calculateTotal,
+    handleCheckboxChange,
+    cartItems,
+  } = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
-
-  // Ensure cartData is always an array before using .map()
   const safeCartData = Array.isArray(cartData) ? cartData : [];
-  // useEffect(() => {
-  //   if (Array.isArray(cartData)) {
-  //     // Nếu cartData là mảng, không cần chuyển đổi thêm gì
-  //     setCartData(cartData);
-  //   } else {
-  //     setCartData([]); // Nếu cartData không phải mảng, gán là mảng rỗng
-  //   }
-  // }, [cartData, products]);  // Dựa vào cartData và products để cập nhật
+
+
+  useEffect(()=>{
+
+    if (products.length > 0 ){
+      const temData  = [];
+    for (const items in cartData){
+      for (const item in cartData[items]){
+        if (cartData[items][item] >0){
+          temData.push({
+            _id: items,
+            quantity:cartData[items][item]
+          })
+        }
+      }
+    }
+    setCartData(temData)
+    }
+  },[cartItems, products])
+
+
+
+  
 
   return (
     <div className='content_font pb-10 flex flex-col md:flex-row justify-center gap-10 px-5 '>
@@ -34,7 +59,7 @@ const Cart = () => {
         <div className='custom_bg my-5 p-10'>
           <h1 className='content_color text-3xl font-medium'>Giỏ hàng</h1>
           <div className='w-full h-[15px] border-b mb-2'></div>
-          <p className='content_color text-lg pt-3'>Bạn có {cartData.length} sản phẩm trong giỏ hàng</p>
+          <p className='content_color text-lg pt-3'>Bạn có {safeCartData.length} sản phẩm trong giỏ hàng</p>
 
           <div className='mt-5'>
             <div className="grid grid-cols-[0.5fr_3fr_1fr_1fr_0.5fr] py-2">
@@ -45,14 +70,17 @@ const Cart = () => {
               <span></span>
             </div>
 
-              {safeCartData.map((item, index) => {
-                const productData = products.find((product) => product._id === item._id);
+            {safeCartData.map((item, index) => {
+              // Tìm sản phẩm dựa trên _id từ cartData
+              const productData = products.find((product) => product._id === item._id);
 
-                if (!productData) {
-                  return <div key={index}>Sản phẩm không tìm thấy</div>;
-                }
-              
-              const totalPrice = productData.price * item.quantity;
+              // Kiểm tra nếu sản phẩm không tìm thấy
+              if (!productData) {
+                return <div key={index} className="text-red-500">Sản phẩm không tìm thấy</div>;
+              }
+
+              // Tính toán giá tiền cho số lượng sản phẩm
+              const totalPrice = (productData.price || 0) * (item.quantity || 1);
 
               return (
                 <div key={index} className="grid grid-cols-[0.5fr_3fr_1fr_1fr_0.5fr] py-4 product_bg rounded-lg mb-5">
@@ -63,7 +91,7 @@ const Cart = () => {
                     className="self-center mx-4"
                   />
                   <div className="flex items-center gap-6 px-5">
-                    <img className="w-[75px] h-[75px]" src={productData.image[0]} alt={productData.name} />
+                    <img className="w-[75px] h-[75px]" src={productData.image[0] || '/placeholder-image.png'} alt={productData.name} />
                     <p className="text-xs sm:text-lg font-medium">{productData.name}</p>
                   </div>
 
@@ -72,7 +100,12 @@ const Cart = () => {
                     type="number"
                     min={1}
                     defaultValue={item.quantity}
-                    // onChange={(e) => handleQuantityChange(item._id, e.target.value)}
+                    onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value))}
+                    // onChange={(e) => setCartData(
+                    //   safeCartData.map((prod) =>
+                    //     prod._id === item._id ? { ...prod, quantity: parseInt(e.target.value) } : prod
+                    //   )
+                    // )}
                   />
 
                   <div className="flex justify-center items-center">
@@ -80,7 +113,7 @@ const Cart = () => {
                   </div>
 
                   <div className="flex justify-center items-center flex-col">
-                    <ImBin onClick={() => removeFromCart(item._id)} className="cursor-pointer" />
+                    <ImBin onClick={() => handleRemoveItem(item._id)} className="cursor-pointer" />
                     <p className='text-center text-[8px] mt-2'>Tìm thêm sản phẩm tương tự</p>
                   </div>
                 </div>
@@ -114,7 +147,7 @@ const Cart = () => {
         <div className="flex justify-end mt-4">
           <button onClick={() => navigate('/place-order', {
             state: {
-              cartData,
+              cartData: safeCartData,
               deliveryFee: isAnyItemSelected ? delivery_fee : 0,
               totalPrice: calculateTotal() + (isAnyItemSelected ? delivery_fee : 0),
             }
