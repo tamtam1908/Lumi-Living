@@ -53,7 +53,6 @@ const PlaceOrder = () => {
         if (!token) return null;
   
         const response = await axios.post(backendUrl + '/api/order/userorders', {}, { headers: { token } });
-        console.log("API Response:", response.data);
   
         const orders = response.data.orders;
   
@@ -62,7 +61,6 @@ const PlaceOrder = () => {
           const orderItems = await Promise.all(order.items.map(async (item) => {
             // Kiểm tra nếu _id của item không có giá trị
             if (!item._id) {
-              console.error(`Missing _id for item: ${JSON.stringify(item)}`);
               return { ...item, image: "default-image-url" };  // Nếu không có _id, dùng ảnh mặc định
             }
   
@@ -91,8 +89,6 @@ const PlaceOrder = () => {
           };
         }));
   
-        console.log("Formatted Orders with Images:", formattedOrders);
-        setCartData(formattedOrders);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -163,7 +159,7 @@ const PlaceOrder = () => {
         console.log("Cart is empty");
       }
     } catch (error) {
-      console.error("Error handling cart data:", error);
+      // console.error("Error handling cart data:", error);
     }
   };
 
