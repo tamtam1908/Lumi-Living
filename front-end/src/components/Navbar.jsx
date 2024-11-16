@@ -28,8 +28,8 @@ const Navbar = () => {
   useEffect(() => {
     if (token) {
       setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị khi đăng nhập thành công
-    }
-  }, [token]);  // Phụ thuộc vào `token`
+    }}, [token]);  // Phụ thuộc vào token
+
 
   return (
     <div className='flex items-center justify-between py-5 navbar_bg px-5'>

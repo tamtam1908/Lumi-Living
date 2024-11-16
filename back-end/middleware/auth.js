@@ -3,7 +3,7 @@ import jwr from 'jsonwebtoken'
 const authUser = async (req, res, next) => {
     const {token} =req.headers;
     if (!token){
-        return res.json({success: false, message:'Khong tuy cap duoc, hay dang nhap lai'})
+        return res.json({success: false, message:'Khong truy cap duoc, hay dang nhap lai'})
     }
 
     try{
@@ -17,3 +17,6 @@ const authUser = async (req, res, next) => {
 }
 
 export default authUser
+
+
+
