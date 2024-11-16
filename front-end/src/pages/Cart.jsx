@@ -5,6 +5,7 @@ import { MdHome } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 
 
+
 const Cart = () => {
   const {
     products,
@@ -46,6 +47,7 @@ const Cart = () => {
 
 
   
+
 
   return (
     <div className='content_font pb-10 flex flex-col md:flex-row justify-center gap-10 px-5 '>
@@ -95,12 +97,19 @@ const Cart = () => {
                     <p className="text-xs sm:text-lg font-medium">{productData.name}</p>
                   </div>
 
-                  <input
-                    className="bg-transparent border-none text-center w-[60px] sm:w-[80px] py-1 text-lg font-medium"
+                  <input className="bg-transparent border-none text-center w-[60px] sm:w-[80px] py-1 text-lg font-medium"
                     type="number"
                     min={1}
-                    defaultValue={item.quantity}
-                    onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value))}
+                    value={item.quantity}
+                    onChange={(e) => handleInputChange(e, item._id)} // For state update
+                    onBlur={(e) => handleBlurUpdate(e, item._id)} // For backend update on blur
+                    onKeyDown={(e) => {
+                      if (e.key === "-" || e.key === "e" || e.key === ".") e.preventDefault(); // Restrict invalid keys
+                    }}
+                    step={1}
+=======
+//                     defaultValue={item.quantity}
+//                     onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value))}
                     // onChange={(e) => setCartData(
                     //   safeCartData.map((prod) =>
                     //     prod._id === item._id ? { ...prod, quantity: parseInt(e.target.value) } : prod

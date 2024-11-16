@@ -89,12 +89,14 @@ import visa from './visa.png'
 import jcb from './jcb.png'
 import mastercard from './mastercard.png'
 import momo from './momo.png'
+import login from './login.png'
+
 export const assets = {
     logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, col_banner, col_sago, col_2,col_3,
     col_banan, col_banannho, col_bancafe, col_bancafelabu,col_bst1,col_bst2,col_bst3,col_bst4, col_banda,
     col_sofa1, col_sofa2, col_sofa3,  col_sofa4, col_sofa5,  tip1, tip2, tip3, tip4, bfsale, gardensale,
     table4,table5, table6, sofa3, cabinet3, contact, dinningtable, mildcale, mentalchair, cloudysofa, bin_icon, cod, 
-    bank, vnpay, visa, jcb, mastercard, momo, 
+    bank, vnpay, visa, jcb, mastercard, momo, login
 }
 
 
