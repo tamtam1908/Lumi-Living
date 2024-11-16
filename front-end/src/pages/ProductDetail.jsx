@@ -72,7 +72,7 @@ const ProductDetail = () => {
             {productData.price.toLocaleString('vi-VN')} {currency}
           </p>
           <p style={{ marginTop: '20px', color: '#999999', maxWidth: '500px' }}>{productData.description}</p>
-
+          <p style={{ marginTop: '20px', color: '#999999'}}><b>Chất liệu sản phẩm: </b> {productData.material}</p>
           {/* Wishlist and Add to Cart buttons */}
           <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
             <button onClick={() => addToCart(productId)} style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
