@@ -7,7 +7,7 @@ import ProductItem from '../components/ProductItem';
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart, addToWishlist, wishlist } = useContext(ShopContext);
+  const { products, currency, addToCart, addToWishlist, removeFromWishlist, wishlist } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState('');
 
@@ -27,8 +27,12 @@ const ProductDetail = () => {
     }
   }, [productId, products]);
 
-  const handleAddToWishlist = (product) => {
-    addToWishlist(product);
+  const handleToggleWishlist = (product) => {
+    if (wishlist.find(item => item._id === product._id)) {
+      removeFromWishlist(product);
+    } else {
+      addToWishlist(product);
+    }
   };
 
   return productData ? (
@@ -40,7 +44,6 @@ const ProductDetail = () => {
             {productData.image.map((item, index) => (
               <img
                 onClick={() => {
-                  console.log(item); // Log the selected image
                   setImage(item);
                 }}
                 src={item}
@@ -65,7 +68,6 @@ const ProductDetail = () => {
         <div className="flex-1 content_color">
           <h1 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '10px' }}>{productData.name}</h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            {/* Option to add more star icons */}
             <img src={assets.star_dull_icon} alt="" style={{ width: '20px' }} />
           </div>
           <p style={{ fontSize: '32px', fontWeight: '600', marginTop: '20px' }}>
@@ -83,7 +85,7 @@ const ProductDetail = () => {
             </button>
             
             {/* Wishlist button with color change */}
-            <button onClick={() => handleAddToWishlist(productData)}>
+            <button onClick={() => handleToggleWishlist(productData)}>
               <MdFavorite
                 className={`text-xl cursor-pointer ${wishlist.find(item => item._id === productData._id) ? 'text-red-500' : 'text-gray-500'}`}
               />
@@ -97,7 +99,7 @@ const ProductDetail = () => {
         <h2 className='text-xl font-semibold mb-5'>Sản phẩm liên quan</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products
-            .filter((item) => item._id !== productId) // Loại bỏ sản phẩm hiện tại
+            .filter((item) => item._id !== productId)
             .map((item) => (
               <ProductItem
                 key={item._id}

@@ -156,11 +156,10 @@ const ShopContextProvider = (props) => {
   };
 
   // Hàm xóa sản phẩm khỏi wishlist
-  const removeFromWishlist = (productId) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.filter((item) => item._id !== productId)
-    );
+  const removeFromWishlist = (product) => {
+    setWishlist(wishlist.filter(item => item._id !== product._id));
   };
+
 
   // Cung cấp các giá trị cho context
   const value = {
