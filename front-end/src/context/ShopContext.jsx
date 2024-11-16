@@ -191,7 +191,7 @@ const ShopContextProvider = (props) => {
         }
     }
   };
-  
+
   // Thêm useEffect để log khi cartItems thay đổi
   useEffect(() => {
     console.log("Cart Items after change:", cartItems);
@@ -261,58 +261,64 @@ const ShopContextProvider = (props) => {
 
 
   const updateQuantity = async (itemId, quantity) => {
-    let cartData = structuredClone(cartItems);
-    cartData[itemId] = quantity; // Cập nhật số lượng sản phẩm
-
-    setCartItems(cartData); // Cập nhật giỏ hàng trên frontend
-
-    // Gửi yêu cầu cập nhật giỏ hàng đến backend
+    if (quantity < 1) {
+      toast.error("Số lượng không thể nhỏ hơn 1!");
+      return;
+    }
+  
+    if (!cartItems[itemId]) {
+      toast.error("Sản phẩm không tồn tại trong giỏ hàng!");
+      return;
+    }
+  
+    // Cập nhật giỏ hàng trên frontend
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [itemId]: quantity,
+    }));
+  
+    // Đồng bộ với backend
     if (token) {
-        try {
-            await axios.post(backendUrl + '/api/cart/update', { itemId, quantity }, { headers: { token } });
-        } catch (error) {
-            console.log(error);
-            toast.error(error.message);
+      try {
+        const response = await axios.post(`${backendUrl}/api/cart/update`, { itemId, quantity }, { headers: { token } });
+        if (response.data.success) {
+          toast.success("Cập nhật số lượng thành công!");
+        } else {
+          toast.error(response.data.message || "Lỗi không xác định!");
         }
+      } catch (error) {
+        console.error(error);
+        toast.error("Lỗi khi cập nhật số lượng!");
+      }
     }
   };
 
   // Hàm xóa sản phẩm khỏi giỏ hàng
-const removeFromCart = async (productId) => {
-  try {
-    // Lấy token từ localStorage
-    const token = localStorage.getItem('token');
-    if (!token) {
-      throw new Error("Token không tồn tại.");
-    }
 
-    // Gọi API backend để xóa sản phẩm khỏi cơ sở dữ liệu
-    const response = await fetch(`${backendUrl}/api/cart/remove`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}` // Gửi token trong header
-      },
-      body: JSON.stringify({ itemId: productId }), // Không cần userId, chỉ cần itemId
+  const removeFromCart = async (productId) => {
+    // Cập nhật giỏ hàng bằng cách xóa sản phẩm hoàn toàn
+    setCartItems((prevItems) => {
+      const updatedItems = { ...prevItems };
+      if (updatedItems[productId]) {
+        delete updatedItems[productId]; // Xóa sản phẩm khỏi giỏ hàng
+      }
+      return updatedItems;
     });
-
-    const data = await response.json();
-
-    if (data.success) {
-      // Nếu xóa thành công, cập nhật giỏ hàng trong frontend
-      setCartData((prevCartData) => prevCartData.filter(item => item._id !== productId));
+  
+    // Gửi yêu cầu POST đến API để xóa sản phẩm nếu có token
+    const token = localStorage.getItem('token'); // Lấy token từ localStorage
+    if (token) {
+      try {
+        // Gửi yêu cầu xóa sản phẩm với token
+        await axios.post(`${backendUrl}/api/cart/remove`, { itemId: productId }, { headers: { token } });
+      } catch (error) {
+        console.error('Lỗi khi gửi yêu cầu xóa sản phẩm:', error);
+        toast.error(error.message);
+      }
     } else {
-      alert(data.message); // Thông báo lỗi nếu có
+      alert('Token không tồn tại!');
     }
-  } catch (error) {
-    console.error('Lỗi khi xóa sản phẩm:', error);
-    alert('Có lỗi xảy ra khi xóa sản phẩm!');
-  }
-};
-
-
-
-
+  };
   
     const getUserCart = async (token) => {
       try {
@@ -349,6 +355,49 @@ const removeFromCart = async (productId) => {
   };
   
 
+  const handleInputChange = (e, itemId) => {
+    let newValue = parseInt(e.target.value, 10);
+  
+    // Nếu giá trị không hợp lệ (NaN) hoặc nhỏ hơn 1, đặt nó bằng 1
+    if (isNaN(newValue) || newValue < 1) {
+      newValue = 1;
+    }
+  
+    // Cập nhật trực tiếp cartItems (vì nó là đối tượng, không phải mảng)
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [itemId]: newValue,  // Cập nhật số lượng cho sản phẩm cụ thể
+    }));
+  };
+  
+  const handleBlurUpdate = async (e, itemId) => {
+    let newValue = parseInt(e.target.value, 10);
+  
+    // Kiểm tra giá trị khi người dùng thoát khỏi ô nhập liệu
+    if (isNaN(newValue) || newValue < 1) {
+      toast.error("Số lượng phải lớn hơn 0!");
+      return;
+    }
+  
+    // Cập nhật cartItems trong bộ nhớ tạm thời
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [itemId]: newValue,  // Cập nhật số lượng cho sản phẩm cụ thể
+    }));
+  
+    try {
+      // Gửi yêu cầu backend để cập nhật số lượng
+      await axios.post(
+        `${backendUrl}/api/cart/update`,
+        { itemId, quantity: newValue },
+        { headers: { token } } // Bao gồm token nếu cần thiết
+      );
+      toast.success("Cập nhật số lượng thành công!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Lỗi khi cập nhật số lượng!");
+    }
+  };
 
   // Hàm thêm sản phẩm vào wishlist
   const addToWishlist = (product) => {
@@ -394,8 +443,9 @@ const removeFromCart = async (productId) => {
     backendUrl,
     setToken,
     token,
+    handleInputChange, 
+    handleBlurUpdate
     updateQuantity,
-    removeFromCart
   };
 
   return (
