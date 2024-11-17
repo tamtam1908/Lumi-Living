@@ -1,12 +1,11 @@
 
-import React, { useContext, useState, useEffect }, { useContext, useEffect, useState } from 'react';;
+import React, { useContext, useEffect, useState } from 'react';;
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './Searchbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
-import { ShopContext } from '../context/ShopContext';
 import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css';
 

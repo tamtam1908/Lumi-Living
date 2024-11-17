@@ -54,7 +54,7 @@ const Login = () => {
       {/* Hình ảnh ở bên trái */}
       <div className='hidden sm:block w-2/5 mx-10'>
         <img 
-          src= {assets.login}
+          src= {assets.opening}
           alt='Mô tả hình ảnh'
           className='w-full h-auto object-cover'
         />

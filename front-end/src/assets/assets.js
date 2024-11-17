@@ -92,7 +92,7 @@ import visa from './visa.png'
 import jcb from './jcb.png'
 import mastercard from './mastercard.png'
 import momo from './momo.png'
-import login from './login.png'
+import loginopening from './login.png'
 
 import opening from './opening.png'
 
@@ -115,7 +115,7 @@ export const assets = {
     col_sofa1, col_sofa2, col_sofa3,  col_sofa4, col_sofa5,  tip1, tip2, tip3, tip4, bfsale, gardensale,
     table4,table5, table6, sofa3, cabinet3, contact, dinningtable, mildcale, mentalchair, cloudysofa, bin_icon, cod, 
     bank, vnpay, visa, jcb, mastercard, momo, loginopening,feedback1,feedback2,sharingwooden1,sharingwooden2, 
-    sharingnarrow1,sharingnarrow2,sharingnarrow3, sharingnarrow4, sharingnarrow5, sharingnarrow6
+    sharingnarrow1,sharingnarrow2,sharingnarrow3, sharingnarrow4, sharingnarrow5, sharingnarrow6,opening
 }
 
 
