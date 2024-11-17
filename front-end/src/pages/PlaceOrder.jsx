@@ -60,7 +60,7 @@ const PlaceOrder = () => {
         </div>
       )}
     </div>
-      <div className='flex justify-center content_font  '>  
+      <div className='flex justify-center content_font   '>  
         <div className="flex flex-col sm:flex-row justify-between gap-12 mb-22 pt-5 sm:pt-14 min-h-[80vh]">
           {/* Delivery information */}
           <div className="flex flex-col gap-6 w-full sm:max-w-[480px]">

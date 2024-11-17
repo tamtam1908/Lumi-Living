@@ -4,10 +4,11 @@ import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import { MdFavorite } from "react-icons/md";
 import ProductItem from '../components/ProductItem';
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart, addToWishlist, wishlist } = useContext(ShopContext);
+  const { products, currency, addToCart, addToWishlist, wishlist ,addToCartSuccess} = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState('');
 
@@ -91,6 +92,26 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+       {/* Success overlay message */}
+       {addToCartSuccess && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div className = 'bg_login p-5 text-center rounded shadow flex flex-col	items-center	'>
+            <IoIosCheckmarkCircleOutline className = 'text-8xl text_label '/>
+            <p className = 'text_product text-base'>Sản phẩm đã được thêm vào giỏ hàng</p>
+          </div>
+        </div>
+      )}
 
       {/* Related Products */}
       <div className='mt-10'>

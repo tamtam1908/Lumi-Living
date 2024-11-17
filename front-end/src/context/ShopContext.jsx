@@ -9,7 +9,8 @@ const ShopContextProvider = (props) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const currency = 'VND';
   const delivery_fee = 50000;
-
+  // Hiển thị thông báo khi thêm giỏ hàng thành công 
+  const [addToCartSuccess, setAddToCartSuccess] = useState(false);
   // Khởi tạo state cho giỏ hàng, wishlist, sản phẩm và thông tin địa phương
   const [cartItems, setCartItems] = useState({});
   const [wishlist, setWishlist] = useState([]);
@@ -103,6 +104,8 @@ const ShopContextProvider = (props) => {
       ...prevItems,
       [productId]: (prevItems[productId] || 0) + 1,
     }));
+    setAddToCartSuccess(true);
+    setTimeout(() => setAddToCartSuccess(false), 2000);
   };
 
   // Hàm xóa sản phẩm khỏi giỏ hàng
@@ -130,7 +133,11 @@ const ShopContextProvider = (props) => {
       prevWishlist.filter((item) => item._id !== productId)
     );
   };
-
+  // Tăng số lượng giỏ hàng
+  const getCartCount = () => {
+    return Object.values(cartItems).reduce((totalCount, quantity) => totalCount + quantity, 0);
+  };
+  
   // Cung cấp các giá trị cho context
   const value = {
     products,
@@ -156,6 +163,9 @@ const ShopContextProvider = (props) => {
     calculateTotal,
     handleCheckboxChange,
     backendUrl,
+    addToCartSuccess,
+    setAddToCartSuccess,
+    getCartCount
   };
 
   return (

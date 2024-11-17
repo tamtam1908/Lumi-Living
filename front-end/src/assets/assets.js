@@ -89,12 +89,28 @@ import visa from './visa.png'
 import jcb from './jcb.png'
 import mastercard from './mastercard.png'
 import momo from './momo.png'
+import opening from './opening.png'
+
+import feedback1 from './feedback1.jpg'
+import feedback2 from './feedback2.jpg'
+
+import sharingwooden1 from './sharingwooden1.jpg'
+import sharingwooden2 from './sharingwooden2.jpg'
+
+import sharingnarrow1 from './sharingnarrow1.jpg'
+import sharingnarrow2 from './sharingnarrow2.jpg'
+import sharingnarrow3 from './sharingnarrow3.jpg'
+import sharingnarrow4 from './sharingnarrow4.jpg'
+import sharingnarrow5 from './sharringnarrow5.jpg'
+import sharingnarrow6 from './sharingnarrow6.jpg'
+
 export const assets = {
     logo, banner1, banner2, banner3, cabinet1, cabinet2, chair1, chair2, sofa1, sofa2, table1, table2, table3, cart, wishlist, profile, banner4, banner5, banner6, banner7, col_banner, col_sago, col_2,col_3,
     col_banan, col_banannho, col_bancafe, col_bancafelabu,col_bst1,col_bst2,col_bst3,col_bst4, col_banda,
     col_sofa1, col_sofa2, col_sofa3,  col_sofa4, col_sofa5,  tip1, tip2, tip3, tip4, bfsale, gardensale,
     table4,table5, table6, sofa3, cabinet3, contact, dinningtable, mildcale, mentalchair, cloudysofa, bin_icon, cod, 
-    bank, vnpay, visa, jcb, mastercard, momo, 
+    bank, vnpay, visa, jcb, mastercard, momo, opening,feedback1,feedback2,sharingwooden1,sharingwooden2, 
+    sharingnarrow1,sharingnarrow2,sharingnarrow3, sharingnarrow4, sharingnarrow5, sharingnarrow6
 }
 
 

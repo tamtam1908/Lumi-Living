@@ -3,6 +3,8 @@ import { assets } from '../assets/assets'
 import {NavLink} from 'react-router-dom'
 import DiscountProduct from '../components/DiscountProduct'
 import Footer from '../components/Footer'
+import { GiCelebrationFire } from "react-icons/gi";
+
 const Promotion = () => {
 // Khai báo hàm cho nút ở đây 
   return (
