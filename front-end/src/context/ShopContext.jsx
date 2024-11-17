@@ -444,7 +444,7 @@ const ShopContextProvider = (props) => {
     setToken,
     token,
     handleInputChange, 
-    handleBlurUpdate
+    handleBlurUpdate,
     updateQuantity,
   };
 
