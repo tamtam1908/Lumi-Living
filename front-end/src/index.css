@@ -45,6 +45,10 @@
 .navbar_font{color:#AC9984}
 a.active hr{display:block} 
 .border_bg{background-color: #AC9984;}
+.productBanner_bg {
+    background-color: rgba(242, 236, 230, 0.7);
+  }
+  
 .navbar_btn{background-color: #D9A86D;}
 .navbar_btn:hover{background-color: #AC9984;}
 .bg_form{background-color: #EEE9E4;}
@@ -56,6 +60,8 @@ a.active hr{display:block}
 }
 .about_title{ padding: 20px} 
 .warranty{background-color: #6c5f53; }
+.review-bg{background-color: #36302C;}
+.review-color{color: #D0C8C6;}
 /* banner */
 .banner-content{color:#201D1C; font-family: montserrat;}
 .banner-content-color{color:#201D1C; }

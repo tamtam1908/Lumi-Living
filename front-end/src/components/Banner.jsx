@@ -42,7 +42,7 @@ const Banner = () => {
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full ${backgroundImage === images[index] ? 'main_bg' : 'border border-transparent'} hover:border-transparent`}
+            className={`w-2 h-2 rounded-full ${backgroundImage === images[index] ? 'main_bg' : 'border_bg border_bg-transparent'} hover:border_bg-transparent`}
             onClick={() => handleImageChange(index)}
           ></button>
         ))}
@@ -62,7 +62,7 @@ const Banner = () => {
         </div>
 
       {/* Bottom Section: Service Icons */}
-        <div className="absolute bottom-0 w-full border border-transparent flex items-center py-7 px-7 bg-[#AC9984]">
+        <div className="absolute bottom-0 w-full border_bg border_bg-transparent flex items-center py-7 px-7 bg-[#AC9984]">
             <div className="flex  items-center justify-between w-full  ">
                 <div className="flex items-center banner-content mr-8">
                 <FontAwesomeIcon icon={faTruck} className="w-10 h-10 mr-2 text_label" /> {/* Thêm margin bên phải */}

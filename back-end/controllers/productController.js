@@ -44,7 +44,7 @@ const addProduct = async (req, res) => {
         
         res.status(201).json({
             success: true,
-            message: 'Product added successfully'
+            message: 'Đã thêm sản phẩm thành công'
         });
 
     } catch (error) {
@@ -74,7 +74,7 @@ const listProduct = async (req, res) => {
 const  removeProduct = async (req, res) => {
     try {
         await productModel.findByIdAndDelete(req.body.id);
-        res.json({ success: true, message:"Product Removed!" });
+        res.json({ success: true, message:"Đã xóa sản phẩm!" });
     } catch (error) {
         console.log(error);
         res.status(500).json({

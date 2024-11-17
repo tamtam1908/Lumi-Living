@@ -1,16 +1,40 @@
-import React, { useContext, useEffect, useState } from 'react';
+
+import React, { useContext, useState, useEffect }, { useContext, useEffect, useState } from 'react';;
 import { ShopContext } from '../context/ShopContext';
-import { assets } from '../assets/assets'
-import {NavLink} from 'react-router-dom'
-import SearchBar from './Searchbar'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
+import { assets } from '../assets/assets';
+import { NavLink } from 'react-router-dom';
+import SearchBar from './Searchbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { ShopContext } from '../context/ShopContext';
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
-const {navigate,getCartCount} = useContext(ShopContext)
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const { navigate, token, setToken, setCartData } = useContext(ShopContext);
+
+  const toggleProfileMenu = () => {
+    setShowProfileMenu(prevState => !prevState);
+  };
+
+  const logout = () => {
+    navigate('/login');
+    localStorage.removeItem('token');
+    setToken('');
+    setCartData({});
+    toast.success('Bạn đã đăng xuất');
+  };
+
+  useEffect(() => {
+    if (token) {
+      setShowProfileMenu(false); // Đảm bảo profile menu không hiển thị khi đăng nhập thành công
+    }}, [token]);  // Phụ thuộc vào token
+
+
   return (
-    <div className = 'flex items-center justify-between py-5 navbar_bg px-5'>
-      <NavLink to = '/'>
+    <div className='flex items-center justify-between py-5 navbar_bg px-5'>
+      <NavLink to='/'>
         <h1 className="custom-gold text-3xl font-bold cursor-pointer">LUMILIVING</h1>
       </NavLink>
       <ul className='hidden sm:flex gap-5 text-sm font-medium'>
@@ -43,37 +67,66 @@ const {navigate,getCartCount} = useContext(ShopContext)
           <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
         </NavLink>
       </ul>
-      <div className = 'flex items-center gap-5'>
-        <SearchBar onSearch={(query) => console.log(query)} className = 'cursor-pointer'/>
+      <div className='flex items-center gap-5'>
+        <SearchBar onSearch={(query) => console.log(query)} className='cursor-pointer' />
       </div>
       <div className='flex items-center gap-5'>
         <div className='group relative'>
-          <NavLink to = "./wishlist">
-            <FontAwesomeIcon icon={faHeart} className='w-5 h-5 cursor-pointer navbar_font ' alt="Wishlist" />
+          <NavLink
+            to={token ? "/wishlist" : "/login"}
+            className="group relative"
+          >
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="w-5 h-5 cursor-pointer navbar_font"
+              alt="Wishlist"
+            />
           </NavLink>
         </div>
         <div>
-          <NavLink to = "./cart">
-            <FontAwesomeIcon icon={faShoppingCart} className='w-5 h-5 cursor-pointer navbar_font ' alt="Cart" />
-            <p className = 'absolute right-[50px] top-[16px]  w-4 text-center leading-4 bg-[#FE7865] text-white aspect-square rounded-full text-[8px] '>{getCartCount()}</p>
+          <NavLink
+            to={token ? "/cart" : "/login"}
+            className="group relative"
+          >
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              className="w-5 h-5 cursor-pointer navbar_font"
+              alt="Cart"
+            />
           </NavLink>
         </div>
-        <div className='group relative'>
-          <FontAwesomeIcon icon={faUser} className='w-5 h-5 cursor-pointer navbar_font' alt="Profile" />
-          <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-10 '>
-            <div className='flex flex-col gap-2 w-36 py-2  px-2 bg-slate-100 account_text rounded account_bg'>
-              {/* <p className='cursor-pointer  font-medium'>Tài khoản của tôi</p>
-              <p className='cursor-pointer  font-medium'>Đơn hàng của tôi</p>
-              <p className='cursor-pointer  font-medium'>Đăng xuất</p> */}
-              <p className='cursor-pointer  w-full text-center' onClick={() => navigate('/login')} >Đăng nhập </p>
-              <p className='cursor-pointer  w-full text-center' onClick={() => navigate('/signup')}>Đăng ký  </p>
-
+        <div className='relative'>
+          <FontAwesomeIcon
+            icon={faUser}
+            className='w-5 h-5 cursor-pointer navbar_font'
+            alt="Profile"
+            onClick={() => {
+              if (!token) {
+                navigate('/login');
+              } else {
+                toggleProfileMenu(); 
+              }
+            }}
+          />
+          {token && showProfileMenu && (
+            <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg" style={{ zIndex: 50 }}>
+              <NavLink to="/account" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                Tài khoản
+              </NavLink>
+              <NavLink to="/orders" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                Đơn hàng
+              </NavLink>
+              <p onClick={logout} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                Đăng xuất
+              </p>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
-  )
-}
+  );
 
-export default Navbar
+};
+
+export default Navbar;
+

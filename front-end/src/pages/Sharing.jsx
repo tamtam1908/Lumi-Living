@@ -93,7 +93,7 @@ const Sharing = () => {
                     {/* Arrow for the third image */}
                     <button
                         onClick={handleNext}
-                        className="flex items-center justify-center w-10 h-10 rounded-full border border-transparent banner-content"
+                        className="flex items-center justify-center w-10 h-10 rounded-full border_bg border_bg-transparent banner-content"
                     >
                         <FontAwesomeIcon icon={faArrowRight} />
                     </button>
@@ -105,7 +105,7 @@ const Sharing = () => {
                         <button
                             key={index}
                             onClick={() => handleDotClick(index)}
-                            className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg_form' : 'border border-transparent'}`}
+                            className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg_form' : 'border_bg border_bg-transparent'}`}
                         ></button>
                     ))}
                 </div>
@@ -158,7 +158,7 @@ const Sharing = () => {
                     <button
                         key={index}
                         onClick={() => setCurrentTipIndex(index)}
-                        className={`w-2 h-2 rounded-full ${index === currentTipIndex ? 'bg_form' : 'border border-transparent'}`}
+                        className={`w-2 h-2 rounded-full ${index === currentTipIndex ? 'bg_form' : 'border_bg border_bg-transparent'}`}
                     ></button>
                 ))}
             </div>
