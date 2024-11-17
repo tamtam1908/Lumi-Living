@@ -20,6 +20,9 @@ const Cart = () => {
     calculateTotal,
     handleCheckboxChange,
     cartItems,
+    handleBlurUpdate,
+    handleRemoveItem,
+    handleInputChange,
   } = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
@@ -107,7 +110,7 @@ const Cart = () => {
                       if (e.key === "-" || e.key === "e" || e.key === ".") e.preventDefault(); // Restrict invalid keys
                     }}
                     step={1}
-=======
+
 //                     defaultValue={item.quantity}
 //                     onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value))}
                     // onChange={(e) => setCartData(
@@ -118,7 +121,7 @@ const Cart = () => {
                   />
 
                   <div className="flex justify-center items-center">
-                    <p className="text-base">{totalPrice}{currency}</p>
+                    <p className="text-base">{totalPrice.toLocaleString('vi-VN')} {currency}</p>
                   </div>
 
                   <div className="flex justify-center items-center flex-col">

@@ -74,14 +74,43 @@ const ShopContextProvider = (props) => {
       .then((data) => setProvinces(data));
   }, []);
 
-  // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
-  useEffect(() => {
-    if (selectedProvince) {
-      fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
-        .then((response) => response.json())
-        .then((data) => setDistricts(data));
-    }
-  }, [selectedProvince]);
+  // // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
+  // useEffect(() => {
+  //   if (selectedProvince) {
+  //     fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`, {mode: 'no-cors'})
+  //       .then((response) => response.json())
+  //       .then((data) => setDistricts(data));
+  //   }
+  // }, [selectedProvince]);
+
+  // Lấy dữ liệu tỉnh thành
+useEffect(() => {
+  fetch('https://provinces.open-api.vn/api/p/')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => setProvinces(data))
+    .catch((error) => console.error('Error fetching provinces:', error));
+}, []);
+
+// Lấy dữ liệu quận huyện khi tỉnh thành được chọn
+useEffect(() => {
+  if (selectedProvince) {
+    fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setDistricts(data))
+      .catch((error) => console.error('Error fetching districts:', error));
+  }
+}, [selectedProvince]);
+
   
   // useEffect cập nhật cartData khi cartItems thay đổi
   useEffect(() => {
@@ -194,7 +223,7 @@ const ShopContextProvider = (props) => {
 
   // Thêm useEffect để log khi cartItems thay đổi
   useEffect(() => {
-    console.log("Cart Items after change:", cartItems);
+    
   }, [cartItems]);
 
   // Hàm cập nhật số lượng sản phẩm
@@ -444,7 +473,7 @@ const ShopContextProvider = (props) => {
     setToken,
     token,
     handleInputChange, 
-    handleBlurUpdate
+    handleBlurUpdate,
     updateQuantity,
   };
 
