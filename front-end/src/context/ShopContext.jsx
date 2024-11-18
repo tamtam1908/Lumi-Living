@@ -118,6 +118,13 @@ useEffect(() => {
   useEffect(() => {
     setCartData(convertCartItemsToData(cartItems));
 }, [cartItems, products]);
+
+useEffect(() => {
+  if (products.length > 0 && Object.keys(cartItems).length > 0) {
+    setCartData(convertCartItemsToData(cartItems));
+  }
+}, [cartItems, products]);
+
 // useEffect(() => {
 //   if (products.length > 0 && Object.keys(cartItems).length > 0) {
 //     setCartData(convertCartItemsToData(cartItems));
@@ -144,18 +151,19 @@ useEffect(() => {
   // }, [cartItems, products]);
 
   useEffect(() => {
-    const updatedCartData = Object.keys(cartItems).map((productId) => {
-      const product = products.find((item) => item._id === productId);
-      return {
-        _id: productId,
-        name: product?.name,
-        price: product?.price,
-        quantity: cartItems[productId],
-      };
-    });
-  
-    setCartData(updatedCartData);  // Đảm bảo cartData luôn là một mảng
-  }, [cartItems, products]);
+    if (products.length > 0 && Object.keys(cartItems).length > 0) {
+      const updatedCartData = Object.keys(cartItems).map((productId) => {
+        const product = products.find((item) => item._id === productId);
+        return {
+          _id: productId,
+          name: product?.name,
+          price: product?.price, // Thêm giá vào cartData
+          quantity: cartItems[productId],
+        };
+      });
+      setCartData(updatedCartData);
+    }
+  }, [cartItems, products]); // Chỉ cập nhật khi cả cartItems và products đều có dữ liệu
 
 
   const calculateTotal = () => {
