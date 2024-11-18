@@ -1,29 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { ImBin } from "react-icons/im";
 import { MdHome } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
-
-
+import { MdOutlineNavigateNext } from "react-icons/md";
 
 const Cart = () => {
-  const {
-    products,
-    currency,
-    cartData,
-    setCartData,
-    removeFromCart,
-    delivery_fee,
-    navigate,
-    selectedItems,
-    setSelectedItems,
-    calculateTotal,
-    handleCheckboxChange,
-    cartItems,
-    handleBlurUpdate,
-    handleRemoveItem,
-    handleInputChange,
-  } = useContext(ShopContext);
+  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate, cartData, setCartData, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange } = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
   const safeCartData = Array.isArray(cartData) ? cartData : [];
@@ -48,27 +31,31 @@ const Cart = () => {
 
 
   return (
-    <div className='content_font pb-10 flex flex-col md:flex-row justify-center gap-10 px-5 '>
-      <div className="w-full md:w-[60% ]">
+    <div >
+      <div className = 'h-[45px] w-screen	pre_bar content-center'>
         <NavLink to='/product/'>
-          <div className="flex pt-5 px-5 pre_color gap-1 pl-2">
-            <MdHome className="text-xl" />
-            <h1 className="text-base pre_color font-medium">Tiếp tục mua sắm</h1>
-          </div>
-        </NavLink>
-        <div className='custom_bg my-5 p-10'>
-          <h1 className='content_color text-3xl font-medium'>Giỏ hàng</h1>
-          <div className='w-full h-[15px] border-b mb-2'></div>
-          <p className='content_color text-lg pt-3'>Bạn có {safeCartData.length} sản phẩm trong giỏ hàng</p>
-
-          <div className='mt-5'>
-            <div className="grid grid-cols-[0.5fr_3fr_1fr_1fr_0.5fr] py-2">
-              <span></span>
-              <span className="font-medium content_color text-lg ml-5">Sản phẩm</span>
-              <span className="font-medium content_color text-lg">Số lượng</span>
-              <span className="font-medium content_color text-lg ml-3">Thành tiền</span>
-              <span></span>
+            <div className="text_bar flex gap-3 px-5 pre_text ">
+              <MdHome className="w-[20px] h-[20px] cursor-pointer" />
+              <MdOutlineNavigateNext className = 'w-[20px] h-[20px]'/> 
+              <h1 className="text-sm font-light">TIẾP TỤC MUA SẮM</h1>
             </div>
+          </NavLink>
+      </div>
+      <div className='content_font pb-10 pt-8 flex flex-col md:flex-row justify-center gap-10 px-5'>
+        <div className="w-full md:w-[60% ]">
+          <div className='custom_bg my-5 p-10'>
+            <h1 className='content_color text-3xl font-medium'>Giỏ hàng</h1>
+            <div className='w-full h-[15px] border-b mb-2'></div>
+            <p className='content_color text-lg pt-3'>Bạn có {safeCartData.length} sản phẩm trong giỏ hàng</p>
+
+            <div className='mt-5'>
+              <div className="grid grid-cols-[0.5fr_3fr_1fr_1fr_0.5fr] py-2">
+                <span></span>
+                <span className="font-medium content_color text-lg ml-5">Sản phẩm</span>
+                <span className="font-medium content_color text-lg">Số lượng</span>
+                <span className="font-medium content_color text-lg ml-3">Thành tiền</span>
+                <span></span>
+              </div>
 
             {safeCartData.map((item, index) => {
               // Tìm sản phẩm dựa trên _id từ cartData
@@ -165,6 +152,7 @@ const Cart = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

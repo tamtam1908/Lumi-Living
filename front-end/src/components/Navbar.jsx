@@ -1,11 +1,11 @@
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';;
+import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './Searchbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
-import { ShopContext } from '../context/ShopContext';
 import { toast } from 'react-toastify'; // Import toast
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,31 +37,33 @@ const Navbar = () => {
         <h1 className="custom-gold text-3xl font-bold cursor-pointer">LUMILIVING</h1>
       </NavLink>
       <ul className='hidden sm:flex gap-5 text-sm font-medium'>
-        <NavLink to='/about' className='flex flex-col items-center gap-1 navbar_font'>
-          <p>VỀ CHÚNG TÔI</p>
-          <hr className='w-2/4 border-none h-[1.5px] border hidden' />
+        <NavLink to = '/about' className = 'flex flex-col items-center gap-1 navbar_font'>
+          <p className = 'cursor-pointer  font-medium'>VỀ CHÚNG TÔI</p>
+          <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
         </NavLink>
-    
+        <NavLink to = '/product/' className = 'flex flex-col items-center gap-1 navbar_font'>
+          <p className = 'cursor-pointer font-medium'>SẢN PHẨM</p>
+          <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
+        </NavLink>
 
-        <NavLink to='/product/' className='flex flex-col items-center gap-1 navbar_font'>
-          <p>SẢN PHẨM</p>
-          <hr className='w-2/4 border-none h-[1.5px] border hidden' />
+        <NavLink to = '/collection' className = 'flex flex-col items-center gap-1 navbar_font'>
+          <p className = 'cursor-pointer  font-medium'>BỘ SƯU TẬP</p>
+          <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
         </NavLink>
-        <NavLink to='/collection' className='flex flex-col items-center gap-1 navbar_font'>
-          <p>BỘ SƯU TẬP</p>
-          <hr className='w-2/4 border-none h-[1.5px] bg-brown-300 hidden' />
+
+        <NavLink to = '/promotion' className = 'flex flex-col items-center gap-1 navbar_font'>
+          <p className = 'cursor-pointer  font-medium'>KHUYẾN MÃI</p>
+          <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
         </NavLink>
-        <NavLink to='/promotion' className='flex flex-col items-center gap-1 navbar_font'>
-          <p>KHUYẾN MÃI</p>
-          <hr className='w-2/4 border-none h-[1.5px] border hidden' />
+
+        <NavLink to = '/sharing' className = 'flex flex-col items-center gap-1 navbar_font'>
+          <p className = 'cursor-pointer font-medium'>GÓC CHIA SẺ</p>
+          <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
         </NavLink>
-        <NavLink to='/sharing' className='flex flex-col items-center gap-1 navbar_font'>
-          <p>GÓC CHIA SẺ</p>
-          <hr className='w-2/4 border-none h-[1.5px] border hidden' />
-        </NavLink>
-        <NavLink to='/contact' className='flex flex-col items-center gap-1 navbar_font'>
-          <p>LIÊN HỆ</p>
-          <hr className='w-2/4 border-none h-[1.5px] border hidden' />
+
+        <NavLink to = '/contact' className = 'flex flex-col items-center gap-1 navbar_font'>
+          <p className = 'cursor-pointer font-medium '>LIÊN HỆ</p>
+          <hr className = 'w-2/4 border-none h-[1.5px] bg-[#d9a86d] hidden'/>
         </NavLink>
       </ul>
       <div className='flex items-center gap-5'>

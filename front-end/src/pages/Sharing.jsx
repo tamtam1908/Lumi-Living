@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState, } from 'react';
 import { assets } from '../assets/assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { ShopContext } from '../context/ShopContext';
 
 const Sharing = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    const {navigate,} = useContext(ShopContext);
     const images = [
         { src: assets.banner5, alt: 'Kitchen' },
         { src: assets.banner3, alt: 'Living Room' },
@@ -27,9 +28,10 @@ const Sharing = () => {
     const [currentTipIndex, setCurrentTipIndex] = useState(0);
 
     const tips = [
-        { title: 'Bảo quản nội thất gỗ đúng cách', date: '13 tháng 09, 2024', imgSrc: assets.tip1 },
+        { title: 'Bảo quản nội thất gỗ đúng cách', date: '13 tháng 09, 2024', imgSrc: assets.tip1,path: '/lam-the-nao-de-bao-quan-go-dung-cach' 
+        },
         { title: 'Cách lựa chọn màu sắc cho không gian sống hoàn hảo', date: '09 tháng 09, 2024', imgSrc: assets.tip2 },
-        { title: 'Bí quyết bố trí nội thất nhỏ hẹp', date: '25 tháng 10, 2024', imgSrc: assets.tip3 },
+        { title: 'Bí quyết bố trí nội thất nhỏ hẹp', date: '25 tháng 10, 2024', imgSrc: assets.tip3, path: '/bi-quyet-bo-tri-noi-that-nho-hep' },
         { title: 'Mẹo làm sạch đồ nội thất', date: '30 tháng 10, 2024', imgSrc: assets.tip4 },
         { title: 'Xu hướng thiết kế năm 2024', date: '01 tháng 11, 2024', imgSrc: assets.banner3 }
     ];
@@ -125,15 +127,18 @@ const Sharing = () => {
                 {/* Hiển thị 3 Tip Item */}
                 <div className="flex space-x-4 banner-content">
                     {displayedTips.map((tip, index) => (
-                        <div key={index} className="w-80 bg_form rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
-                            <a href="#" className="block">
-                                <img src={tip.imgSrc} alt={tip.title} className="w-full h-40 object-cover" />
-                                <div className="p-4">
-                                    <h3 className="text-lg font-semibold">{tip.title}</h3>
-                                    <p className="text-sm pt-2">{tip.date}</p>
-                                </div>
-                            </a>
-                        </div>
+                    <div
+                    key={index}
+                    className="w-80 bg_form rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105"
+                    onClick={() => navigate(tip.path)} // Điều hướng đến đường dẫn của tip
+                    style={{ cursor: 'pointer' }}
+                >
+                    <img src={tip.imgSrc} alt={tip.title} className="w-full h-40 object-cover" />
+                    <div className="p-4">
+                        <h3 className="text-lg font-semibold">{tip.title}</h3>
+                        <p className="text-sm pt-2">{tip.date}</p>
+                    </div>
+                </div>
                     ))}
                 </div>
 
