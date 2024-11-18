@@ -6,16 +6,26 @@ import { MdFavorite } from "react-icons/md";
 import ProductItem from "../components/ProductItem";
 import ProductReviews from "../components/ProductReviews";
 import { toast } from "react-toastify";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
 
 const ProductDetail = () => {
   const { productId } = useParams();
 
-  const { products, currency, addToCart, addToWishlist, removeFromWishlist, wishlist, token, setToken, navigate } = useContext(ShopContext);
+  const {
+    products,
+    currency,
+    addToCart,
+    addToWishlist,
+    removeFromWishlist,
+    wishlist,
+    token,
+    setToken,
+    navigate,
+  } = useContext(ShopContext);
 
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
-
-
 
   const fetchProductData = () => {
     const selectedProduct = products.find((item) => item._id === productId);
@@ -34,7 +44,7 @@ const ProductDetail = () => {
   }, [productId, products]);
 
   const handleToggleWishlist = (product) => {
-    if (wishlist.find(item => item._id === product._id)) {
+    if (wishlist.find((item) => item._id === product._id)) {
       removeFromWishlist(product);
     } else {
       addToWishlist(product);
@@ -46,8 +56,8 @@ const ProductDetail = () => {
       style={{
         paddingTop: "50px",
         paddingBottom: "50px",
-        paddingLeft: "150px",
-        paddingRight: "150px",
+        paddingLeft: "50px",
+        paddingRight: "50px",
       }}
       className="main_bg content_color"
     >
@@ -77,23 +87,27 @@ const ProductDetail = () => {
           </div>
           {/* Main image */}
           <div style={{ width: "100%", backgroundColor: "#f5f5f5" }}>
-            <img
-              src={image}
-              alt=""
-              style={{ width: "auto", height: "100%" }}
-            />
+            <img src={image} alt="" style={{ width: "auto", height: "100%" }} />
           </div>
         </div>
 
         {/* Product information */}
 
         <div className="flex-1 content_color">
-          <h1 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '10px' }}>{productData.name}</h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <img src={assets.star_dull_icon} alt="" style={{ width: '20px' }} />
+          <h1
+            style={{
+              fontSize: "24px",
+              fontWeight: "500",
+              marginBottom: "10px",
+            }}
+          >
+            {productData.name}
+          </h1>
+          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+            <img src={assets.star_dull_icon} alt="" style={{ width: "20px" }} />
           </div>
-          <p style={{ fontSize: '32px', fontWeight: '600', marginTop: '20px' }}>
-            {productData.price.toLocaleString('vi-VN')} {currency}
+          <p style={{ fontSize: "32px", fontWeight: "600", marginTop: "20px" }}>
+            {productData.price.toLocaleString("vi-VN")} {currency}
           </p>
           <p
             className="navbar_font"
@@ -105,41 +119,59 @@ const ProductDetail = () => {
             <b>Chất liệu sản phẩm: </b> {productData.material}
           </p> */}
           {/* Wishlist and Add to Cart buttons */}
-          <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
-            <button onClick={() => {
+          <div
+            style={{ marginTop: "20px", display: "flex", gap: "10px" }}
+            className="flex-col"
+          >
+            {/* Wishlist button with color change */}
+            <div>
+              <button
+                onClick={() => {
+                  if (!token) {
+                    toast.error(
+                      "Bạn cần đăng nhập để thêm sản phẩm vào wishlist!"
+                    );
+                    navigate("/login");
+                  } else {
+                    handleToggleWishlist(productData);
+                  }
+                }}
+              >
+                <MdFavorite
+                  className={`text-xl cursor-pointer ${
+                    wishlist.find((item) => item._id === productData._id)
+                      ? "text-red-500"
+                      : "text-white-500"
+                  }`}
+                />
+              </button>
+              <span className="pl-4">Thêm vào yêu thích</span>{" "}
+            </div>
+            <button
+              onClick={() => {
                 if (!token) {
-                  toast.error('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!');
-                  navigate('/login');
+                  toast.error(
+                    "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!"
+                  );
+                  navigate("/login");
                 } else {
-                  toast.success('Thêm vào giỏ hàng thành công!');
-                  addToCart(productId); 
+                  toast.success("Thêm vào giỏ hàng thành công!");
+                  addToCart(productId);
                 }
-              }} style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+              }}
+              style={{
+                color: "#d2b48c",
+                border: "1px solid #d2b48c",
+                padding: "8px 20px",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
               Thêm giỏ hàng
             </button>
-            <button style={{ backgroundColor: '#d2b48c', color: '#1c1c1c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+            {/* <button style={{ backgroundColor: '#d2b48c', color: '#1c1c1c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
               Mua ngay
-            </button>
-            
-            {/* Wishlist button with color change */}
-            <button onClick={() => {
-                if (!token) {
-                  toast.error('Bạn cần đăng nhập để thêm sản phẩm vào wishlist!');
-                  navigate('/login');
-                } else {
-                  handleToggleWishlist(productData); 
-                }
-              }}>
-
-              <MdFavorite
-                className={`text-xl cursor-pointer ${
-                  wishlist.find((item) => item._id === productData._id)
-                    ? "text-red-500"
-                    : "text-white-500"
-                }`}
-              />
-            </button>
-            <span className="pl-4">Thêm vào yêu thích</span>
+            </button> */}
           </div>
         </div>
       </div>
@@ -148,7 +180,7 @@ const ProductDetail = () => {
         <div className="mb-5 text-xl">
           <b>MÔ TẢ CHI TIẾT</b>
         </div>
-        <div >
+        <div>
           {/* màu */}
           <div className="mb-1">
             <b>Màu sắc: </b> Trắng/đen/xanh
@@ -158,9 +190,12 @@ const ProductDetail = () => {
             <b>Kích thước: </b> {productData.size}
           </div>
           {/* mô tả chi tiết */}
-          <div style={{
+          <div
+            style={{
               textAlign: "justify",
-            }} className="mb-1">
+            }}
+            className="mb-1"
+          >
             <b>Mô tả: </b> {productData.description}
           </div>
           {/* chất liệu */}
@@ -192,9 +227,9 @@ const ProductDetail = () => {
 
       {/* review */}
 
-      <ProductReviews/>
+      <ProductReviews />
 
-      {/* Related Products */}
+      {/* Related Products
       <div className="mt-10">
         <h2 className="text-xl font-semibold mb-5">SẢN PHẨM LIÊN QUAN</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -209,6 +244,58 @@ const ProductDetail = () => {
                 price={item.price}
               />
             ))}
+        </div>
+      </div> */}
+      {/* Related Products */}
+      <div className="mt-10">
+        <h2 className="text-xl font-semibold mb-5">SẢN PHẨM LIÊN QUAN</h2>
+        <div className="relative  hide-scrollbar">
+          {/* Previous button */}
+          <button
+            onClick={() => {
+              const container = document.querySelector(".products-container");
+              container.scrollBy({
+                left: -container.offsetWidth,
+                behavior: "smooth",
+              });
+            }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 rounded-full shadow-md hover:bg-white hidden md:block"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          {/* Products container */}
+          <div className="products-container overflow-x-auto flex gap-4 scroll-smooth hide-scrollbar">
+            {products
+              .filter((item) => item._id !== productId)
+              .map((item) => (
+                <div
+                  key={item._id}
+                  className="min-w-[calc(100%-16px)] sm:min-w-[calc(50%-16px)] md:min-w-[calc(33.333%-16px)] lg:min-w-[calc(25%-16px)]"
+                >
+                  <ProductItem
+                    id={item._id}
+                    image={item.image}
+                    name={item.name}
+                    price={item.price}
+                  />
+                </div>
+              ))}
+          </div>
+
+          {/* Next button */}
+          <button
+            onClick={() => {
+              const container = document.querySelector(".products-container");
+              container.scrollBy({
+                left: container.offsetWidth,
+                behavior: "smooth",
+              });
+            }}
+            className="absolute right-0 top-1/2  z-10 p-2 bg-white/80 rounded-full shadow-md hover:bg-white hidden md:block"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
         </div>
       </div>
     </div>

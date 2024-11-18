@@ -8,6 +8,7 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 const Cart = () => {
   const { products, currency, cartItems, removeFromCart, delivery_fee, navigate, cartData, setCartData, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange, handleInputChange, handleBlurUpdate } = useContext(ShopContext);
 
+
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
   // const safeCartData = Array.isArray(cartData) ? cartData : [];
 
