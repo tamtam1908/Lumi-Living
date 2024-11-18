@@ -60,7 +60,8 @@ const ShopContextProvider = (props) => {
       setToken(localStorage.getItem('token'))
       getUserCart(localStorage.getItem('token'))
     }
-  },[])
+  },[token])
+  
   useEffect(() => {
     if (token) {
         getUserCart(token);
@@ -116,6 +117,11 @@ useEffect(() => {
   useEffect(() => {
     setCartData(convertCartItemsToData(cartItems));
 }, [cartItems, products]);
+// useEffect(() => {
+//   if (products.length > 0 && Object.keys(cartItems).length > 0) {
+//     setCartData(convertCartItemsToData(cartItems));
+//   }
+// }, [cartItems, products]);
 
   // Tạo cartData từ cartItems và sản phẩm
   // useEffect(() => {
@@ -150,16 +156,6 @@ useEffect(() => {
     setCartData(updatedCartData);  // Đảm bảo cartData luôn là một mảng
   }, [cartItems, products]);
 
-  // Tính tổng tiền
-  // const calculateTotal = () => {
-  //   return cartData.reduce((total, item) => {
-  //     if (selectedItems[item._id]) {
-  //       const productData = products.find((product) => product._id === item._id);
-  //       return total + (productData.price * item.quantity);
-  //     }
-  //     return total;
-  //   }, 0);
-  // };
 
   const calculateTotal = () => {
     if (!Array.isArray(cartData)) {
@@ -178,6 +174,7 @@ useEffect(() => {
     }, 0);
   }; 
 
+
   // Hàm thay đổi trạng thái checkbox
   const handleCheckboxChange = (productId) => {
     setSelectedItems((prevState) => ({
@@ -185,6 +182,7 @@ useEffect(() => {
       [productId]: !prevState[productId],
     }));
   };
+
 
   // Hàm thêm sản phẩm vào giỏ hàng
   // const addToCart = (productId) => {
@@ -475,6 +473,7 @@ useEffect(() => {
     handleInputChange, 
     handleBlurUpdate,
     updateQuantity,
+    setCartItems,
   };
 
   return (
