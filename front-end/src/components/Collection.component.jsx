@@ -16,7 +16,7 @@ const CollectionSection = () => {
         <div className='absolute top-[170px] left-[-55px] h-[791px] w-[345px] border-b	border-t	 border-[#AB967F] bg-transparent'>
         <NavLink
               to="#details"
-              className="product-label absolute top-[285px] left-[-6px]  w-full text-center   text-center"
+              className="product-label absolute top-[285px] left-[-6px]  w-full text-center"
             >
               <h1 className = "text-4xl	 content_color font-semibold" >LOVESAC TABLE</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -30,7 +30,7 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-10 right-2 w-full text-center text-center "
+              className="product-label absolute bottom-10 right-2 w-full text-center "
             >
               <h1 className = "text-4xl	 text_product font-semibold">CLOUDY SOFA</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -43,7 +43,7 @@ const CollectionSection = () => {
             />
             <NavLink
               to="#details"
-              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
+              className="product-label absolute bottom-2 right-2 w-full  text-center"
             >
               <h1 className = "text-4xl	 content_color font-semibold" >MILD CALE TABLE</h1>
               <p className = "text-sm content_color ">Xem chi tiết</p>
@@ -62,7 +62,7 @@ const CollectionSection = () => {
             <NavLink
               to="#details"
 
-              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
+              className="product-label absolute bottom-2 right-2 w-full text-center"
             >
               <p className='text-4xl	 text_product font-bold'>MENTAL CHAIR</p>
               
@@ -77,7 +77,7 @@ const CollectionSection = () => {
             <NavLink
               to="#details"
 
-              className="product-label absolute bottom-2 right-2 w-full text-center text-center"
+              className="product-label absolute bottom-2 right-2 w-full text-center"
             >
               <p className='text-4xl	 content_color font-bold'>WOPA DINING</p>
               <p className = "text-sm content_color">Xem chi tiết</p>
