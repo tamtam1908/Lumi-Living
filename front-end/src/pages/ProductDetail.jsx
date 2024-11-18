@@ -9,8 +9,9 @@ import { toast } from "react-toastify";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart, addToWishlist, wishlist, token, setToken, navigate } =
-    useContext(ShopContext);
+
+  const { products, currency, addToCart, addToWishlist, removeFromWishlist, wishlist, token, setToken, navigate } = useContext(ShopContext);
+
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
 
@@ -32,8 +33,12 @@ const ProductDetail = () => {
     }
   }, [productId, products]);
 
-  const handleAddToWishlist = (product) => {
-    addToWishlist(product);
+  const handleToggleWishlist = (product) => {
+    if (wishlist.find(item => item._id === product._id)) {
+      removeFromWishlist(product);
+    } else {
+      addToWishlist(product);
+    }
   };
 
   return productData ? (
@@ -53,7 +58,6 @@ const ProductDetail = () => {
             {productData.image.map((item, index) => (
               <img
                 onClick={() => {
-                  console.log(item); // Log the selected image
                   setImage(item);
                 }}
                 src={item}
@@ -82,18 +86,14 @@ const ProductDetail = () => {
         </div>
 
         {/* Product information */}
-        <div className="flex-1 navbar_font">
-          <h1
-            style={{
-              fontSize: "24px",
-              fontWeight: "500",
-              marginBottom: "10px",
-            }}
-          >
-            {productData.name}
-          </h1>
-          <p style={{ fontSize: "32px", fontWeight: "600", marginTop: "20px" }}>
-            {productData.price.toLocaleString("vi-VN")} {currency}
+
+        <div className="flex-1 content_color">
+          <h1 style={{ fontSize: '24px', fontWeight: '500', marginBottom: '10px' }}>{productData.name}</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <img src={assets.star_dull_icon} alt="" style={{ width: '20px' }} />
+          </div>
+          <p style={{ fontSize: '32px', fontWeight: '600', marginTop: '20px' }}>
+            {productData.price.toLocaleString('vi-VN')} {currency}
           </p>
           <p
             className="navbar_font"
@@ -105,32 +105,8 @@ const ProductDetail = () => {
             <b>Chất liệu sản phẩm: </b> {productData.material}
           </p> */}
           {/* Wishlist and Add to Cart buttons */}
-          <div className="flex items-center mt-10">
-            <button
-              className="items-center"
-              
-              onClick={() => {
-                if (!token) {
-                  toast.error('Bạn cần đăng nhập để thêm sản phẩm vào wishlist!');
-                  navigate('/login');
-                } else {
-                  handleAddToWishlist(productData); 
-                }
-              }}
-            >
-              <MdFavorite
-                className={`text-xl cursor-pointer${
-                  wishlist.find((item) => item._id === productData._id)
-                    ? "text-red-500"
-                    : "text-white-500"
-                }`}
-              />
-            </button>
-            <span className="pl-4">Thêm vào yêu thích</span>
-          </div>
-          <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
-            <button
-              onClick={() => {
+          <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
+            <button onClick={() => {
                 if (!token) {
                   toast.error('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!');
                   navigate('/login');
@@ -138,19 +114,32 @@ const ProductDetail = () => {
                   toast.success('Thêm vào giỏ hàng thành công!');
                   addToCart(productId); 
                 }
-              }}
-              style={{
-                backgroundColor: "#d2b48c",
-                color: "#1c1c1c",
-                padding: "8px 20px",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
-            >
+              }} style={{ color: '#d2b48c', border: '1px solid #d2b48c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
               Thêm giỏ hàng
             </button>
-
+            <button style={{ backgroundColor: '#d2b48c', color: '#1c1c1c', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+              Mua ngay
+            </button>
+            
             {/* Wishlist button with color change */}
+            <button onClick={() => {
+                if (!token) {
+                  toast.error('Bạn cần đăng nhập để thêm sản phẩm vào wishlist!');
+                  navigate('/login');
+                } else {
+                  handleToggleWishlist(productData); 
+                }
+              }}>
+
+              <MdFavorite
+                className={`text-xl cursor-pointer ${
+                  wishlist.find((item) => item._id === productData._id)
+                    ? "text-red-500"
+                    : "text-white-500"
+                }`}
+              />
+            </button>
+            <span className="pl-4">Thêm vào yêu thích</span>
           </div>
         </div>
       </div>
@@ -210,7 +199,7 @@ const ProductDetail = () => {
         <h2 className="text-xl font-semibold mb-5">SẢN PHẨM LIÊN QUAN</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products
-            .filter((item) => item._id !== productId) // Loại bỏ sản phẩm hiện tại
+            .filter((item) => item._id !== productId)
             .map((item) => (
               <ProductItem
                 key={item._id}
