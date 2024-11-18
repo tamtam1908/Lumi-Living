@@ -9,10 +9,9 @@ import dropdown_icon from '../assets/dropdown_icon.png'
 const Product = () => {
   const { products } = useContext(ShopContext);
 
-  const [showFilter, setShowFilter] = useState(false);
-
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
-  const [category, setCategory] = useState([]);
+    const [category, setCategory] = useState([]);
   const [material, setMaterial] = useState([]);
   const [sortType, setSortType] = useState('relevant');
   const location = useLocation();
@@ -25,7 +24,9 @@ const Product = () => {
     }
   }, [location]);
 
+
   const toggleCategory = (e) => {
+
     if (category.includes(e.target.value)) {
       setCategory(prev => prev.filter(item => item !== e.target.value));
     } else {
@@ -33,26 +34,32 @@ const Product = () => {
     }
   };
 
+
   const toggleMaterial = (e) => {
     if (material.includes(e.target.value)) {
       setMaterial(prev => prev.filter(item => item !== e.target.value));
-    } else {
-      setMaterial(prev => [...prev, e.target.value]);
+
+
     }
   };
 
+
   const applyFilter = () => {
     let filtered = products.slice();
+
 
     if (category.length > 0) {
       filtered = filtered.filter(item => category.includes(item.category));
     }
 
+
     if (material.length > 0) {
       filtered = filtered.filter(item => material.every(mat => item.material.includes(mat)));
     }
+
     setFilterProducts(filtered);
   };
+
 
   const sortProduct = () => {
     let sorted = filterProducts.slice();
@@ -69,9 +76,12 @@ const Product = () => {
     }
   };
 
+
   useEffect(() => {
     applyFilter();
+
   }, [category, material, products]);
+
 
   useEffect(() => {
     sortProduct();
@@ -129,94 +139,68 @@ const Product = () => {
 
   return (
     <div>
+
       <ProductBanner />
-
-      <div className="flex flex-col sm:flex-row gap-4 main_bg content_color p-4 sm:p-10">
-        {/* Bộ lọc */}
-        <div className={`sm:block ${showFilter ? 'block' : 'hidden'} sm:relative sm:w-1/4`}>
-          <p
-            onClick={() => setShowFilter(!showFilter)}
-            className="my-2 text-xl flex items-center cursor-pointer gap-2 sm:hidden"
+      <div className='flex flex-col sm:flex-row gap-1 sm:gap-5 main_bg content_color'>
+        {/* Mobile Filter Toggle */}
+        <div className='sm:hidden w-full p-4 ml-10'>
+          <div 
+            onClick={() => setShowMobileFilter(!showMobileFilter)}
+            className='flex items-center gap-2 cursor-pointer'
           >
-            BỘ LỌC
-            <img
-              className={`h-3 transition-transform ${showFilter ? 'rotate-90' : ''}`}
-              src={assets.dropdown_icon}
-              alt=""
+            <h2 className='text-xl font-medium'><b>BỘ LỌC</b></h2>
+            <img 
+              className={`h-3 transition-transform duration-200 ${showMobileFilter ? 'rotate-180' : ''}`} 
+              src={dropdown_icon} 
+              alt="toggle filter"
             />
-          </p>
-          <div className="flex flex-col gap-5 sm:block">
-            <div className="pl-2 py-3 mt-6">
-              <p className="mb-4 text-sm font-medium">DANH MỤC SẢN PHẨM</p>
-              <div className="flex flex-col gap-2 text-sm font-light text-grey-700">
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Bàn" onChange={toggleCategory} /> Bàn
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Ghế" onChange={toggleCategory} /> Ghế
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Tủ" onChange={toggleCategory} /> Tủ
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Kệ" onChange={toggleCategory} /> Kệ
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Đèn" onChange={toggleCategory} /> Đèn
-                </label>
-              </div>
+          </div>
+          {/* Mobile Filter Content */}
+          {showMobileFilter && (
+            <div className='mt-4 p-4 border-t'>
+              <FilterContent />
+            </div>
+          )}
+        </div>
 
-            </div>
-            <div className="pl-2 py-3 mt-6">
-              <p className="mb-3 text-sm font-medium">CHẤT LIỆU SẢN PHẨM</p>
-              <div className="flex flex-col gap-2 text-sm font-light text-grey-700">
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Kim loại" onChange={toggleMaterial} /> Kim loại
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Gỗ tự nhiên" onChange={toggleMaterial} /> Gỗ tự nhiên
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Da lộn" onChange={toggleMaterial} /> Da lộn
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="cotton" onChange={toggleMaterial} /> Vải cotton
-                </label>
-                <label className="flex gap-2">
-                  <input className="w-4" type="checkbox" value="Nhựa" onChange={toggleMaterial} /> Nhựa
-                </label>
-              </div>
-            </div>
+               {/* Desktop Filter - Always visible */}
+        <div className='hidden sm:block w-1/4 p-4 min-h-screen'>
+          <div className='sticky top-4'>
+            <h2 className='text-xl font-medium mb-6'>BỘ LỌC</h2>
+            <FilterContent />
           </div>
         </div>
 
-        {/* Sản phẩm */}
-        <div className="flex flex-col sm:w-3/4">
-          <div className="flex justify-between items-center text-base mt-2">
+        {/* Product Grid */}
+        <div className='w-full sm:w-3/4 p-4'>
+          <div className='flex justify-between items-center mb-6'>
             <h1 className="text-xl font-bold">TẤT CẢ SẢN PHẨM</h1>
-            <select
-              onChange={(e) => setSortType(e.target.value)}
-              className="border-2 bg_form text-sm px-2 banner-content"
-
+            <select 
+              onChange={(e) => setSortType(e.target.value)} 
+              className='border-2 bg_form text-sm px-4 py-2 rounded banner-content'
             >
               <option value="low-high">Thấp đến cao</option>
               <option value="high-low">Cao đến thấp</option>
               <option value="relevant">Giữ Nguyên</option>
             </select>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6 mt-4">
+          
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-6'>
             {filterProducts.map((item, index) => (
-              <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
-
+              <ProductItem 
+                key={index}
+                name={item.name}
+                id={item._id}
+                price={item.price}
+                image={item.image}
+              />
             ))}
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 
-
 export default Product;
-
