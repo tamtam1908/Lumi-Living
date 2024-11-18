@@ -38,8 +38,8 @@ const ProductDetail = () => {
       style={{
         paddingTop: "50px",
         paddingBottom: "50px",
-        paddingLeft: "150px",
-        paddingRight: "150px",
+        paddingLeft: "50px",
+        paddingRight: "50px",
       }}
       className="main_bg content_color"
     >
