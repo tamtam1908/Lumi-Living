@@ -112,9 +112,76 @@ const PlaceOrder = () => {
 
 
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+  // const onSubmitHandler = async (event) => {
+  //   event.preventDefault(); // Prevent default form submission
 
+  //   try {
+  //     if (cartData && cartData.length > 0) {
+  //       const orderItems = cartData.map((item) => {
+  //         return {
+  //           name: item.name,
+  //           price: item.price,
+  //           quantity: item.quantity,
+  //           totalItemPrice: item.price * item.quantity,
+  //           productId: item._id
+  //           // image: productData.image[0],
+  //         };
+  //       });
+        
+  //       const amount = totalPrice + delivery_fee;
+
+  //       const orderData = {
+  //         address: formData,
+  //         items: orderItems,
+  //         paymentMethod: selectedPayment, // Include selected payment method
+  //         amount: amount, // Send the calculated total amount
+  //       };
+
+  //       switch (method) {
+  //         case "cod": // Handle Cash on Delivery method
+  //           const response = await axios.post(
+  //             backendUrl + "/api/order/place",
+  //             orderData,
+  //             { headers: { token } }
+  //           );
+  //           console.log(response.data);
+  //           if (response.data.success) {
+  //             setCartItems({});
+  //             navigate("/orders");
+  //           } else {
+  //             toast.error(response.data.message);
+  //           }
+  //           break;
+
+  //         // Add other payment methods as needed (e.g., bank transfer)
+  //       }
+  //     } else {
+  //       console.log("Cart is empty");
+  //     }
+  //   } catch (error) {
+  //     // console.error("Error handling cart data:", error);
+  //   }
+  // };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault(); // Ngăn hành động submit mặc định của form
+    console.log("Form submitted!"); // Thêm log để kiểm tra
+  
+    // Kiểm tra nếu các trường cần thiết bị bỏ trống
+    const requiredFields = ["firstName", "lastName", "address", "phone", "email"];
+    const emptyFields = requiredFields.filter(field => !formData[field]);
+  
+    if (emptyFields.length > 0) {
+      toast.error("Vui lòng điền đầy đủ thông tin bắt buộc!");
+      return; // Dừng việc gửi đơn hàng nếu thiếu thông tin
+    }
+  
+    // Kiểm tra nếu phương thức thanh toán chưa được chọn
+    if (!selectedPayment) {
+      toast.error("Vui lòng chọn phương thức thanh toán!");
+      return; // Dừng việc gửi đơn hàng nếu chưa chọn phương thức thanh toán
+    }
+  
     try {
       if (cartData && cartData.length > 0) {
         const orderItems = cartData.map((item) => {
@@ -123,22 +190,21 @@ const PlaceOrder = () => {
             price: item.price,
             quantity: item.quantity,
             totalItemPrice: item.price * item.quantity,
-            productId: item._id
-            // image: productData.image[0],
+            productId: item._id,
           };
         });
-        
+  
         const amount = totalPrice + delivery_fee;
-
+  
         const orderData = {
           address: formData,
           items: orderItems,
-          paymentMethod: selectedPayment, // Include selected payment method
-          amount: amount, // Send the calculated total amount
+          paymentMethod: selectedPayment,
+          amount: amount,
         };
-
+  
         switch (method) {
-          case "cod": // Handle Cash on Delivery method
+          case "cod": // Xử lý thanh toán khi nhận hàng
             const response = await axios.post(
               backendUrl + "/api/order/place",
               orderData,
@@ -146,20 +212,23 @@ const PlaceOrder = () => {
             );
             console.log(response.data);
             if (response.data.success) {
-              setCartItems({});
-              navigate("/orders");
+              console.log(setCartItems);
+              setCartItems([]);  // Xóa giỏ hàng sau khi đặt hàng thành công
+              toast.success("Đặt hàng thành công!"); // Thêm thông báo thành công
+              navigate("/orders"); // Chuyển hướng đến trang "Đơn hàng"
             } else {
               toast.error(response.data.message);
             }
             break;
-
-          // Add other payment methods as needed (e.g., bank transfer)
+  
+          // Thêm các phương thức thanh toán khác nếu cần (ví dụ: chuyển khoản ngân hàng)
         }
       } else {
-        console.log("Cart is empty");
+        console.log("Giỏ hàng trống");
       }
     } catch (error) {
-      // console.error("Error handling cart data:", error);
+      console.error("Có lỗi xảy ra khi xử lý dữ liệu giỏ hàng:", error);
+      toast.error("Có lỗi xảy ra khi đặt hàng!");
     }
   };
 

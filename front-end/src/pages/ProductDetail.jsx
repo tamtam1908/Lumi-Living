@@ -5,13 +5,16 @@ import { assets } from "../assets/assets";
 import { MdFavorite } from "react-icons/md";
 import ProductItem from "../components/ProductItem";
 import ProductReviews from "../components/ProductReviews";
+import { toast } from "react-toastify";
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart, addToWishlist, wishlist } =
+  const { products, currency, addToCart, addToWishlist, wishlist, token, setToken, navigate } =
     useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
+
+
 
   const fetchProductData = () => {
     const selectedProduct = products.find((item) => item._id === productId);
@@ -105,7 +108,15 @@ const ProductDetail = () => {
           <div className="flex items-center mt-10">
             <button
               className="items-center"
-              onClick={() => handleAddToWishlist(productData)}
+              
+              onClick={() => {
+                if (!token) {
+                  toast.error('Bạn cần đăng nhập để thêm sản phẩm vào wishlist!');
+                  navigate('/login');
+                } else {
+                  handleAddToWishlist(productData); 
+                }
+              }}
             >
               <MdFavorite
                 className={`text-xl cursor-pointer${
@@ -119,10 +130,17 @@ const ProductDetail = () => {
           </div>
           <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
             <button
-              onClick={() => addToCart(productId)}
+              onClick={() => {
+                if (!token) {
+                  toast.error('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!');
+                  navigate('/login');
+                } else {
+                  toast.success('Thêm vào giỏ hàng thành công!');
+                  addToCart(productId); 
+                }
+              }}
               style={{
                 backgroundColor: "#d2b48c",
-
                 color: "#1c1c1c",
                 padding: "8px 20px",
                 borderRadius: "4px",
