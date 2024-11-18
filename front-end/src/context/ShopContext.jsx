@@ -12,7 +12,8 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState(null);
 
 
-
+  // Hiển thị thông báo khi thêm giỏ hàng thành công 
+  const [addToCartSuccess, setAddToCartSuccess] = useState(false);
   // Khởi tạo state cho giỏ hàng, wishlist, sản phẩm và thông tin địa phương
   const [cartItems, setCartItems] = useState({});
   const [wishlist, setWishlist] = useState([]);
@@ -318,6 +319,8 @@ useEffect(() => {
         toast.error("Lỗi khi cập nhật số lượng!");
       }
     }
+    setAddToCartSuccess(true);
+    setTimeout(() => setAddToCartSuccess(false), 2000);
   };
 
   // Hàm xóa sản phẩm khỏi giỏ hàng
@@ -441,6 +444,10 @@ useEffect(() => {
     setWishlist(wishlist.filter(item => item._id !== product._id));
   };
 
+  // Tăng số lượng giỏ hàng
+  const getCartCount = () => {
+    return Object.values(cartItems).reduce((totalCount, quantity) => totalCount + quantity, 0);
+  };
 
   // Cung cấp các giá trị cho context
   const value = {
@@ -472,6 +479,9 @@ useEffect(() => {
     handleInputChange, 
     handleBlurUpdate,
     updateQuantity,
+    addToCartSuccess,
+    setAddToCartSuccess,
+    getCartCount,
     setCartItems,
   };
 

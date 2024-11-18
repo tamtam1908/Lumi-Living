@@ -22,6 +22,9 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Account from './pages/account'
 
+import SignUp from './pages/SignUp'
+import SharingDetail1 from './pages/SharingDetail1'
+import SharingDetail2 from './pages/SharingDetail2'
 
 const App = () => {
   return (
@@ -37,6 +40,7 @@ const App = () => {
         <Route path = '/product/:productId' element = {<ProductDetail/>} />
         <Route path = '/cart' element = {<Cart/>} />
         <Route path = '/login' element = {<Login/>} />
+        <Route path = '/signup' element = {<SignUp/>} />
         <Route path = '/place-order' element = {<PlaceOrder/>} />
         <Route path = '/orders' element = {<Orders/>} />
         <Route path = '/sharing' element = {<Sharing/>} />
@@ -45,7 +49,9 @@ const App = () => {
         <Route path = '/promotiondetails' element = {<PromotionDetails/>}/>
         <Route path = '/account' element={<Account/>}/>
 
-        
+        <Route path = '/lam-the-nao-de-bao-quan-go-dung-cach' element = {<SharingDetail1/>}/>
+        <Route path = '/bi-quyet-bo-tri-noi-that-nho-hep' element = {<SharingDetail2/>}/>
+
       </Routes>
       <Footer/>
       <ToastContainer />

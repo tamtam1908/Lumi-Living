@@ -9,6 +9,9 @@
     --attention-color: #d9a86d; --text-label: #2C2623; --text--product: #36302C; --custom-bg:#594f45; --product-bg: #FFFAF6; --product-color: #201D1C;
      --discount-border:#D9A86D;  --pre--color: #ac8a60; --text-form: #a08257; --btn-order: #605040; --pre-bar: #453c36;
     --discount-checkout: #a08257; --bg-login: #EEE9E4; }
+.account_text{color: var(--text--product)}
+.account_bg{background-color: var(--bg-login);}
+.login_text{color: var(--text--product)}
 .bg_login{background-color: var(--bg-login);}
 .border-checkout{border-color: #a08257 ;}
 .pre_bar{background-color: var(--pre-bar);}
