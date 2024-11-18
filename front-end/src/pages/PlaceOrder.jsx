@@ -19,14 +19,14 @@ const PlaceOrder = () => {
     selectedPayment,
     setSelectedPayment,
     currency,
-    delivery_fee,
+    // delivery_fee,
     navigate,
     cartItems,
     token,
     setCartItems,
   } = useContext(ShopContext);
   const location = useLocation();
-  const { cartData, totalPrice } = location.state || {};
+  const { cartData, totalPrice, deliveryFee } = location.state || {};
   // const userModel = require('../models/user');
 
   const [showInput, setShowInput] = useState(false);
@@ -97,11 +97,6 @@ const PlaceOrder = () => {
     loadOrderData();
   }, [token]);
   
-  
-  
-  
-
-
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -194,7 +189,7 @@ const PlaceOrder = () => {
           };
         });
   
-        const amount = totalPrice + delivery_fee;
+        const amount = totalPrice + deliveryFee;
   
         const orderData = {
           address: formData,
@@ -210,9 +205,8 @@ const PlaceOrder = () => {
               orderData,
               { headers: { token } }
             );
-            console.log(response.data);
+
             if (response.data.success) {
-              console.log(setCartItems);
               setCartItems([]);  // Xóa giỏ hàng sau khi đặt hàng thành công
               toast.success("Đặt hàng thành công!"); // Thêm thông báo thành công
               navigate("/orders"); // Chuyển hướng đến trang "Đơn hàng"
@@ -244,28 +238,28 @@ const PlaceOrder = () => {
           <p className="text-sm font-thin">ĐẶT HÀNG</p>
         </div>
       </div>
-      <div className="w-[980px] h-[auto] bg-white mx-auto mt-12 border-checkout border-t-4 flex flex-col gap-2 		">
+      <div className="w-full max-w-[980px] h-auto bg-white mx-auto mt-12 border-checkout border-t-4 flex flex-col gap-2">
         <div className="flex gap-2 content-center">
-          <p className="pl-2 text-[#a08257] ">Bạn đã có mã ưu đãi?</p>
+          <p className="pl-2 text-[#a08257]">Bạn đã có mã ưu đãi?</p>
           <p
             onClick={() => setShowInput(!showInput)}
-            className="text_label cursor-pointer hover:text-[#D9A86D] 	"
+            className="text_label cursor-pointer hover:text-[#D9A86D]"
           >
             Ấn vào đây để nhập mã
           </p>
         </div>
 
         {showInput && (
-          <div className="  w-[970px] 	px-2 pb-5	">
-            <p className="text_label ">
+          <div className="w-full px-2 pb-5">
+            <p className="text_label">
               Nếu bạn có mã giảm giá, vui lòng nhập vào phía bên dưới
             </p>
             <input
               type="text"
               placeholder="Nhập mã ưu đãi"
-              className="border border-stone-200 p-2 rounded-md w-full	mt-3 "
+              className="border border-stone-200 p-2 rounded-md w-full mt-3"
             />
-            <button className="mt-3 px-4 py-2 bg-[#605040] text-white rounded-md hover:bg-[#D9A86D] ">
+            <button className="mt-3 px-4 py-2 bg-[#605040] text-white rounded-md hover:bg-[#D9A86D]">
               ÁP DỤNG
             </button>
           </div>
@@ -432,9 +426,9 @@ const PlaceOrder = () => {
             <div className="flex justify-between py-2 border-b border-[#46403e] bg-transparent">
               <p className="content_color">PHÍ GIAO HÀNG</p>
               <p>
-                {delivery_fee === 0
+                {deliveryFee === 0
                   ? "Giao hàng miễn phí"
-                  : `${delivery_fee} ${currency}`}
+                  : `${deliveryFee} ${currency}`}
               </p>
             </div>
             {/* Subtotal */}
