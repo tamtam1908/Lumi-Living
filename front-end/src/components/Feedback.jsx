@@ -18,6 +18,18 @@ const Feedback = () => {
       location: "Tây Ninh, Việt Nam",
       avatar: feedback2,
     },
+    {
+      content: "Tôi thực sự ấn tượng với chất lượng của bộ bàn ghế này. Thiết kế sang trọng, mang lại cảm giác hiện đại nhưng vẫn rất ấm cúng cho phòng khách.",
+      name: "Thái Sơn",
+      location: "HCM, Việt Nam",
+      avatar: "https://images.pexels.com/photos/7776184/pexels-photo-7776184.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      content: "Thiết kế tinh tế, toát lên vẻ sang trọng, hiện đại nhưng vẫn giữ được sự ấm áp, gần gũi cho không gian phòng khách. Gỗ tự nhiên nhìn rất đẹp và cổ điển, tôi rất thích.",
+      name: "Khả Ái",
+      location: "Long Sơn, Bà Rịa - Vũng Tàu, Việt Nam",
+      avatar: "https://images.pexels.com/photos/46216/sunflower-flowers-bright-yellow-46216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    }
   ];
 
   const [currentFeedback, setCurrentFeedback] = useState(0);

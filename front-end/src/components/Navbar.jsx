@@ -101,6 +101,7 @@ const Navbar = () => {
             alt="Profile"
             onClick={() => {
               if (!token) {
+                toast.error('Vui lòng đăng nhập!');
                 navigate('/login');
               } else {
                 toggleProfileMenu(); 

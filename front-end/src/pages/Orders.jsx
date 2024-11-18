@@ -86,7 +86,8 @@ const Orders = () => {
                     <p className="sm:text-lg font-semibold">{item.name}</p>
                     <div className="flex items-center gap-3 mt-2 text-base">
                       <p className="text-lg" style={{ color: '#D0C8C6' }}>
-                        {item.totalItemPrice.toLocaleString('vi-VN')} {currency}
+                        {/* {item.totalItemPrice.toLocaleString('vi-VN')} {currency} */}
+                        {item.totalItemPrice ? item.totalItemPrice.toLocaleString('vi-VN') : '0'} {currency}
                       </p>
                       <p className="text-lg" style={{ color: '#D0C8C6' }}>
                         Số lượng: {item.quantity}
