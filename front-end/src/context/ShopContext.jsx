@@ -484,7 +484,8 @@ useEffect(() => {
     updateQuantity,
     addToCartSuccess,
     setAddToCartSuccess,
-    getCartCount
+    getCartCount,
+    handleRemoveItem
   };
 
   return (

@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { assets } from '../assets/assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck, faHeadset, faCheckCircle, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import ProductItem from '../components/ProductItem';
+import { Link } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
 
 
@@ -13,7 +16,8 @@ const Collection = () => {
     assets.col_bst3,
     assets.col_bst4
   ];
-
+  const {id, image, name, price } = useContext(ShopContext)
+  const productImage = image?.[0] || assets.placeholderImage;
   // Khai báo carouselRef bằng useRef để tham chiếu đến container của sản phẩm
   const carouselRef = useRef(null);
 
@@ -47,7 +51,7 @@ const Collection = () => {
     setBackgroundImage(images[index]);
     setCurrentIndex(index);
   };
-
+  
   return (
     
     <div> {/* Main container */}
@@ -76,18 +80,76 @@ const Collection = () => {
         </div>
 
         <h3>SẢN PHẨM THUỘC BỘ SƯU TẬP</h3>
+        <div>
+      <div className="col_content">
+        {/* Content and banner */}
+        <img
+          src={assets.col_banner}
+          alt="Banner"
+          className="w-full h-full object-cover"
+        />
 
-        <div className="relative">
-          {/* Nút cuộn trái */}
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+        {/* Product item link */}
+        <Link
+          to={`/product/${id || ""}`} // Fallback to an empty string if id is undefined
+          className="product-item cursor-pointer"
+          style={{
+            color: '#000000',
+            textDecoration: 'none',
+            backgroundColor: '#EEE9E4',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+            padding: '20px',
+            transition: 'transform 0.3s ease-in-out',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            height: '100%',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+        >
+          <div style={{ overflow: 'hidden' }}>
+            <img
+              src={productImage}
+              alt={name || 'Product Name'} // Fallback to a placeholder name if name is undefined
+              style={{
+                width: '100%',
+                height: '250px',
+                objectFit: 'cover',
+                transition: 'transform 0.3s ease-in-out',
+              }}
+              className="hover:scale-110"
+            />
+          </div>
+          <p
+            style={{
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              color: '#333',
+              marginTop: '15px',
+            }}
           >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
+            {name || 'Product Name'}
+          </p>
+          <p
+            style={{
+              fontSize: '0.9rem',
+              color: '#666',
+              marginTop: '5px',
+            }}
+          >
+            {price
+              ? `${price.toLocaleString('vi-VN')} VND`
+              : 'Price Not Available'}
+          </p>
+        </Link>
+      </div>
+    </div>
+
 
           {/* Carousel sản phẩm */}
-          <div
+          {/* <div
             ref={carouselRef}
             className="carousel-container flex overflow-x-scroll no-scrollbar space-x-4 p-4"
           >
@@ -167,13 +229,13 @@ const Collection = () => {
           </div>
 
           {/* Nút cuộn phải */}
-          <button
+          {/* <button
             onClick={scrollRight}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
           >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
-        </div>
+        </div> */} 
 
         <div
           className="relative h-[550px] flex items-center justify-center bg-cover bg-center bst"
@@ -195,6 +257,7 @@ const Collection = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
