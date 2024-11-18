@@ -12,27 +12,22 @@ const Cart = () => {
   const safeCartData = Array.isArray(cartData) ? cartData : [];
 
 
-  useEffect(()=>{
-
-    if (products.length > 0 ){
-      const temData  = [];
-    for (const items in cartData){
-      for (const item in cartData[items]){
-        if (cartData[items][item] >0){
-          temData.push({
-            _id: items,
-            quantity:cartData[items][item]
-          })
+  useEffect(() => {
+    // Chuyển đổi từ cartItems thành cartData
+    if (products.length > 0) {
+      const tempData = [];
+      for (const productId in cartItems) {
+        const product = products.find(item => item._id === productId);
+        if (product && cartItems[productId] > 0) {
+          tempData.push({
+            _id: productId,
+            quantity: cartItems[productId],
+          });
         }
       }
+      setCartData(tempData); // Đảm bảo setCartData được gọi sau khi đã có dữ liệu đầy đủ
     }
-    setCartData(temData)
-    }
-  },[cartItems, products])
-
-
-
-  
+  }, [cartItems, products]);
 
 
   return (
@@ -112,7 +107,7 @@ const Cart = () => {
                   </div>
 
                   <div className="flex justify-center items-center flex-col">
-                    <ImBin onClick={() => handleRemoveItem(item._id)} className="cursor-pointer" />
+                    <ImBin onClick={() => removeFromCart(item._id)} className="cursor-pointer" />
                     <p className='text-center text-[8px] mt-2'>Tìm thêm sản phẩm tương tự</p>
                   </div>
                 </div>
