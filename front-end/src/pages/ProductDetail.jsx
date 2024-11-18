@@ -134,6 +134,7 @@ const ProductDetail = () => {
                     navigate("/login");
                   } else {
                     handleToggleWishlist(productData);
+                    toast.success("Thêm vào danh mục yêu thích thành công!")
                   }
                 }}
               >
