@@ -1,9 +1,10 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { assets } from '../assets/assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { ShopContext } from '../context/ShopContext';
 import { MdFavorite } from 'react-icons/md';
+import { FaShoppingCart } from "react-icons/fa";
 
 const Collection = () => {
   const { products, addToCart, addToWishlist, wishlist, removeFromWishlist } = useContext(ShopContext);
@@ -70,12 +71,12 @@ const Collection = () => {
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
 
-          <div ref={carouselRef} className="carousel-container flex overflow-x-scroll no-scrollbar space-x-4 p-4">
+          <div ref={carouselRef} className="carousel-container flex overflow-x-scroll no-scrollbar space-x-4 p-4 cursor-pointer ">
             {products.map((product) => (
               <div key={product._id} className="product-card">
                 {product.discount && <div className="badge discount">-{product.discount}%</div>}
                 {product.isNew && <div className="badge new">New</div>}
-                <img src={product.image[0]} alt={product.name} />
+                <img src={product.image[0]} alt={product.name}  />
                 <div className="product-info">
                   <p className="product-name">{product.name}</p>
                   {product.oldPrice && <p className="old-price">{product.oldPrice.toLocaleString('vi-VN')}₫</p>}
@@ -86,6 +87,7 @@ const Collection = () => {
                         className={`text-xl cursor-pointer ${wishlist.find(item => item._id === product._id) ? 'text-red-500' : 'text-gray-500'}`}
                       />
                     </button>
+
                     <button className="icon" onClick={() => addToCart(product._id)} style={{ padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
                       🛒
                     </button>
@@ -98,7 +100,7 @@ const Collection = () => {
           <button onClick={scrollRight} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
-        </div>
+        </div> 
 
         <div className="relative h-[550px] flex items-center justify-center bg-cover bg-center bst" style={{ backgroundImage: `url(${backgroundImage})` }}>
           <div className="absolute inset-0 bg-black opacity-30"></div>
@@ -125,6 +127,7 @@ const Collection = () => {
         }
       `}</style>
     </div>
+
   );
 };
 

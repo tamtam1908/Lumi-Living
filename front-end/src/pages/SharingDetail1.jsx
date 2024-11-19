@@ -76,18 +76,22 @@ const SharingDetail1 = () => {
                     </p>
                 </div>
                 </NavLink>
-                <div className = 'flex gap-2 border-[#AC9984] border-b-2 pb-5'> 
-                    <img src = {assets.tip2} className = 'w-[154px] h-[100px] object-cover '/>
-                    <p className = 'text-[8px]'><span className = 'text-sm font-semibold'>Cách lựa chọn màu sắc..</span> <br/>
-                    Màu sắc không chỉ đơn thuần là yếu tố trang trí mà còn ảnh hưởng sâu sắc đến tâm trạng và cảm xúc của chúng ta. Việc lựa chọn màu sắc phù hợp...
-                    </p>
-                </div>
-                <div className = 'flex gap-2'> 
-                    <img src = {assets.banner3} className = 'w-[154px] h-[100px] object-cover '/>
-                    <p className = 'text-[8px]'><span className = 'text-sm font-semibold'>Xu hướng thiết kế 2024</span> <br/>
-                    Năm 2024 hứa hẹn sẽ mang đến nhiều xu hướng thiết kế mới mẻ và sáng tạo, phản ánh sự phát triển không ngừng của công nghệ và nhu cầu thẩm ...
-                    </p>
-                </div>
+                <NavLink to = '/cach-lua-chon-mau-sac-cho-khong-gian-song-hoan-hao'>
+                    <div className = 'flex gap-2 border-[#AC9984] border-b-2 pb-5'> 
+                        <img src = {assets.tip2} className = 'w-[154px] h-[100px] object-cover '/>
+                        <p className = 'text-[8px]'><span className = 'text-sm font-semibold'>Cách lựa chọn màu sắc..</span> <br/>
+                        Màu sắc không chỉ đơn thuần là yếu tố trang trí mà còn ảnh hưởng sâu sắc đến tâm trạng và cảm xúc của chúng ta. Việc lựa chọn màu sắc phù hợp...
+                        </p>
+                    </div>
+                </NavLink>
+                <NavLink to = '/xu-huong-thiet-ke-2024'>
+                    <div className = 'flex gap-2'> 
+                        <img src = {assets.banner3} className = 'w-[154px] h-[100px] object-cover '/>
+                        <p className = 'text-[8px]'><span className = 'text-sm font-semibold'>Xu hướng thiết kế 2024</span> <br/>
+                        Năm 2024 hứa hẹn sẽ mang đến nhiều xu hướng thiết kế mới mẻ và sáng tạo, phản ánh sự phát triển không ngừng của công nghệ và nhu cầu thẩm ...
+                        </p>
+                    </div>
+                </NavLink>
             </div>
         </div>
     </div>

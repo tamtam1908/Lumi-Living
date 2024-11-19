@@ -28,11 +28,11 @@ const Sharing = () => {
     const [currentTipIndex, setCurrentTipIndex] = useState(0);
 
     const tips = [
-        { title: 'Bảo quản nội thất gỗ đúng cách', date: '13 tháng 09, 2024', imgSrc: assets.tip1, path: '/lam-the-nao-de-bao-quan-go-dung-cach' },
-        { title: 'Cách lựa chọn màu sắc cho không gian sống hoàn hảo', date: '09 tháng 09, 2024', imgSrc: assets.tip2 },
+        { title: 'Bảo quản nội thất gỗ đúng cách', date: '13 tháng 09, 2024', imgSrc: assets.tip1,path: '/lam-the-nao-de-bao-quan-go-dung-cach' },
+        { title: 'Cách lựa chọn màu sắc cho không gian sống hoàn hảo', date: '09 tháng 09, 2024', imgSrc: assets.tip2, path: '/cach-lua-chon-mau-sac-cho-khong-gian-song-hoan-hao' },
         { title: 'Bí quyết bố trí nội thất nhỏ hẹp', date: '25 tháng 10, 2024', imgSrc: assets.tip3, path: '/bi-quyet-bo-tri-noi-that-nho-hep' },
-        { title: 'Mẹo làm sạch đồ nội thất', date: '30 tháng 10, 2024', imgSrc: assets.tip4 },
-        { title: 'Xu hướng thiết kế năm 2024', date: '01 tháng 11, 2024', imgSrc: assets.banner3 }
+        { title: 'Mẹo làm sạch đồ nội thất', date: '30 tháng 10, 2024', imgSrc: assets.tip4, path: '/meo-lam-sach-do-noi-that' },
+        { title: 'Xu hướng thiết kế năm 2024', date: '01 tháng 11, 2024', imgSrc: assets.banner3, path: '/xu-huong-thiet-ke-2024' }
     ];
 
     const handleNextTip = () => {

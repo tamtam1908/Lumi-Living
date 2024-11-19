@@ -490,7 +490,7 @@ useEffect(() => {
     addToCartSuccess,
     setAddToCartSuccess,
     getCartCount,
-    setCartItems,
+    handleRemoveItem
   };
 
   return (
