@@ -11,16 +11,25 @@ const Promotion = () => {
 // Khai báo hàm cho nút ở đây 
   return (
     <div className = "main_bg pb-10 ">
-      <div className = "flex justify-center px-5 py-5">
-        <img src={assets.banner7} alt="banner" className = "rounded-2xl p-2"/>
-        <div className = "justify-self-center self-center px-10 	" >
-          <h1 className = "content_font  content_color text-4xl font-bold ">🔥 BLACK FRIDAY 🔥 <br/> SALE UP TO 70% - LUMILIVING OUTLET </h1>
-          <p className = "content_font content_color mt-5">Chỉ diễn ra duy nhất 1 lần mỗi năm!  <br/>
-            Đây là cơ hội vàng để bạn sở hữu ngay những sản phẩm nội thất sang trọng, chất lượng từ Lumiliving với mức giá không thể nào tốt hơn! <br/>
+      <div className="flex justify-center px-5 py-5 flex-col md:flex-row">
+        <img
+          src={assets.banner7}
+          alt="banner"
+          className="rounded-2xl p-2 w-full md:w-1/2"
+        />
+        <div className="justify-self-center self-center px-10 mt-5 md:mt-0 md:px-10">
+          <h1 className="content_font content_color text-4xl font-bold text-center md:text-left">
+            🔥 BLACK FRIDAY 🔥 <br /> SALE UP TO 70% - LUMILIVING OUTLET
+          </h1>
+          <p className="content_font content_color mt-5 text-center md:text-left">
+            Chỉ diễn ra duy nhất 1 lần mỗi năm! <br />
+            Đây là cơ hội vàng để bạn sở hữu ngay những sản phẩm nội thất sang trọng, chất lượng từ Lumiliving với mức giá không thể nào tốt hơn! <br />
             Từ sofa, bàn làm việc đến giường ngủ và ghế ngồi - tất cả đều được thiết kế tối giản, hiện đại và phù hợp với không gian sống của bạn.
           </p>
-          <NavLink to = '/promotiondetails'>
-          <button  className = "rounded-full btn_color mt-8 w-40 h-12 content_color font-medium  ">XEM THÊM</button>
+          <NavLink to="/promotiondetails">
+            <button className="rounded-full btn_color mt-8 w-40 h-12 content_color font-medium block mx-auto md:mx-0">
+              XEM THÊM
+            </button>
           </NavLink>
         </div>
       </div>
@@ -68,7 +77,9 @@ const Promotion = () => {
     </div>
 
   </div>
+  
   )
+  
 }
 
 export default Promotion

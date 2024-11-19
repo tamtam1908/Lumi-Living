@@ -1,45 +1,58 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
+import { useLocation } from 'react-router-dom';
 import ProductItem from '../components/ProductItem';
 import ProductBanner from '../components/ProductBanner';
+import dropdown_icon from '../assets/dropdown_icon.png'
 
 const Product = () => {
   const { products } = useContext(ShopContext);
-  const [showFilter, setShowFilter] = useState([]);
-  const [filterProducts, setFilterProducts] = useState([]);
-  const [category, setCategory] = useState([]); // Lọc theo danh mục
-  const [material, setMaterial] = useState([]); // Lọc theo chất liệu
-  const [sortType, setSortType] = useState('relevant');
 
-  // Hàm để chọn/lọc danh mục
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const [filterProducts, setFilterProducts] = useState([]);
+    const [category, setCategory] = useState([]);
+  const [material, setMaterial] = useState([]);
+  const [sortType, setSortType] = useState('relevant');
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryFromUrl = params.get('category');
+    if (categoryFromUrl) {
+      setCategory([categoryFromUrl]);
+    }
+  }, [location]);
+
+
   const toggleCategory = (e) => {
-    if (category.includes(e.target.value)){
+
+    if (category.includes(e.target.value)) {
       setCategory(prev => prev.filter(item => item !== e.target.value));
     } else {
       setCategory(prev => [...prev, e.target.value]);
     }
   };
 
-  // Hàm để chọn/lọc chất liệu
+
   const toggleMaterial = (e) => {
     if (material.includes(e.target.value)) {
       setMaterial(prev => prev.filter(item => item !== e.target.value));
-    } else {
-      setMaterial(prev => [...prev, e.target.value]);
+
+
     }
   };
 
-  // Hàm áp dụng bộ lọc
+
   const applyFilter = () => {
     let filtered = products.slice();
 
-    // Lọc theo danh mục
+
     if (category.length > 0) {
       filtered = filtered.filter(item => category.includes(item.category));
     }
 
-    // Lọc theo chất liệu
+
     if (material.length > 0) {
       filtered = filtered.filter(item => material.every(mat => item.material.includes(mat)));
     }
@@ -47,7 +60,7 @@ const Product = () => {
     setFilterProducts(filtered);
   };
 
-  // Hàm sắp xếp sản phẩm
+
   const sortProduct = () => {
     let sorted = filterProducts.slice();
     switch (sortType) {
@@ -63,100 +76,131 @@ const Product = () => {
     }
   };
 
-  // useEffect cho các bộ lọc
+
   useEffect(() => {
     applyFilter();
-  }, [category, material]);
 
-  // useEffect cho sắp xếp
+  }, [category, material, products]);
+
+
   useEffect(() => {
     sortProduct();
   }, [sortType]);
 
+  const isChecked = (value, type) => {
+    if (type === 'category') {
+      return category.includes(value);
+    }
+    return material.includes(value);
+  };
+
+  // Filter Content Component để tái sử dụng
+  const FilterContent = () => (
+    <>
+      {/* Category Filter */}
+      <div className='mb-8 pl-5'>
+        <p className='mb-4 text-sm font-medium'>DANH MỤC SẢN PHẨM</p>
+        <div className='flex flex-col gap-2 text-sm font-light text-grey-700 pl-5'>
+          {['Bàn', 'Ghế', 'Tủ', 'Kệ', 'Đèn', 'Sofa'].map((cat) => (
+            <label key={cat} className='flex items-center gap-2 cursor-pointer '>
+              <input
+                className="w-3"
+                type="checkbox"
+                value={cat}
+                checked={isChecked(cat, 'category')}
+                onChange={toggleCategory}
+              />
+              <span>{cat}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Material Filter */}
+      <div className='mb-8 pl-5'>
+        <p className='mb-4 text-sm font-medium'>CHẤT LIỆU SẢN PHẨM</p>
+        <div className='flex flex-col gap-2 text-sm font-light text-grey-700 pl-5'>
+          {['Kim loại', 'Gỗ tự nhiên', 'Da lộn', 'cotton', 'Nhựa'].map((mat) => (
+            <label key={mat} className='flex items-center gap-2 cursor-pointer '>
+              <input
+                className="w-3"
+                type="checkbox"
+                value={mat}
+                checked={isChecked(mat, 'material')}
+                onChange={toggleMaterial}
+              />
+              <span>{mat}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div>
-      <ProductBanner/>
-    <div className='flex flex-col sm:flex-col gap-1 sm:gap-10 main_bg content_color'>
 
-      <div className='flex flex-row justify-between items-start w-full p-10 gap-4'>
-        <div>
-          <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>
-            BỘ LỌC
-            <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
-          </p>
-          {showFilter && (
-            <div className='flex flex-col gap-5'>
-              {/* Lọc theo Danh Mục */}
-              <div className='pl-5 py-3 mt-6 flex-1 p-10'>
-                <p className='mb-4 text-sm font-medium'>DANH MỤC SẢN PHẨM</p>
-                <div className='flex flex-col gap-2 text-sm font-light text-grey-700'>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Bàn'} onChange={toggleCategory}/> Bàn
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Ghế'} onChange={toggleCategory}/> Ghế
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Tủ'} onChange={toggleCategory}/> Tủ
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Kệ'} onChange={toggleCategory}/> Kệ
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Đèn'} onChange={toggleCategory}/> Đèn
-                  </p>
-                </div>
-              </div>
-
-              {/* Lọc theo Chất Liệu */}
-              <div className='pl-5 py-3 mt-6 flex-1'>
-                <p className='mb-3 text-sm font-medium'>CHẤT LIỆU SẢN PHẨM</p>
-                <div className='flex flex-col gap-2 text-sm font-light text-grey-700'>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Kim loại'} onChange={toggleMaterial}/> Kim loại
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Gỗ tự nhiên'} onChange={toggleMaterial}/> Gỗ tự nhiên
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Da lộn'} onChange={toggleMaterial}/> Da lộn
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'cotton'} onChange={toggleMaterial}/> Vải cotton
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'Nhựa'} onChange={toggleMaterial}/> Nhựa
-                  </p>
-                </div>
-              </div>
+      <ProductBanner />
+      <div className='flex flex-col sm:flex-row gap-1 sm:gap-5 main_bg content_color'>
+        {/* Mobile Filter Toggle */}
+        <div className='sm:hidden w-full p-4 ml-10'>
+          <div 
+            onClick={() => setShowMobileFilter(!showMobileFilter)}
+            className='flex items-center gap-2 cursor-pointer'
+          >
+            <h2 className='text-xl font-medium'><b>BỘ LỌC</b></h2>
+            <img 
+              className={`h-3 transition-transform duration-200 ${showMobileFilter ? 'rotate-180' : ''}`} 
+              src={dropdown_icon} 
+              alt="toggle filter"
+            />
+          </div>
+          {/* Mobile Filter Content */}
+          {showMobileFilter && (
+            <div className='mt-4 p-4 border-t'>
+              <FilterContent />
             </div>
           )}
         </div>
 
-        {/* Sidebar - Hiển thị sản phẩm */}
-        <div className='flex flex-col justify-between w-full'>
-          <div className='flex justify-between text-base mt-2'>
-            <h1 className="left-text text-xl font-bold">TẤT CẢ SẢN PHẨM</h1>
-            <select onChange={(e) => setSortType(e.target.value)} className='border-2 bg_form text-sm px-2 banner-content'>
+               {/* Desktop Filter - Always visible */}
+        <div className='hidden sm:block w-1/4 p-4 min-h-screen'>
+          <div className='sticky top-4'>
+            <h2 className='text-xl font-medium mb-6'>BỘ LỌC</h2>
+            <FilterContent />
+          </div>
+        </div>
+
+        {/* Product Grid */}
+        <div className='w-full sm:w-3/4 p-4'>
+          <div className='flex justify-between items-center mb-6'>
+            <h1 className="text-xl font-bold">TẤT CẢ SẢN PHẨM</h1>
+            <select 
+              onChange={(e) => setSortType(e.target.value)} 
+              className='border-2 bg_form text-sm px-4 py-2 rounded banner-content'
+            >
               <option value="low-high">Thấp đến cao</option>
               <option value="high-low">Cao đến thấp</option>
               <option value="relevant">Giữ Nguyên</option>
             </select>
           </div>
-          <br /><br />
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
-            {
-              filterProducts.map((item, index) => (
-                <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
-              ))
-            }
+          
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-6'>
+            {filterProducts.map((item, index) => (
+              <ProductItem 
+                key={index}
+                name={item.name}
+                id={item._id}
+                price={item.price}
+                image={item.image}
+              />
+            ))}
           </div>
         </div>
       </div>
     </div>
-    </div>
+
   );
 };
 
 export default Product;
-

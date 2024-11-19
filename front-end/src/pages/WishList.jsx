@@ -13,7 +13,7 @@ const Wishlist = () => {
       const product = products.find((item) => item._id === wishlistItem._id);
       return product ? { ...wishlistItem, ...product } : null;
     }).filter(Boolean);
-    
+  
     setWishlistData(tempData);
   }, [wishlist, products]);
 
@@ -58,7 +58,7 @@ const Wishlist = () => {
                 </div>
 
                 <div className="flex justify-center items-center">
-                  <ImBin onClick={() => removeFromWishlist(item._id)} className="cursor-pointer" />
+                  <ImBin onClick={() => removeFromWishlist(item)} className="cursor-pointer" />
                 </div>
               </div>
             ))}

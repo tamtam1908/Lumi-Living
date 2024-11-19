@@ -52,16 +52,16 @@ const Login = () => {
   return (
     <div className='flex justify-center items-start'>
       {/* Hình ảnh ở bên trái */}
-      <div className='hidden sm:block w-2/5 mx-10'>
+      <div className='hidden sm:block w-2/5 mx-12'>
         <img 
-          src= {assets.opening}
+          src={assets.opening}
           alt='Mô tả hình ảnh'
           className='w-full h-auto object-cover'
         />
       </div>
       
       {/* Form đăng nhập/đăng ký ở bên phải */}
-      <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-full sm:w-3/5 sm:max-w-96 m-auto mt-14 gap-4 content_color mb-14'>
+      <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-full sm:w-3/5 sm:max-w-md mx-6 sm:mx-10 mt-14 gap-4 content_color mb-14'>
         <div className='inline-flex items-center gap-2 mt-10'>
           <p className='prata-regular text-3xl content_color font-bold'>{currentState}</p>
         </div>

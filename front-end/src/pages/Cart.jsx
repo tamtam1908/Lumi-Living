@@ -6,29 +6,44 @@ import { NavLink } from 'react-router-dom';
 import { MdOutlineNavigateNext } from "react-icons/md";
 
 const Cart = () => {
-  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate, cartData, setCartData, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange,handleRemoveItem } = useContext(ShopContext);
+
+  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate, cartData, setCartData, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange,handleRemoveItem, handleInputChange, handleBlurUpdate } = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
-  const safeCartData = Array.isArray(cartData) ? cartData : [];
+  // const safeCartData = Array.isArray(cartData) ? cartData : [];
 
+  const safeCartData = Array.isArray(cartData) 
+  ? cartData.filter(item => selectedItems[item._id])  // Chỉ lấy các sản phẩm đã được chọn
+  : [];
+
+  // Tính tổng số lượng và tổng tiền của những sản phẩm đã được chọn
+  const selectedProducts = safeCartData.filter(item => selectedItems[item._id]);  // Chỉ chọn các sản phẩm có checked (selectedItems là true)
+  
+  const selectedQuantity = selectedProducts.reduce((total, item) => {
+    return total + (cartItems[item._id] || 0); // Tổng số lượng sản phẩm được chọn
+  }, 0);
+
+
+  // Tính phí vận chuyển dựa trên số lượng sản phẩm
+  const adjustedDeliveryFee = selectedQuantity * delivery_fee;
 
   useEffect(() => {
-    // Chuyển đổi từ cartItems thành cartData
-    if (products.length > 0) {
+    if (products.length > 0 && Object.keys(cartItems).length > 0) {
       const tempData = [];
       for (const productId in cartItems) {
         const product = products.find(item => item._id === productId);
         if (product && cartItems[productId] > 0) {
           tempData.push({
             _id: productId,
-            quantity: cartItems[productId],
+            name: product.name, // Thêm thông tin tên
+            price: product.price, // Thêm giá
+            quantity: cartItems[productId], // Số lượng
           });
         }
       }
-      setCartData(tempData); // Đảm bảo setCartData được gọi sau khi đã có dữ liệu đầy đủ
+      setCartData(tempData);
     }
   }, [cartItems, products]);
-
 
   return (
     <div >
@@ -46,7 +61,7 @@ const Cart = () => {
           <div className='custom_bg my-5 p-10'>
             <h1 className='content_color text-3xl font-medium'>Giỏ hàng</h1>
             <div className='w-full h-[15px] border-b mb-2'></div>
-            <p className='content_color text-lg pt-3'>Bạn có {safeCartData.length} sản phẩm trong giỏ hàng</p>
+            <p className='content_color text-lg pt-3'>Bạn có {cartData.length} sản phẩm trong giỏ hàng</p>
 
             <div className='mt-5'>
               <div className="grid grid-cols-[0.5fr_3fr_1fr_1fr_0.5fr] py-2">
@@ -57,7 +72,7 @@ const Cart = () => {
                 <span></span>
               </div>
 
-            {safeCartData.map((item, index) => {
+            {cartData.map((item, index) => {
               // Tìm sản phẩm dựa trên _id từ cartData
               const productData = products.find((product) => product._id === item._id);
 
@@ -108,7 +123,9 @@ const Cart = () => {
 
                   <div className="flex justify-center items-center flex-col">
                     <ImBin onClick={() => removeFromCart(item._id)} className="cursor-pointer" />
-                    <p className='text-center text-[8px] mt-2'>Tìm thêm sản phẩm tương tự</p>
+                    <p className='text-center text-[8px] mt-2 hidden lg:block'>
+                      Tìm thêm sản phẩm tương tự
+                    </p>
                   </div>
                 </div>
               );
@@ -131,7 +148,7 @@ const Cart = () => {
         {isAnyItemSelected && (
           <div className="flex justify-between mt-4">
             <p className="text-base font-medium">Phí vận chuyển:</p>
-            <p className="text-base">{delivery_fee} <span className='text-xs'>{currency}</span></p>
+            <p className="text-base">{adjustedDeliveryFee} <span className='text-xs'>{currency}</span></p>
           </div>
         )}
         <div className="flex justify-between mt-4">
@@ -142,7 +159,7 @@ const Cart = () => {
           <button onClick={() => navigate('/place-order', {
             state: {
               cartData: safeCartData,
-              deliveryFee: isAnyItemSelected ? delivery_fee : 0,
+              deliveryFee: isAnyItemSelected ? adjustedDeliveryFee : 0,
               totalPrice: calculateTotal() + (isAnyItemSelected ? delivery_fee : 0),
             }
           })}

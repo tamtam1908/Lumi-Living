@@ -13,19 +13,15 @@ const Collection = () => {
   const [backgroundImage, setBackgroundImage] = useState(images[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-
-
   const scrollLeft = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
-      console.log("Scrolled Left");
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-      console.log("Scrolled Right");
     }
   };
 
@@ -36,11 +32,6 @@ const Collection = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, [currentIndex, images]);
-
-  const handleImageChange = (index) => {
-    setBackgroundImage(images[index]);
-    setCurrentIndex(index);
-  };
 
   const handleToggleWishlist = (product) => {
     if (wishlist.find(item => item._id === product._id)) {
@@ -55,14 +46,16 @@ const Collection = () => {
       <div className="col_content">
         <img src={assets.col_banner} alt="Banner" className="w-full h-full object-cover" />
 
-        <div className="col_content_1">
-          <p className="content_left_1">
-            Sài Gòn không chỉ là nguồn cảm hứng. Sài Gòn chính là nguồn tài nguyên vô tận của những điều kì diệu nhất.
-            Kết hợp sự tự nhiên của gỗ, vững chãi của thép, kiên cường của kính, sang trọng của da, SAGO mạnh mẽ như cá tính toả sáng của Sài Gòn và người dân thành phố trẻ.
-            Trải nghiệm khoảng trời tự do bên trong Sài Gòn cùng SAGO Concept cùng những sản phẩm đường nét chắc gọn, tối giản nhưng hoàn mỹ. Chính sự tiết chế đó mà SAGO Concept là giải pháp nội thất đặc biệt dành cho những tâm hồn tự do và không ngừng theo đuổi những cảm hứng mới.
-          </p>
-          <span><img src={assets.col_sago} alt="" /></span>
-        </div>
+        <div className="col_content_1 flex flex-col md:flex-row items-center">
+  <p className="content_left_1 md:w-2/3 p-4 md:pl-4 md:mr-4 text-lg md:text-xl bg-gray-100  shadow-lg min-h-[250px] flex items-center justify-center text-center">
+    Sài Gòn không chỉ là nguồn cảm hứng. Sài Gòn chính là nguồn tài nguyên vô tận của những điều kì diệu nhất.
+    Kết hợp sự tự nhiên của gỗ, vững chãi của thép, kiên cường của kính, sang trọng của da, SAGO mạnh mẽ như cá tính toả sáng của Sài Gòn và người dân thành phố trẻ.
+    Trải nghiệm khoảng trời tự do bên trong Sài Gòn cùng những sản phẩm đường tối giản nhưng hoàn mỹ. Chính sự tiết chế đó mà SAGO Concept là  nội thất đặc biệt dành cho những tâm hồn tự do và không ngừng theo đuổi những cảm hứng mới.
+  </p>
+  <span className="md:w-1/2 flex justify-center">
+    <img src={assets.col_sago} alt="" className="w-full h-auto max-w-lg" />
+  </span>
+</div>
 
         <img src={assets.col_2} alt="" />
 
@@ -94,9 +87,9 @@ const Collection = () => {
                         className={`text-xl cursor-pointer ${wishlist.find(item => item._id === product._id) ? 'text-red-500' : 'text-gray-500'}`}
                       />
                     </button>
-                   
-                    <button className="icon"  onClick={() => addToCart(product._id)}>
-                      <FaShoppingCart className = 'text_product cursor-pointer'/>
+
+                    <button className="icon" onClick={() => addToCart(product._id)} style={{ padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
+                      🛒
                     </button>
                   </div>
                 </div>
@@ -114,6 +107,25 @@ const Collection = () => {
           {/* Các nút thay đổi hình ảnh nền */}
         </div>
       </div>
+
+      <style jsx>{`
+        .col_content_1 {
+          display: flex;
+          flex-direction: column;
+        }
+        @media (min-width: 768px) {
+          .col_content_1 {
+            flex-direction: row;
+          }
+          .content_left_1 {
+            margin-right: 20px;
+          }
+        }
+        .product-card {
+          min-width: 250px; /* Ensure cards have a minimum width */
+          flex: 0 0 auto; /* Prevent cards from shrinking */
+        }
+      `}</style>
     </div>
 
   );
