@@ -4,6 +4,7 @@ import { ImBin } from "react-icons/im";
 import { MdHome } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
 import { MdOutlineNavigateNext } from "react-icons/md";
+import { toast } from 'react-toastify';
 
 const Cart = () => {
 
@@ -153,16 +154,24 @@ const Cart = () => {
         )}
         <div className="flex justify-between mt-4">
           <p className="text-base font-medium">Thành tiền:</p>
-          <p className="text-base font-medium">{calculateTotal() + (isAnyItemSelected ? delivery_fee : 0)} <span className='text-xs'>{currency}</span></p>
+          <p className="text-base font-medium">{calculateTotal() + (isAnyItemSelected ? adjustedDeliveryFee : 0)} <span className='text-xs'>{currency}</span></p>
         </div>
         <div className="flex justify-end mt-4">
-          <button onClick={() => navigate('/place-order', {
-            state: {
-              cartData: safeCartData,
-              deliveryFee: isAnyItemSelected ? adjustedDeliveryFee : 0,
-              totalPrice: calculateTotal() + (isAnyItemSelected ? delivery_fee : 0),
-            }
-          })}
+          <button 
+            onClick={() => {
+              if (!isAnyItemSelected) {
+                toast.error('Không có sản phẩm nào được chọn!');
+                return;
+              }
+
+              navigate('/place-order', {
+                state: {
+                  cartData: safeCartData,
+                  deliveryFee: isAnyItemSelected ? adjustedDeliveryFee : 0,
+                  totalPrice: calculateTotal() + (isAnyItemSelected ? adjustedDeliveryFee : 0),
+                }
+              });
+            }}
             className="btn_color py-2 px-4 w-full rounded font-bold content_color "
           >
             THANH TOÁN

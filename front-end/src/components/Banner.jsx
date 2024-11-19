@@ -68,7 +68,7 @@ const Banner = () => {
             <FontAwesomeIcon icon={faTruck} className="w-8 h-8 md:w-10 md:h-10 mr-2 text_label" />
             <div className="flex flex-col">
               <span className="font-semibold text_label text-sm md:text-base">GIAO HÀNG MIỄN PHÍ</span>
-              <span className="text-xs md:text-sm text_label">cho mọi đơn hàng từ 3.000.000</span>
+              <span className="text-xs md:text-sm text_label">cho mọi đơn hàng từ 3.000.000 VND</span>
             </div>
           </div>
           <div className="flex items-center banner-content">
@@ -82,7 +82,7 @@ const Banner = () => {
             <FontAwesomeIcon icon={faCheckCircle} className="w-8 h-8 md:w-10 md:h-10 mr-2 text_label" />
             <div className="flex flex-col">
               <span className="font-semibold text_label text-sm md:text-base">100% CHÍNH HÃNG</span>
-              <span className="text-xs md:text-sm text_label">cung cấp sản phẩm chất lượng cao</span>
+              <span className="text-xs md:text-sm text_label">chuyên cung cấp sản phẩm chất lượng cao</span>
             </div>
           </div>
         </div>

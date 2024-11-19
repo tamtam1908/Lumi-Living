@@ -17,7 +17,7 @@ const loginUser = async(req, res) => {
         const user = await userModel.findOne({email});
 
         if (!user) {
-            return res.json({success:false, message:"Tai khoan khong ton tai"})
+            return res.json({success:false, message:"Tài khoản không tồn tại!"})
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -28,7 +28,7 @@ const loginUser = async(req, res) => {
         }
 
         else {
-            res.json({success:false, message: 'Thong tin xac thuc khong hop le'})
+            res.json({success:false, message: 'Thông tin xác thực không hợp lệ!'})
         }
     } catch (error) {
         console.log(error);
@@ -46,16 +46,16 @@ const registerUser = async (req,res) => {
         const exists = await userModel.findOne({email})
 
         if (exists){
-            return res.json({success: false, message: "user already exists"})
+            return res.json({success: false, message: "Tài khoản này đã tồn tại!"})
         }
         
         // check valid email format & strong pass
         if (!validator.isEmail(email)){
-            return res.json({success: false, message: "please enter a valid email"})
+            return res.json({success: false, message: "Vui lòng điền đúng email!"})
         }
 
         if (password.length < 8){
-            return res.json({success: false, message: "please enter a strong password"})
+            return res.json({success: false, message: "Vui lòng đặt mật khẩu mạnh!"})
         }
         // check user pass
         const salt = await bcrypt.genSalt(10)
@@ -91,7 +91,7 @@ const adminLogin = async (req, res) => {
             const token = jwt.sign(email+password, process.env.JWT_SECRET);
             res.json({success: true, token})
         } else {
-            res.json({success:false, message:"Thong tin khong hop le"})
+            res.json({success:false, message:"Thông tin không hợp lệ!"})
         }
     } catch (error){
         console.log(error);

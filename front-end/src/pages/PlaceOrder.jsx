@@ -182,6 +182,7 @@ const PlaceOrder = () => {
         }
       } else {
         console.log("Cart is empty");
+        toast.error("Không có sản phẩm trong giỏ hàng!")
       }
     } catch (error) {
       // console.error("Error handling cart data:", error);

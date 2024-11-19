@@ -61,7 +61,7 @@ const Collection = () => {
 
         <div className="col_content_2">
           <span><img src={assets.col_3} alt="" /></span>
-          <p>SAGO Concept không chỉ đơn thuần là lựa chọn nội thất mà còn là phong cách sống dành cho những ai yêu thích sự tự do, phóng khoáng...</p>
+          <p>SAGO Concept không chỉ đơn thuần là lựa chọn nội thất mà còn là phong cách sống dành cho những ai yêu thích sự tự do, phóng khoáng. Mỗi sản phẩm đều mang trong mình hơi thở của Sài Gòn – một thành phố năng động, đa sắc màu, nơi mà mọi giới hạn được xóa nhòa để mở ra những trải nghiệm mới. Hãy cùng SAGO Concept khám phá không gian sống mang đậm dấu ấn của sự tối giản nhưng vẫn đảm bảo tính thẩm mỹ và chức năng, phù hợp cho những ai luôn khát khao đổi mới và tìm kiếm cảm hứng.</p>
         </div>
 
         <h3 className='text-center font-bold text-white text-2xl'>SẢN PHẨM THUỘC BỘ SƯU TẬP</h3>

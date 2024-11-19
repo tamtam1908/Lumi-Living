@@ -109,24 +109,24 @@
 // import sharingnarrow5 from './sharringnarrow5.jpg'
 // import sharingnarrow6 from './sharingnarrow6.jpg'
 
-import sharingcolor1 from './sharingcolor1.jpg'
-import sharingcolor2 from './sharingcolor2.jpg'
-import sharingcolor3 from './sharingcolor3.jpg'
-import sharingcolor4 from './sharingcolor4.jpg'
-import sharingcolor5 from './sharingcolor5f.jpg'
-import sharingcolor6 from './sharingcolor6.jpg'
+// import sharingcolor1 from './sharingcolor1.jpg'
+// import sharingcolor2 from './sharingcolor2.jpg'
+// import sharingcolor3 from './sharingcolor3.jpg'
+// import sharingcolor4 from './sharingcolor4.jpg'
+// import sharingcolor5 from './sharingcolor5f.jpg'
+// import sharingcolor6 from './sharingcolor6.jpg'
 
-import sharingtrend1 from './sharingtrend1.jpg'
-import sharingtrend2 from './sharingtrend2.jpg'
-import sharingtrend3 from './sharingtrend3.jpg'
-import sharingtrend4 from './sharingtrend4.jpg'
-import sharingtrend5 from './sharingtrend5.jpg'
-import sharingtrend6 from './sharingtrend.jpg'
+// import sharingtrend1 from './sharingtrend1.jpg'
+// import sharingtrend2 from './sharingtrend2.jpg'
+// import sharingtrend3 from './sharingtrend3.jpg'
+// import sharingtrend4 from './sharingtrend4.jpg'
+// import sharingtrend5 from './sharingtrend5.jpg'
+// import sharingtrend6 from './sharingtrend.jpg'
 
-import sharingclean1 from './sharingclean1.png'
-import sharingclean2 from './sharingclean2.jpg'
-import sharingclean3 from './sharingclean3.jpg'
-import sharingclean4 from './sharingclean4.jpg'
+// import sharingclean1 from './sharingclean1.png'
+// import sharingclean2 from './sharingclean2.jpg'
+// import sharingclean3 from './sharingclean3.jpg'
+// import sharingclean4 from './sharingclean4.jpg'
 
 
 export const assets = {
@@ -208,9 +208,22 @@ export const assets = {
     sharingnarrow6:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000893/sharingnarrow6_ui1vhh.jpg',
     opening:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000854/opening_bxpu1v.png',
     dropdown_icon:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000831/dropdown_icon_vvxent.png',
-    sharingcolor1,sharingcolor2, sharingcolor3, sharingcolor4, sharingcolor5, sharingcolor6,
-    sharingtrend1,sharingtrend2, sharingtrend3, sharingtrend4, sharingtrend5,sharingtrend6,
-    sharingclean1, sharingclean2, sharingclean3, sharingclean4
+    sharingcolor1:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008973/sharingcolor1_z0fkqx.jpg',
+    sharingcolor2:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008972/sharingcolor2_jsarrc.jpg', 
+    sharingcolor3:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008971/sharingcolor3_njtbt4.jpg', 
+    sharingcolor4:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008969/sharingcolor4_jm2s2e.jpg', 
+    sharingcolor5:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008968/sharingcolor5f_d5eidk.jpg', 
+    sharingcolor6:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008966/sharingcolor6_fmkx93.jpg',
+    sharingtrend1:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008964/sharingtrend1_tmqbsa.jpg',
+    sharingtrend2:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008962/sharingtrend2_gmjxw6.jpg', 
+    sharingtrend3:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008961/sharingtrend3_brmtyt.jpg', 
+    sharingtrend4:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008959/sharingtrend4_sngrcw.jpg', 
+    sharingtrend5:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008958/sharingtrend5_mr8y2b.jpg',
+    sharingtrend6:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008965/sharingtrend_fbgktg.jpg',
+    sharingclean1:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008980/sharingclean1_qprlas.png', 
+    sharingclean2:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008978/sharingclean2_cqnoqe.jpg', 
+    sharingclean3:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008976/sharingclean3_pgoyra.jpg', 
+    sharingclean4:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732008975/sharingclean4_q0tp43.jpg'
 }
 
 

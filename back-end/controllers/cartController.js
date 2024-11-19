@@ -18,7 +18,7 @@ const addToCart = async (req, res) => {
 
         await userModel.findByIdAndUpdate(userId, { cartData });
 
-        res.json({ success: true, message: "Added to cart" });
+        res.json({ success: true, message: "Đã thêm vào giỏ hàng" });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
@@ -80,9 +80,9 @@ const removeFromCart = async (req, res) => {
         if (cartData[itemId]) {
             delete cartData[itemId];  // Xóa sản phẩm khỏi giỏ hàng
             await userModel.findByIdAndUpdate(userId, { cartData });
-            res.json({ success: true, message: "Item removed from cart" });
+            res.json({ success: true, message: "Đã xoá sản phẩm khỏi giỏ hàng" });
         } else {
-            res.json({ success: false, message: "Item not found in cart" });
+            res.json({ success: false, message: "Không tìm thấy sản phẩm trong giỏ hàng" });
         }
     } catch (error) {
         console.log(error);
