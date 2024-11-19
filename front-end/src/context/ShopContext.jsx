@@ -70,36 +70,6 @@ const ShopContextProvider = (props) => {
   }, [token]); // Lắng nghe thay đổi của token
 
 
-  // fetch("https://provinces.open-api.vn/api/?depth=3")
-  // .then((response) => {
-  //   if (!response.ok) {
-  //     throw new Error(`HTTP error! Status: ${response.status}`);
-  //   }
-  //   return response.json();
-  // })
-  // .then((data) => {
-  //   console.log("API data:", data);
-  //   // Xử lý dữ liệu ở đây
-  // })
-  // .catch((error) => {
-  //   console.error("Error fetching API:", error.message);
-  // });
-
-  // Lấy dữ liệu tỉnh thành
-  // useEffect(() => {
-  //   fetch('https://provinces.open-api.vn/api/?depth=3')
-  //     .then((response) => response.json())
-  //     .then((data) => setProvinces(data));
-  // }, []);
-
-  // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
-  // useEffect(() => {
-  //   if (selectedProvince) {
-//     fetch(`https://provinces.open-api.vn/api/?depth=3/d/${selectedProvince}`, {mode: 'no-cors'})
-  //       .then((response) => response.json())
-  //       .then((data) => setDistricts(data));
-  //   }
-  // }, [selectedProvince]);
 
   // Lấy dữ liệu tỉnh thành
 useEffect(() => {
@@ -120,21 +90,6 @@ const handleProvinceChange = (e) => {
   setFormData((prev) => ({ ...prev, province: selectedCode }));
 };
 
-
-// Lấy dữ liệu quận huyện khi tỉnh thành được chọn
-// useEffect(() => {
-//   if (selectedProvince) {
-//     fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then((data) => setDistricts(data))
-//       .catch((error) => console.error('Error fetching districts:', error));
-//   }
-// }, [selectedProvince]);
 
 useEffect(() => {
   if (selectedProvince) {
@@ -159,30 +114,7 @@ useEffect(() => {
   }
 }, [cartItems, products]);
 
-// useEffect(() => {
-//   if (products.length > 0 && Object.keys(cartItems).length > 0) {
-//     setCartData(convertCartItemsToData(cartItems));
-//   }
-// }, [cartItems, products]);
 
-  // Tạo cartData từ cartItems và sản phẩm
-  // useEffect(() => {
-  //   if (products.length > 0) {
-  //     const tempData = [];
-  //     for (const productId in cartItems) {
-  //       const product = products.find(item => item._id === productId);
-  //       if (product) {  // Đảm bảo sản phẩm tồn tại
-  //         tempData.push({
-  //           _id: productId,
-  //           name: product.name,
-  //           price: product.price,
-  //           quantity: cartItems[productId],
-  //         });
-  //       }
-  //     }
-  //     setCartData(tempData);
-  //   }
-  // }, [cartItems, products]);
 
   useEffect(() => {
 if (products.length > 0 && Object.keys(cartItems).length > 0) {
@@ -227,20 +159,6 @@ if (products.length > 0 && Object.keys(cartItems).length > 0) {
   };
 
 
-  // Hàm thêm sản phẩm vào giỏ hàng
-  // const addToCart = (productId) => {
-  //   setCartItems((prevItems) => ({
-  //     ...prevItems,
-  //     [productId]: (prevItems[productId] || 0) + 1,
-  //   }));
-  //   // if (token) {
-  //   //   try {
-  //   //     await axios.post(backendUrl + '/api/cart/add', {itemId, price}, {headers: {token}}) 
-  //   //   } catch (error) {
-  //   //     TransformStream.error(error.message)
-  //   //   }
-  //   // }
-  // };
   const addToCart = async (productId) => {
     // Cập nhật giỏ hàng với sản phẩm mới
     setCartItems((prevItems) => {

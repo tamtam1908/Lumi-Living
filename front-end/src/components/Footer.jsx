@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaRegCopyright } from "react-icons/fa6"
 
 const Footer = () => {
   return (
-    <footer className="navbar_bg text-gray-400 py-8">
+    <footer className="navbar_bg text-gray-400 pt-8 pb-2">
       <div className="container mx-auto px-4">
         {/* Main footer content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-10">
@@ -117,6 +118,7 @@ const Footer = () => {
 
         {/* Footer Divider */}
         <div className="border-t mt-8"></div>
+        <div className="flex items-center gap-2 my-2 content_color justify-center italic w-full " > <p>Lumiliving </p><FaRegCopyright /> <p>All copyrights reserved.</p> </div>
       </div>
     </footer>
   );

@@ -30,7 +30,7 @@ const About = () => {
         <div className="about_content">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold content_color text-center">2024</h1>
           <br />
-          <p className="content_color text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="content_color text-sm sm:text-base md:text-lg leading-relaxed pr-2 text-justify">
             <i>
               LumiLiving ra đời từ niềm đam mê về không gian sống thoải mái và ấm cúng. Trong một thế giới đầy áp lực,
               chúng tôi nhận ra rằng một không gian sống đẹp và hài hòa có thể ảnh hưởng tích cực đến tâm trạng và
@@ -64,7 +64,7 @@ const About = () => {
           </h1>
         </div>
         <div className="flex-1">
-          <p className="content_color text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="content_color text-sm sm:text-base md:text-lg leading-relaxed text-justify">
             <b>"Lumi": </b> Xuất phát từ từ "luminous" (tỏa sáng), mang ý nghĩa về ánh sáng, sự ấm áp và sự tươi mới.
             <br />
             <b>"Living":</b> Không gian sống, nơi con người sinh hoạt và tận hưởng cuộc sống. Nội thất không chỉ là đồ
@@ -80,7 +80,7 @@ const About = () => {
       <div className="mission main_bg flex flex-col md:flex-row p-5">
         <div className="mission_detail content_color flex-1 flex flex-col items-center justify-center mb-8 md:mb-0">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">TUYÊN NGÔN - SỨ MỆNH</h1>
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed mt-4">
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed mt-4 text-justify">
             Tại <b>LUMILIVING</b>, chúng tôi bắt đầu hành trình của mình từ một niềm đam mê mãnh liệt với nội thất và
             mong muốn hiện thực hóa giấc mơ kiến tạo không gian sống hoàn hảo cho mỗi gia đình. Sứ mệnh của chúng tôi
             không chỉ là cung cấp những sản phẩm nội thất chất lượng cao, mà còn là mang đến trải nghiệm tuyệt vời cho
@@ -101,7 +101,7 @@ const About = () => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold content_color text-center mb-4 md:mb-0">
           CHÍNH SÁCH BẢO HÀNH
         </h1>
-        <p className="flex-1 content_color text-sm sm:text-base md:text-lg leading-relaxed">
+        <p className="flex-1 content_color text-sm sm:text-base md:text-lg leading-relaxed text-justify">
           Thấu hiểu mối quan tâm thường gặp của khách hàng nên chính sách bảo hành là một chủ đề luôn được lưu tâm với
           Lumi trong quá trình sử dụng và trải nghiệm sản phẩm.
           <br /><br />
