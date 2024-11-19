@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import feedback1 from '../assets/feedback1.jpg';
-import feedback2 from '../assets/feedback2.jpg';
+import { assets } from '../assets/assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,13 +9,13 @@ const Feedback = () => {
       content: "Tôi rất hài lòng với bộ sofa mới mua từ cửa hàng. Thiết kế hiện đại, chất liệu cao cấp và cực kỳ thoải mái. Đặc biệt, dịch vụ giao hàng nhanh chóng và nhân viên rất nhiệt tình.",
       name: "Tâm Hoàng",
       location: "Đắk Lắk, Việt Nam",
-      avatar: feedback1,
+      avatar: assets.feedback1,
     },
     {
       content: "Sản phẩm được đóng gói kỹ lưỡng, lắp đặt dễ dàng, và chất lượng vượt ngoài mong đợi. Màu sắc và kiểu dáng rất hợp với không gian bếp của tôi. Sẽ ủng hộ lần sau!!",
       name: "Tuấn Huy",
       location: "Tây Ninh, Việt Nam",
-      avatar: feedback2,
+      avatar: assets.feedback2,
     },
     {
       content: "Tôi thực sự ấn tượng với chất lượng của bộ bàn ghế này. Thiết kế sang trọng, mang lại cảm giác hiện đại nhưng vẫn rất ấm cúng cho phòng khách.",

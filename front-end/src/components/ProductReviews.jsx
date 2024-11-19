@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Star, ChevronDown } from 'lucide-react';
-import avt from '../assets/avt.jpg';
+import { assets } from '../assets/assets';
 
 const ProductReviews = () => {
   const [showAll, setShowAll] = useState(false);
@@ -11,7 +11,7 @@ const ProductReviews = () => {
       name: "Tâm Hoàng",
       location: "Đắk Lắk, Việt Nam",
       rating: 4,
-      avatar: avt,
+      avatar: assets.avt,
       content: "Rất hài lòng với bộ bàn ghế vừa mua! Thiết kế thanh lịch, màu sắc hài hòa, tạo điểm nhấn nổi bật cho không gian phòng ăn. Chất liệu gỗ tự nhiên bền bỉ, ghế ngồi êm ái và có độ cao vừa phải. Chắc chắn sẽ giới thiệu cửa hàng cho bạn bè và người thân."
     },
     {
@@ -19,7 +19,7 @@ const ProductReviews = () => {
       name: "Quang Phúc",
       location: "Long An, Việt Nam",
       rating: 4,
-      avatar: avt,
+      avatar: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       content: "Tôi rất hài lòng với bộ sofa mới mua từ cửa hàng. Thiết kế hiện đại, chất liệu cao cấp và cực kỳ thoải mái. Đặc biệt, dịch vụ giao hàng nhanh chóng và nhân viên rất nhiệt tình."
     },
     {
@@ -27,7 +27,7 @@ const ProductReviews = () => {
       name: "Thái Sơn",
       location: "HCM, Việt Nam",
       rating: 5,
-      avatar: avt,
+      avatar: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       content: "Tôi thực sự ấn tượng với chất lượng của bộ bàn ghế này. Thiết kế sang trọng, mang lại cảm giác hiện đại nhưng vẫn rất ấm cúng cho phòng khách. Gỗ được xử lý kỹ lưỡng, không có bất kỳ vết nứt hay xước nào, chứng tỏ sự tỉ mỉ trong khâu hoàn thiện sản phẩm."
     },
     {
@@ -35,7 +35,7 @@ const ProductReviews = () => {
       name: "Khả Ái",
       location: "Long Sơn, Bà Rịa - Vũng Tàu, Việt Nam",
       rating: 5,
-      avatar: avt,
+      avatar: 'https://images.pexels.com/photos/1364756/pexels-photo-1364756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       content: "Thiết kế tinh tế, toát lên vẻ sang trọng, hiện đại nhưng vẫn giữ được sự ấm áp, gần gũi cho không gian phòng khách. Chất liệu gỗ được gia công cẩn thận, bề mặt hoàn hảo không tì vết, thể hiện sự chú trọng và tỉ mỉ trong từng chi tiết hoàn thiện."
     }
   ];

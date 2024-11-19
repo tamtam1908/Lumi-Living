@@ -69,17 +69,33 @@ const ShopContextProvider = (props) => {
     }
   }, [token]); // Lắng nghe thay đổi của token
 
-  // Lấy dữ liệu tỉnh thành
-  useEffect(() => {
-    fetch('https://provinces.open-api.vn/api/p/')
-      .then((response) => response.json())
-      .then((data) => setProvinces(data));
-  }, []);
 
-  // // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
+  // fetch("https://provinces.open-api.vn/api/?depth=3")
+  // .then((response) => {
+  //   if (!response.ok) {
+  //     throw new Error(`HTTP error! Status: ${response.status}`);
+  //   }
+  //   return response.json();
+  // })
+  // .then((data) => {
+  //   console.log("API data:", data);
+  //   // Xử lý dữ liệu ở đây
+  // })
+  // .catch((error) => {
+  //   console.error("Error fetching API:", error.message);
+  // });
+
+  // Lấy dữ liệu tỉnh thành
+  // useEffect(() => {
+  //   fetch('https://provinces.open-api.vn/api/?depth=3')
+  //     .then((response) => response.json())
+  //     .then((data) => setProvinces(data));
+  // }, []);
+
+  // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
   // useEffect(() => {
   //   if (selectedProvince) {
-  //     fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`, {mode: 'no-cors'})
+//     fetch(`https://provinces.open-api.vn/api/?depth=3/d/${selectedProvince}`, {mode: 'no-cors'})
   //       .then((response) => response.json())
   //       .then((data) => setDistricts(data));
   //   }
@@ -87,7 +103,7 @@ const ShopContextProvider = (props) => {
 
   // Lấy dữ liệu tỉnh thành
 useEffect(() => {
-  fetch('https://provinces.open-api.vn/api/p/')
+  fetch('https://provinces.open-api.vn/api/?depth=3')
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -98,20 +114,38 @@ useEffect(() => {
     .catch((error) => console.error('Error fetching provinces:', error));
 }, []);
 
+const handleProvinceChange = (e) => {
+  const selectedCode = Number(e.target.value);
+  setSelectedProvince(selectedCode);
+  setFormData((prev) => ({ ...prev, province: selectedCode }));
+};
+
+
 // Lấy dữ liệu quận huyện khi tỉnh thành được chọn
+// useEffect(() => {
+//   if (selectedProvince) {
+//     fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         return response.json();
+//       })
+//       .then((data) => setDistricts(data))
+//       .catch((error) => console.error('Error fetching districts:', error));
+//   }
+// }, [selectedProvince]);
+
 useEffect(() => {
   if (selectedProvince) {
-    fetch(`https://provinces.open-api.vn/api/d/${selectedProvince}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => setDistricts(data))
-      .catch((error) => console.error('Error fetching districts:', error));
+    const province = provinces.find((p) => p.code === Number(selectedProvince));
+    if (province) {
+      setDistricts(province.districts); // Lấy huyện từ tỉnh được chọn
+    }
+  } else {
+    setDistricts([]); // Xóa danh sách huyện nếu chưa chọn tỉnh
   }
-}, [selectedProvince]);
+}, [selectedProvince, provinces]);
 
   
   // useEffect cập nhật cartData khi cartItems thay đổi
@@ -151,7 +185,7 @@ useEffect(() => {
   // }, [cartItems, products]);
 
   useEffect(() => {
-    if (products.length > 0 && Object.keys(cartItems).length > 0) {
+if (products.length > 0 && Object.keys(cartItems).length > 0) {
       const updatedCartData = Object.keys(cartItems).map((productId) => {
         const product = products.find((item) => item._id === productId);
         return {
@@ -248,7 +282,7 @@ useEffect(() => {
         alert(response.data.message);
       }
     } catch (error) {
-      console.error("Lỗi khi cập nhật số lượng sản phẩm:", error);
+console.error("Lỗi khi cập nhật số lượng sản phẩm:", error);
     }
   };
 
@@ -342,8 +376,7 @@ useEffect(() => {
       }
       return updatedItems;
     });
-  
-    // Gửi yêu cầu POST đến API để xóa sản phẩm nếu có token
+// Gửi yêu cầu POST đến API để xóa sản phẩm nếu có token
     const token = localStorage.getItem('token'); // Lấy token từ localStorage
     if (token) {
       try {
@@ -428,7 +461,7 @@ useEffect(() => {
       await axios.post(
         `${backendUrl}/api/cart/update`,
         { itemId, quantity: newValue },
-        { headers: { token } } // Bao gồm token nếu cần thiết
+{ headers: { token } } // Bao gồm token nếu cần thiết
       );
       toast.success("Cập nhật số lượng thành công!");
     } catch (error) {
@@ -491,6 +524,7 @@ useEffect(() => {
     setAddToCartSuccess,
     getCartCount,
     setCartItems,
+    handleProvinceChange
   };
 
   return (

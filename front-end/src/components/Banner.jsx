@@ -31,7 +31,7 @@ const Banner = () => {
 
   return (
     <div
-      className="relative h-[850px] flex items-center justify-center bg-cover bg-center"
+      className="relative h-[800px] flex items-center justify-center bg-cover bg-center"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {/* Overlay */}
@@ -62,27 +62,27 @@ const Banner = () => {
       </div>
 
       {/* Bottom Section: Service Icons */}
-      <div className="absolute bottom-0 w-full border_bg border_bg-transparent flex flex-col md:flex-row items-start md:items-center py-7 px-7 bg-[#AC9984]">
-        <div className="flex flex-col md:flex-row items-start w-full mb-4 md:mb-0">
-          <div className="flex items-center banner-content mb-4 md:mb-0 mr-0 md:mr-8">
-            <FontAwesomeIcon icon={faTruck} className="w-10 h-10 mr-2 text_label" />
+      <div className="absolute bottom-0 w-full border_bg border_bg-transparent flex flex-col md:flex-row items-start md:items-center py-7 px-4 md:px-7 bg-[#AC9984]">
+        <div className="flex flex-col gap-4 md:flex-row items-center justify-between w-full">
+          <div className="flex items-center banner-content">
+            <FontAwesomeIcon icon={faTruck} className="w-8 h-8 md:w-10 md:h-10 mr-2 text_label" />
             <div className="flex flex-col">
-              <span className="font-semibold text_label">GIAO HÀNG MIỄN PHÍ</span>
-              <span className="text-sm text_label">cho mọi đơn hàng từ 3.000.000</span>
+              <span className="font-semibold text_label text-sm md:text-base">GIAO HÀNG MIỄN PHÍ</span>
+              <span className="text-xs md:text-sm text_label">cho mọi đơn hàng từ 3.000.000</span>
             </div>
           </div>
-          <div className="flex items-center banner-content mb-4 md:mb-0 mr-0 md:mr-8">
-            <FontAwesomeIcon icon={faHeadset} className="w-10 h-10 mr-2 text_label" />
+          <div className="flex items-center banner-content">
+            <FontAwesomeIcon icon={faHeadset} className="w-8 h-8 md:w-10 md:h-10 mr-2 text_label" />
             <div className="flex flex-col">
-              <span className="font-semibold text_label">HỖ TRỢ 24/7</span>
-              <span className="text-sm text_label">giải đáp mọi thắc mắc của khách hàng</span>
+              <span className="font-semibold text_label text-sm md:text-base">HỖ TRỢ 24/7</span>
+              <span className="text-xs md:text-sm text_label">giải đáp mọi thắc mắc của khách hàng</span>
             </div>
           </div>
-          <div className="flex items-center banner-content mb-4 md:mb-0">
-            <FontAwesomeIcon icon={faCheckCircle} className="w-10 h-10 mr-2 text_label" />
+          <div className="flex items-center banner-content">
+            <FontAwesomeIcon icon={faCheckCircle} className="w-8 h-8 md:w-10 md:h-10 mr-2 text_label" />
             <div className="flex flex-col">
-              <span className="font-semibold text_label">100% CHÍNH HÃNG</span>
-              <span className="text-sm text_label">cung cấp sản phẩm chất lượng cao</span>
+              <span className="font-semibold text_label text-sm md:text-base">100% CHÍNH HÃNG</span>
+              <span className="text-xs md:text-sm text_label">cung cấp sản phẩm chất lượng cao</span>
             </div>
           </div>
         </div>

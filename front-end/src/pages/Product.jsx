@@ -4,7 +4,6 @@ import { assets } from '../assets/assets';
 import { useLocation } from 'react-router-dom';
 import ProductItem from '../components/ProductItem';
 import ProductBanner from '../components/ProductBanner';
-import dropdown_icon from '../assets/dropdown_icon.png'
 
 const Product = () => {
   const { products } = useContext(ShopContext);
@@ -38,8 +37,8 @@ const Product = () => {
   const toggleMaterial = (e) => {
     if (material.includes(e.target.value)) {
       setMaterial(prev => prev.filter(item => item !== e.target.value));
-
-
+    } else {
+      setMaterial(prev => [...prev, e.target.value]);
     }
   };
 
@@ -54,7 +53,7 @@ const Product = () => {
 
 
     if (material.length > 0) {
-      filtered = filtered.filter(item => material.every(mat => item.material.includes(mat)));
+      filtered = filtered.filter(item => material.some(mat => item.material.includes(mat)));
     }
 
     setFilterProducts(filtered);
@@ -151,7 +150,7 @@ const Product = () => {
             <h2 className='text-xl font-medium'><b>BỘ LỌC</b></h2>
             <img 
               className={`h-3 transition-transform duration-200 ${showMobileFilter ? 'rotate-180' : ''}`} 
-              src={dropdown_icon} 
+              src={assets.dropdown_icon} 
               alt="toggle filter"
             />
           </div>

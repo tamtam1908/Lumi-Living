@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import banner8 from '../assets/banner8.jpg';
-import banner9 from '../assets/banner9.jpg';
+import { assets } from '../assets/assets';
 
 const ProductBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -9,7 +8,7 @@ const ProductBanner = () => {
   const banners = [
     {
       id: 1,
-      image: banner8,
+      image: assets.banner8,
       title: "LUMILIVING",
       subtitle: "Nơi phong cách gặp gỡ sự tiện nghi!",
       description: "Khám phá ngay những sản phẩm có thiết kế đẹp mắt, phong cách phong cách",
@@ -17,7 +16,7 @@ const ProductBanner = () => {
     },
     {
       id: 2, 
-      image: banner9,
+      image: assets.banner9,
       title: "LUMILIVING",
       subtitle: "Nơi phong cách gặp gỡ sự tiện nghi!",
       description: "Khám phá ngay những sản phẩm có thiết kế đẹp mắt, phong cách phong cách",

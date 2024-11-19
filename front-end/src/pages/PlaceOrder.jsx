@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CiBank } from "react-icons/ci";
 import { BsCashStack } from "react-icons/bs";
-import { assets, products } from "../assets/assets";
+import { assets} from "../assets/assets";
 import { IoBag } from "react-icons/io5";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { ShopContext } from "../context/ShopContext";
@@ -24,6 +24,7 @@ const PlaceOrder = () => {
     cartItems,
     token,
     setCartItems,
+    handleProvinceChange,
   } = useContext(ShopContext);
   const location = useLocation();
   const { cartData, totalPrice, deliveryFee } = location.state || {};
@@ -110,6 +111,33 @@ const PlaceOrder = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault(); // Prevent default form submission
 
+    // const requiredFields = [
+    //   "firstName",
+    //   "lastName",
+    //   "address",
+    //   "phone",
+    //   "email",
+    // ];
+  
+    // for (let field of requiredFields) {
+    //   if (!formData[field]) {
+    //     toast.error(`Vui lòng điền đầy đủ thông tin đơn hàng!`); // Thông báo cho người dùng
+    //     return;
+    //   }
+    // }
+    const requiredFields = ["firstName", "lastName", "address", "phone", "email"];
+    const emptyFields = requiredFields.filter(field => !formData[field]);
+
+    if (emptyFields.length > 0) {
+      toast.error("Vui lòng điền đầy đủ thông tin bắt buộc!");
+      return; // Dừng việc gửi đơn hàng nếu thiếu thông tin
+    }
+
+    if (!selectedPayment) {
+      toast.error("Vui lòng chọn phương thức thanh toán!");
+      return; // Dừng việc gửi đơn hàng nếu chưa chọn phương thức thanh toán
+    }
+
     try {
       if (cartData && cartData.length > 0) {
         const orderItems = cartData.map((item) => {
@@ -160,6 +188,7 @@ const PlaceOrder = () => {
     }
   };
 
+  
   return (
     <div className="pb-5">
       <div className="h-[45px] w-screen	pre_bar content-center	">
@@ -217,6 +246,7 @@ const PlaceOrder = () => {
                     value={formData.firstName}
                     className="border-b text-base border-[#46403e] bg-transparent w-full focus:outline-none"
                     type="text"
+                    required
                   />
                 </div>
                 <div>
@@ -227,17 +257,19 @@ const PlaceOrder = () => {
                     value={formData.lastName}
                     className="border-b text-base border-[#46403e] bg-transparent py-1 w-full focus:outline-none"
                     type="text"
+                    required
                   />
                 </div>
                 <div>
-                  {/* <label className="text_form text-base">TỈNH THÀNH</label>
+                  <label className="text_form text-base">TỈNH THÀNH</label>
                   <select
                     onChange={(e) =>
                       setSelectedProvince(Number(e.target.value))
                     }
                     name="province"
-                    value={formData.province}
+                    // value={formData.province}
                     className="text-base border-b border-[#46403e] bg-transparent py-1 w-full focus:outline-none"
+                    required
                   >
                     <option className="text_label" value="">
                       Chọn tỉnh thành
@@ -251,15 +283,16 @@ const PlaceOrder = () => {
                         {province.name}
                       </option>
                     ))}
-                  </select> */}
+                  </select>
                 </div>
                 <div>
-                  {/* <label className="text_form text-base">QUẬN/HUYỆN</label>
+                  <label className="text_form text-base">QUẬN/HUYỆN</label>
                   <select onChange={onChangeHandler}
                     name="district"
                     value={formData.district}
                     className="border-b text-base border-[#46403e] bg-transparent py-1 w-full focus:outline-none"
                     disabled={!selectedProvince || districts.length === 0}
+                    required
                   >
                     <option className="text_label" value="">
                       Chọn quận
@@ -273,7 +306,7 @@ const PlaceOrder = () => {
                         {district.name}
                       </option>
                     ))}
-                  </select> */}
+                  </select>
                 </div>
                 <div>
                   <label className="text_form text-base">ĐỊA CHỈ</label>
@@ -284,6 +317,7 @@ const PlaceOrder = () => {
                     type="text"
                     placeholder="Địa chỉ"
                     className="border-b text-base border-[#46403e] bg-transparent py-1 w-full focus:outline-none placeholder:text-stone-400"
+                    required
                   />
                   <input
                     onChange={onChangeHandler}
@@ -302,6 +336,7 @@ const PlaceOrder = () => {
                     value={formData.phone}
                     type="text"
                     className="border-b text-base border-[#46403e] bg-transparent py-1 w-full focus:outline-none"
+                    required
                   />
                 </div>
                 <div>
@@ -312,6 +347,7 @@ const PlaceOrder = () => {
                     value={formData.email}
                     type="email"
                     className="border-b text-base border-[#46403e] bg-transparent py-1 w-full focus:outline-none"
+                    required
                   />
                 </div>
 
@@ -379,7 +415,7 @@ const PlaceOrder = () => {
             <div className="flex justify-between py-2 mt-2 font-semibold text-lg">
               <p>TỔNG</p>
               <p>
-                {totalPrice} {currency}
+                {totalPrice}{currency}
               </p>
             </div>
             {/* Payment method */}
