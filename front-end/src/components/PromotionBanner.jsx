@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import bfsale from '../assets/bfsale.png';
-import gardensale from '../assets/gardensale.png';
+import { assets } from '../assets/assets';
 import { NavLink } from 'react-router-dom';
 
 const PromotionBanner = () => {
   const promotions = [
-    { id: 1, img: bfsale },
-    { id: 2, img: gardensale },
+    { id: 1, img: assets.bfsale },
+    { id: 2, img: assets.gardensale },
   ];
 
   const [currentPosition, setCurrentPosition] = useState(0);

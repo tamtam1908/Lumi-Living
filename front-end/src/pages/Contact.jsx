@@ -25,92 +25,117 @@ const Contact = () => {
     }
   ];
 
+
   const [openQuestionIndex, setOpenQuestionIndex] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false); // State để điều khiển overlay
 
   const toggleAnswer = (index) => {
     setOpenQuestionIndex(openQuestionIndex === index ? null : index);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowOverlay(true); // Hiển thị overlay khi gửi form
+  };
+
+  const closeOverlay = () => {
+    setShowOverlay(false); // Ẩn overlay khi nhấn X
+  };
+
   return (
     <div className="bg-[#2C2623] min-h-screen h-full w-full">
-      <div className="flex flex-col md:flex-row justify-center items-start gap-10 mb-28">
-        {/* Image with Overlay */}
-        <div className="my-10 relative w-full md:max-w-[480px]">
-          <img className="w-full" src={assets.contact} alt="" />
-          <div className="absolute inset-0 flex justify-center items-center">
-            <div className="bg-white bg-opacity-50 w-full h-1/2 flex flex-col justify-center items-center text-[#AB967F] text-center p-4">
-              <h2 className="text-3xl font-bold">LUMILIVING</h2>
-              <p>HOTLINE: 039 392 2348</p>
-              <p>Địa chỉ: 669 QL1A, khu phố 6, Thủ Đức, Hồ Chí Minh</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="my-10 flex flex-col justify-center items-start gap-4 p-8 max-w-md md:pt-0">
-  <h2 className="text-4xl font-bold text-[#FFFFFF] mb-2 font-['Roboto']">ĐỂ LẠI THẮC MẮC...</h2>
-  <p className="text-sm text-[#FFFFFF] mb-4 font-[Montserrat]">
-    Đội ngũ CSKH chuyên nghiệp, thân thiện của chúng tôi luôn trả lời thắc mắc của khách hàng trong vòng 24 giờ
-  </p>
-  <form className="flex flex-col gap-8 w-full font-[Montserrat] ">
-    <input
-      type="text"
-      placeholder="Tên"
-      className="w-full p-3 bg-[#2C2623] placeholder-[#AB967F] text-[#AB967F] border-2 border-[#AB967F] focus:outline-none"
-
- 
-    />
-    <input
-      type="email"
-      placeholder="Gmail"
-      className="w-full p-3 bg-[#2C2623] placeholder-[#AB967F] text-[#AB967F] border-2 border-[#AB967F] focus:outline-none"
-
-    />
-    <textarea
-      placeholder="Thắc mắc"
-      className="w-full p-3 bg-[#2C2623] placeholder-[#AB967F] text-[#AB967F] border-2 border-[#AB967F] focus:outline-none h-[150px] resize-none"
-
-    ></textarea>
-    <button
-      type="submit"
-      className="w-full p-3 bg-[#A58B75] text-white font-bold hover:bg-[#8B735A] transition-colors"
-    >
-      GỬI
-    </button>
-  </form>
-</div>
-
-      </div>
-      
-      {/* Quick Questions Section with Two-Column Layout */}
-      <div className="p-8 text-white flex flex-col md:flex-row items-start gap-10 font-[Montserrat]">
-        {/* Left Column with "CÂU HỎI NHANH" title */}
-        <div className="md:w-1/3">
-          <h2 className="text-5xl text-[#AC9984] font-bold mt-10 ml-6">CÂU <br /> <br />  HỎI <br /><br /> NHANH</h2>
-        </div>
-
-        {/* Right Column with Questions and Answers */}
-        <div className="md:w-2/3 space-y-6">
-          {questions.map((item, index) => (
-            <div key={index} className="border-b border-gray-600 pb-4">
-              <div className="flex justify-between items-center">
-                <p className="text-lg text-[#AC9984]">{item.question}</p>
-                <button
-                  onClick={() => toggleAnswer(index)}
-                  className="text-2xl text-gray-300 hover:text-white transition-colors"
-                >
-                  {openQuestionIndex === index ? "−" : "+"}
-                </button>
-              </div>
-              {openQuestionIndex === index && (
-                <p className="mt-4 text-gray-400">{item.answer}</p>
-              )}
-            </div>
-          ))}
+  <div className="flex flex-col md:flex-row justify-center items-start gap-10 mb-28 px-4">
+    {/* Image with Overlay */}
+    <div className="my-10 relative w-full md:max-w-[480px]">
+      <img className="w-full object-cover rounded-md" src={assets.contact} alt="" />
+      <div className="absolute inset-0 flex justify-center items-center">
+        <div className="bg-white bg-opacity-50 w-full h-1/2 flex flex-col justify-center items-center text-[#AB967F] text-center p-4">
+          <h2 className="text-2xl md:text-3xl font-bold">LUMILIVING</h2>
+          <p className="text-sm md:text-base">HOTLINE: 039 392 2348</p>
+          <p className="text-sm md:text-base">Địa chỉ: 669 QL1A, khu phố 6, Thủ Đức, Hồ Chí Minh</p>
         </div>
       </div>
     </div>
+
+    {/* Form Section */}
+    <div className="my-10 flex flex-col justify-center items-start gap-4 p-4 md:p-8 max-w-md md:pt-0">
+      <h2 className="text-2xl md:text-4xl font-bold text-[#FFFFFF] mb-2 font-['Roboto']">
+        ĐỂ LẠI THẮC MẮC...
+      </h2>
+      <p className="text-sm text-[#FFFFFF] mb-4 font-[Montserrat]">
+        CSKH thân thiện của chúng tôi trả lời thắc mắc trong 24 giờ
+      </p>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full font-[Montserrat]">
+        <input
+          type="text"
+          placeholder="Tên"
+          className="w-full p-3 bg-[#2C2623] placeholder-[#AB967F] text-[#AB967F] border-2 border-[#AB967F] focus:outline-none rounded-none"
+        />
+        <input
+          type="email"
+          placeholder="Gmail"
+          className="w-full p-3 bg-[#2C2623] placeholder-[#AB967F] text-[#AB967F] border-2 border-[#AB967F] focus:outline-none rounded-none"
+        />
+        <textarea
+          placeholder="Thắc mắc"
+          className="w-full p-3 bg-[#2C2623] placeholder-[#AB967F] text-[#AB967F] border-2 border-[#AB967F] focus:outline-none h-[150px] resize-none rounded-none"
+        ></textarea>
+        <button
+          type="submit"
+          className="w-full p-3 bg-[#A58B75] text-white font-bold hover:bg-[#8B735A] transition-colors rounded-md"
+        >
+          GỬI
+        </button>
+      </form>
+    </div>
+  </div>
+
+  {/* Overlay */}
+  {showOverlay && (
+    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 px-4">
+      <div className="p-6 bg-[#2C2623] rounded-md text-center text-[#AB967F] relative max-w-md w-full">
+        <button
+          onClick={closeOverlay}
+          className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-700"
+        >
+          ×
+        </button>
+        <h2 className="text-lg md:text-2xl font-bold">Cảm ơn bạn đã quan tâm đến LumiLiving!</h2>
+        <p>Chúng tôi sẽ nhanh chóng trả lời thắc mắc của bạn. Chúc bạn mua sắm vui vẻ!</p>
+      </div>
+    </div>
+  )}
+
+  {/* Quick Questions Section */}
+  <div className="p-4 md:p-8 text-white flex flex-col md:flex-row items-start gap-10 font-[Montserrat]">
+    <div className="md:w-1/3">
+      <h2 className="text-4xl md:text-5xl text-[#AC9984] font-bold mt-6 md:mt-10 ml-2 md:ml-6">
+        CÂU <br /> <br /> HỎI <br />
+        <br /> NHANH
+      </h2>
+    </div>
+    <div className="md:w-2/3 space-y-6">
+      {questions.map((item, index) => (
+        <div key={index} className="border-b border-gray-600 pb-4">
+          <div className="flex justify-between items-center">
+            <p className="text-sm md:text-lg text-[#AC9984]">{item.question}</p>
+            <button
+              onClick={() => toggleAnswer(index)}
+              className="text-xl md:text-2xl text-gray-300 hover:text-white transition-colors"
+            >
+              {openQuestionIndex === index ? "−" : "+"}
+            </button>
+          </div>
+          {openQuestionIndex === index && (
+            <p className="mt-2 md:mt-4 text-gray-400 text-sm md:text-base">{item.answer}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
   );
-}
+};
 
 export default Contact;
-
