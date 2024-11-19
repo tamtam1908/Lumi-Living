@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { ShopContext } from '../context/ShopContext';
 import { MdFavorite } from 'react-icons/md';
+import { FaShoppingCart } from "react-icons/fa";
 
 const Collection = () => {
   const { products, addToCart, addToWishlist, wishlist, removeFromWishlist } = useContext(ShopContext);
@@ -77,12 +78,12 @@ const Collection = () => {
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
 
-          <div ref={carouselRef} className="carousel-container flex overflow-x-scroll no-scrollbar space-x-4 p-4">
+          <div ref={carouselRef} className="carousel-container flex overflow-x-scroll no-scrollbar space-x-4 p-4 cursor-pointer ">
             {products.map((product) => (
               <div key={product._id} className="product-card">
                 {product.discount && <div className="badge discount">-{product.discount}%</div>}
                 {product.isNew && <div className="badge new">New</div>}
-                <img src={product.image[0]} alt={product.name} />
+                <img src={product.image[0]} alt={product.name}  />
                 <div className="product-info">
                   <p className="product-name">{product.name}</p>
                   {product.oldPrice && <p className="old-price">{product.oldPrice.toLocaleString('vi-VN')}₫</p>}
@@ -94,8 +95,8 @@ const Collection = () => {
                       />
                     </button>
                    
-                    <button className="icon"  onClick={() => addToCart(product._id)} style={{padding: '8px 20px', borderRadius: '4px', cursor: 'pointer' }}>
-                      🛒
+                    <button className="icon"  onClick={() => addToCart(product._id)}>
+                      <FaShoppingCart className = 'text_product cursor-pointer'/>
                     </button>
                   </div>
                 </div>
