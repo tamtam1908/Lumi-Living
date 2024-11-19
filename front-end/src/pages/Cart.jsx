@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom';
 import { MdOutlineNavigateNext } from "react-icons/md";
 
 const Cart = () => {
-  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate, cartData, setCartData, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange, handleInputChange, handleBlurUpdate } = useContext(ShopContext);
 
+  const { products, currency, cartItems, removeFromCart, delivery_fee, navigate, cartData, setCartData, selectedItems, setSelectedItems, calculateTotal, handleCheckboxChange,handleRemoveItem, handleInputChange, handleBlurUpdate } = useContext(ShopContext);
 
   const isAnyItemSelected = Object.values(selectedItems).some((selected) => selected);
   // const safeCartData = Array.isArray(cartData) ? cartData : [];
@@ -90,7 +90,7 @@ const Cart = () => {
                     type="checkbox"
                     checked={!!selectedItems[item._id]}
                     onChange={() => handleCheckboxChange(item._id)}
-                    className="self-center mx-4"
+                    className = 'w-5 h-5 rounded border-2 border-black bg-transparent accent-[#8B4513]  transition self-center ml-8'
                   />
                   <div className="flex items-center gap-6 px-5">
                     <img className="w-[75px] h-[75px]" src={productData.image[0] || '/placeholder-image.png'} alt={productData.name} />

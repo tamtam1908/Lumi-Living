@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import {NavLink} from 'react-router-dom'
 import DiscountProduct from '../components/DiscountProduct'
 import Footer from '../components/Footer'
 import { GiCelebrationFire } from "react-icons/gi";
+import { ShopContext } from '../context/ShopContext';
 
 const Promotion = () => {
+  const {navigate} = useContext(ShopContext)
 // Khai báo hàm cho nút ở đây 
   return (
     <div className = "main_bg pb-10 ">
@@ -40,33 +42,33 @@ const Promotion = () => {
         </div>
         <div className="flex gap-4 mt-20">
           <div className="flex flex-col gap-3 items-end">
-            <div className="relative">
+            <div className="relative" onClick={() => navigate('/product/673c4ebafe367e6dca8eaf4e')}>
             <div className='absolute top-[-70px] left-[-40px] h-[426.14px] w-[301px] border-[2px] border-[#AB967F] bg-transparent'></div>
             <img src={assets.cabinet3} className="h-[426.14px] w-[301px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
             <div className="absolute bottom-2 right-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Kệ, tủ giày dép</div>
             </div>
-            <div className = "relative">
+            <div className = "relative" onClick={() => navigate('/product/673c4f3cfe367e6dca8eaf50')}>
               <div className="absolute top-[20px] left-[-50px] h-[512px] w-[438px] border-[2px] border-[#AB967F] bg-transparent"></div>
               <img src={assets.table5} className="h-[456.33px] w-[436.56px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
               <div className="absolute top-2 left-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Bàn đá</div>
             </div>
-            <div className="relative">
-              <img src={assets.chair2} className="h-[263.4px] w-[301.74px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
-              <div className="absolute top-2 right-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Ghế cafe</div>
-            </div>
+              <div className="relative cursor-pointer" onClick={() => navigate('/product/673200a6a93a39709b9e3145')}>
+                <img src={assets.chair2} className="h-[263.4px] w-[301.74px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
+                <div className="absolute top-2 right-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Ghế cafe</div>
+              </div>
           </div>
           <div className="flex flex-col justify-end gap-3 relative">
             <div className='absolute top-[-70px] left-[-40px] h-max w-max border-[2px] border-[#AB967F] bg-transparent'></div>
-            <div className="relative z-[10]">
+            <div className="relative z-[10]" onClick={() => navigate('/product/673c4db0fe367e6dca8eaf4a')}>
               <img src={assets.sofa3} className="h-[313px] w-[327.88px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
               <div className="absolute bottom-2 left-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Sofa</div>
             </div>
             <div className="absolute  top-[190px] left-[20px] h-[1000px] w-[345px]  border-[#AB967F] bg-transparent  border-t-2 border-l-2 border-b-2 "></div>
-            <div className="relative z-[10]">
+            <div className="relative z-[10]" onClick = {() => navigate ('/product/673b2b0538f18cf70c4de3f7')}>
               <img src={assets.table4} className="h-[283.55px] w-[327.88px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
               <div className="absolute top-2 right-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Bàn ăn</div>
             </div>
-            <div className="relative z-[10]">
+            <div className="relative z-[10]" onClick={() => navigate('/product/673c4e51fe367e6dca8eaf4c')} >
               <img src={assets.table3} className="h-[342.25px] w-[327.88px] object-cover transition-transform duration-300 ease-in-out transform hover:scale-110" />
               <div className="absolute top-2 left-2 bg-white text_label bg-opacity-70 text-white text-sm font-bold p-2">Bàn làm việc</div>
             </div>

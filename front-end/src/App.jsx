@@ -25,7 +25,9 @@ import Account from './pages/account'
 import SignUp from './pages/SignUp'
 import SharingDetail1 from './pages/SharingDetail1'
 import SharingDetail2 from './pages/SharingDetail2'
-
+import SharingDetail3 from './pages/SharingDetail3'
+import SharingDetail4 from './pages/SharingDetail4'
+import SharingDetail5 from './pages/SharingDetail5'
 const App = () => {
   return (
     <ShopContextProvider>
@@ -51,7 +53,9 @@ const App = () => {
 
         <Route path = '/lam-the-nao-de-bao-quan-go-dung-cach' element = {<SharingDetail1/>}/>
         <Route path = '/bi-quyet-bo-tri-noi-that-nho-hep' element = {<SharingDetail2/>}/>
-
+        <Route path = '/cach-lua-chon-mau-sac-cho-khong-gian-song-hoan-hao' element = {<SharingDetail3/>}/>
+        <Route path = '/xu-huong-thiet-ke-2024' element = {<SharingDetail4/>}/>
+        <Route path = '/meo-lam-sach-do-noi-that' element = {<SharingDetail5/>}/>
       </Routes>
       <Footer/>
       <ToastContainer />

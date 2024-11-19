@@ -109,6 +109,26 @@
 // import sharingnarrow5 from './sharringnarrow5.jpg'
 // import sharingnarrow6 from './sharingnarrow6.jpg'
 
+import sharingcolor1 from './sharingcolor1.jpg'
+import sharingcolor2 from './sharingcolor2.jpg'
+import sharingcolor3 from './sharingcolor3.jpg'
+import sharingcolor4 from './sharingcolor4.jpg'
+import sharingcolor5 from './sharingcolor5f.jpg'
+import sharingcolor6 from './sharingcolor6.jpg'
+
+import sharingtrend1 from './sharingtrend1.jpg'
+import sharingtrend2 from './sharingtrend2.jpg'
+import sharingtrend3 from './sharingtrend3.jpg'
+import sharingtrend4 from './sharingtrend4.jpg'
+import sharingtrend5 from './sharingtrend5.jpg'
+import sharingtrend6 from './sharingtrend.jpg'
+
+import sharingclean1 from './sharingclean1.png'
+import sharingclean2 from './sharingclean2.jpg'
+import sharingclean3 from './sharingclean3.jpg'
+import sharingclean4 from './sharingclean4.jpg'
+
+
 export const assets = {
     logo:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000847/logo_glsw8x.png', 
     avt:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000778/avt_w14td5.jpg', 
@@ -188,6 +208,9 @@ export const assets = {
     sharingnarrow6:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000893/sharingnarrow6_ui1vhh.jpg',
     opening:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000854/opening_bxpu1v.png',
     dropdown_icon:'https://res.cloudinary.com/dydhzqacj/image/upload/v1732000831/dropdown_icon_vvxent.png',
+    sharingcolor1,sharingcolor2, sharingcolor3, sharingcolor4, sharingcolor5, sharingcolor6,
+    sharingtrend1,sharingtrend2, sharingtrend3, sharingtrend4, sharingtrend5,sharingtrend6,
+    sharingclean1, sharingclean2, sharingclean3, sharingclean4
 }
 
 

@@ -524,7 +524,8 @@ console.error("Lỗi khi cập nhật số lượng sản phẩm:", error);
     setAddToCartSuccess,
     getCartCount,
     setCartItems,
-    handleProvinceChange
+    handleProvinceChange,
+    handleRemoveItem
   };
 
   return (
