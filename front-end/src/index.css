@@ -6,17 +6,36 @@
 
 :root {
     --text-color: #AC9984;--bg-color:#2C2623; --content-color:#EEE9E4; --content-font:  montserrat; 
-    --attention-color: #d9a86d; --text-label: #2C2623;  }
+    --attention-color: #d9a86d; --text-label: #2C2623; --text--product: #36302C; --custom-bg:#594f45; --product-bg: #FFFAF6; --product-color: #201D1C;
+     --discount-border:#D9A86D;  --pre--color: #ac8a60; --text-form: #a08257; --btn-order: #605040; --pre-bar: #453c36;
+    --discount-checkout: #a08257; --bg-login: #EEE9E4; }
+.account_text{color: var(--text--product)}
+.account_bg{background-color: var(--bg-login);}
+.login_text{color: var(--text--product)}
+.bg_login{background-color: var(--bg-login);}
+.border-checkout{border-color: #a08257 ;}
+.pre_bar{background-color: var(--pre-bar);}
+.pre_text{color: var(--text-color)}
+.text_bar{color: var(--text-color)}
+.btn_order{background-color: var(--btn-order); }
+.btn_order:hover{background-color: var(--custom-bg);}
 
+.text_form{color: var(--text-form)}
+.pre_color{color: var(--pre--color)}
+.discount_border {border: 1px solid var(--discount-border);}
+.discount_btn:hover{background-color:#6c5f53 }
+.product_bg{background-color: var(--product-bg);}
+.product_color{color: var(--product-color)}
+.opt_color{color: var(--product-color)}
 .content_font {font-family: var(--content-font);}
 .navbar_font{
     color: var(--text-color);}
 .text_label{color: var(--text-label)}
 .main_bg{
     background-color: var(--bg-color);}
-
+.custom_bg{background-color: var(--custom-bg);}
 .content_color{color: var(--content-color);}
-
+.text_product{color: var(--text--product)}
 .attention_content{color: var(--attention-color)}
 .btn_color{background-color: #917F6C;}
 .btn_color:hover{background-color: #6c5f53;}
@@ -25,7 +44,11 @@
 .navbar_bg{background-color: #201D1C;}
 .navbar_font{color:#AC9984}
 a.active hr{display:block} 
-.border{background-color: #AC9984;}
+.border_bg{background-color: #AC9984;}
+.productBanner_bg {
+    background-color: rgba(242, 236, 230, 0.7);
+  }
+  
 .navbar_btn{background-color: #D9A86D;}
 .navbar_btn:hover{background-color: #AC9984;}
 .bg_form{background-color: #EEE9E4;}
@@ -37,6 +60,8 @@ a.active hr{display:block}
 }
 .about_title{ padding: 20px} 
 .warranty{background-color: #6c5f53; }
+.review-bg{background-color: #36302C;}
+.review-color{color: #D0C8C6;}
 /* banner */
 .banner-content{color:#201D1C; font-family: montserrat;}
 .banner-content-color{color:#201D1C; }
@@ -54,8 +79,13 @@ body {background-color: #2c2623;margin: 0;font-family: Arial, sans-serif;}
 .col_content_2 span img {width: 2500px;height: auto;border-radius: 10px;}
     
 .col_content_2 p {padding-left: 20px;font-size: 14px;line-height: 1.6;color: #D0C8C6;border-left: 2px solid #D0C8C6; /* Vertical separator line */margin-left: 20px;text-align: justify;}
-.carousel-container {display: flex;align-items: center;gap: 10px;position: relative;overflow-x: auto;}
-.product-card {position: relative;background-color: #F7F3F0;border-radius: 8px;width: 280px; /* giảm bớt chiều rộng cho phù hợp với 4 thẻ */height: 340px;padding: 15px;
+.carousel-container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%; /* đảm bảo container có chiều rộng đầy đủ */
+    scroll-behavior: smooth;
+  }
+  .product-card {position: relative;background-color: #F7F3F0;border-radius: 8px;width: 280px; /* giảm bớt chiều rộng cho phù hợp với 4 thẻ */height: 340px;padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);display: flex;flex-direction: column;align-items: center;justify-content: space-between;
     flex: 0 0 auto; /* Đảm bảo thẻ không co giãn */
     scroll-snap-align: start; /* giúp thẻ dừng lại ở vị trí bắt đầu */}
@@ -77,12 +107,29 @@ body {background-color: #2c2623;margin: 0;font-family: Arial, sans-serif;}
     
 .card-icons {display: flex;justify-content: center;gap: 10px;margin-top: 10px;}
     
-.icon {background-color: #FFFFFF;color: #2D2424;border: none;border-radius: 50%;width: 30px;height: 30px;cursor: pointer;display: flex;align-items: center;justify-content: center;font-size: 1.2em;}
-
+.icon {
+    background-color: #F7F3F0;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .icon:active {
+    transform: scale(0.95); /* Thu nhỏ nút một chút khi nhấn */
+    background-color: #E0D9D2; /* Thay đổi màu nền khi nhấn */
+  }
 
 .carousel-btn {background-color: #FFFFFF;color: #2D2424;border: none;font-size: 1.5em;cursor: pointer;border-radius: 50%;width: 40px;height: 40px;display: flex;align-items: center;justify-content: center;}
     
 .bst{width: 100%;margin-top: 50px;object-position: center -50%; /* Cắt 30px từ trên */}
 
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
 
 

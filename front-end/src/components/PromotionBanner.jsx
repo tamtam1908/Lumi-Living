@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import bfsale from '../assets/bfsale.png';
-import gardensale from '../assets/gardensale.png';
+import { assets } from '../assets/assets';
 import { NavLink } from 'react-router-dom';
 
 const PromotionBanner = () => {
   const promotions = [
-    { id: 1, img: bfsale },
-    { id: 2, img: gardensale },
+    { id: 1, img: assets.bfsale },
+    { id: 2, img: assets.gardensale },
   ];
 
   const [currentPosition, setCurrentPosition] = useState(0);
@@ -24,7 +23,7 @@ const PromotionBanner = () => {
   // Render
   return (
     <div className="main_bg">
-      <h1 className = "text-6xl text-center content_color font-bold p-5">ƯU ĐÃI</h1>
+      <h1 className = "text-4xl text-center content_color font-bold p-5">ƯU ĐÃI</h1>
       <div className="relative w-full h-[550px] overflow-hidden">
         {promotions.map((promotion, index) => (
           <NavLink 

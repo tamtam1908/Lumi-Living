@@ -9,14 +9,26 @@ const Feedback = () => {
       content: "Tôi rất hài lòng với bộ sofa mới mua từ cửa hàng. Thiết kế hiện đại, chất liệu cao cấp và cực kỳ thoải mái. Đặc biệt, dịch vụ giao hàng nhanh chóng và nhân viên rất nhiệt tình.",
       name: "Tâm Hoàng",
       location: "Đắk Lắk, Việt Nam",
-      avatar: "https://placehold.co/40",
+      avatar: assets.feedback1,
     },
     {
       content: "Sản phẩm được đóng gói kỹ lưỡng, lắp đặt dễ dàng, và chất lượng vượt ngoài mong đợi. Màu sắc và kiểu dáng rất hợp với không gian bếp của tôi. Sẽ ủng hộ lần sau!!",
       name: "Tuấn Huy",
       location: "Tây Ninh, Việt Nam",
-      avatar: "https://placehold.co/40",
+      avatar: assets.feedback2,
     },
+    {
+      content: "Tôi thực sự ấn tượng với chất lượng của bộ bàn ghế này. Thiết kế sang trọng, mang lại cảm giác hiện đại nhưng vẫn rất ấm cúng cho phòng khách.",
+      name: "Thái Sơn",
+      location: "HCM, Việt Nam",
+      avatar: "https://images.pexels.com/photos/7776184/pexels-photo-7776184.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      content: "Thiết kế tinh tế, toát lên vẻ sang trọng, hiện đại nhưng vẫn giữ được sự ấm áp, gần gũi cho không gian phòng khách. Gỗ tự nhiên nhìn rất đẹp và cổ điển, tôi rất thích.",
+      name: "Khả Ái",
+      location: "Long Sơn, Bà Rịa - Vũng Tàu, Việt Nam",
+      avatar: "https://images.pexels.com/photos/46216/sunflower-flowers-bright-yellow-46216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    }
   ];
 
   const [currentFeedback, setCurrentFeedback] = useState(0);
@@ -45,10 +57,10 @@ const Feedback = () => {
             <FontAwesomeIcon icon={faQuoteLeft} className="text-2xl mb-4 block" />
             <p className="mb-4">{feedback.content}</p>
             <div className="flex items-center">
-              <img src={feedback.avatar} alt={`Profile picture of ${feedback.name}`} className="w-10 h-10 rounded-full mr-4" />
+              <img src={feedback.avatar} alt={`Profile picture of ${feedback.name}`} className="w-10 h-10 rounded-full mr-4 object-cover" />
               <div>
                 <p className="font-bold">{feedback.name}</p>
-                <p className="">{feedback.location}</p>
+                <p className="text-[#917F6C]">{feedback.location}</p>
               </div>
             </div>
           </div>

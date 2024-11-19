@@ -1,173 +1,205 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
+import { useLocation } from 'react-router-dom';
 import ProductItem from '../components/ProductItem';
+import ProductBanner from '../components/ProductBanner';
 
 const Product = () => {
   const { products } = useContext(ShopContext);
-  const [showFilter, setShowFilter] = useState([]);
+
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
-  const [category, setCategory] = useState([])
-  const [subCategory, setSubCategory] = useState([]);
-  const [sortType, setSortType] = useState('relevant')
+    const [category, setCategory] = useState([]);
+  const [material, setMaterial] = useState([]);
+  const [sortType, setSortType] = useState('relevant');
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryFromUrl = params.get('category');
+    if (categoryFromUrl) {
+      setCategory([categoryFromUrl]);
+    }
+  }, [location]);
+
 
   const toggleCategory = (e) => {
-    if (category.includes(e.target.value)){
-      setCategory(prev => prev.filter(item => item !== e.target.value))
-    }
-    else {
-      setCategory(prev => [...prev, e.target.value])
-    }
-  }
 
-  const toggleSubCategory = (e) => {
-
-    if (subCategory.includes(e.target.value)) {
-      setSubCategory(prev => prev.filter(item => item !== e.target.value))
+    if (category.includes(e.target.value)) {
+      setCategory(prev => prev.filter(item => item !== e.target.value));
+    } else {
+      setCategory(prev => [...prev, e.target.value]);
     }
-    else {
-      setSubCategory(prev => [...prev, e.target.value])
-    }
+  };
 
-  }
+
+  const toggleMaterial = (e) => {
+    if (material.includes(e.target.value)) {
+      setMaterial(prev => prev.filter(item => item !== e.target.value));
+    } else {
+      setMaterial(prev => [...prev, e.target.value]);
+    }
+  };
+
 
   const applyFilter = () => {
-    let productsCopy = products.slice();
-    if (category.length>0){
-    productsCopy = productsCopy.filter(item => category.includes(item.category));
-  }
+    let filtered = products.slice();
 
-    if (subCategory.length>0){
-      productsCopy=productsCopy.filter(item => subCategory.includes(item.subCategory));
+
+    if (category.length > 0) {
+      filtered = filtered.filter(item => category.includes(item.category));
     }
-    setFilterProducts(productsCopy)
-  }
+
+
+    if (material.length > 0) {
+      filtered = filtered.filter(item => material.some(mat => item.material.includes(mat)));
+    }
+
+    setFilterProducts(filtered);
+  };
+
 
   const sortProduct = () => {
-    let fpCopy = filterProducts.slice();
+    let sorted = filterProducts.slice();
     switch (sortType) {
       case 'low-high':
-        setFilterProducts(fpCopy.sort ((a,b)=>(a.price - b.price)));
+        setFilterProducts(sorted.sort((a, b) => a.price - b.price));
         break;
       case 'high-low':
-        setFilterProducts(fpCopy.sort ((a,b)=>(b.price - a.price)));
+        setFilterProducts(sorted.sort((a, b) => b.price - a.price));
         break;
       default:
         applyFilter();
         break;
     }
-  }
+  };
 
-  useEffect(()=>{
-    console.log(category);
-  },[category])
 
-  useEffect(()=>{
+  useEffect(() => {
     applyFilter();
-  }, [category, subCategory])
 
-  useEffect(()=>{
+  }, [category, material, products]);
+
+
+  useEffect(() => {
     sortProduct();
-  }, [sortType])
+  }, [sortType]);
+
+  const isChecked = (value, type) => {
+    if (type === 'category') {
+      return category.includes(value);
+    }
+    return material.includes(value);
+  };
+
+  // Filter Content Component để tái sử dụng
+  const FilterContent = () => (
+    <>
+      {/* Category Filter */}
+      <div className='mb-8 pl-5'>
+        <p className='mb-4 text-sm font-medium'>DANH MỤC SẢN PHẨM</p>
+        <div className='flex flex-col gap-2 text-sm font-light text-grey-700 pl-5'>
+          {['Bàn', 'Ghế', 'Tủ', 'Kệ', 'Đèn', 'Sofa'].map((cat) => (
+            <label key={cat} className='flex items-center gap-2 cursor-pointer '>
+              <input
+                className="w-3"
+                type="checkbox"
+                value={cat}
+                checked={isChecked(cat, 'category')}
+                onChange={toggleCategory}
+              />
+              <span>{cat}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Material Filter */}
+      <div className='mb-8 pl-5'>
+        <p className='mb-4 text-sm font-medium'>CHẤT LIỆU SẢN PHẨM</p>
+        <div className='flex flex-col gap-2 text-sm font-light text-grey-700 pl-5'>
+          {['Kim loại', 'Gỗ tự nhiên', 'Da lộn', 'cotton', 'Nhựa'].map((mat) => (
+            <label key={mat} className='flex items-center gap-2 cursor-pointer '>
+              <input
+                className="w-3"
+                type="checkbox"
+                value={mat}
+                checked={isChecked(mat, 'material')}
+                onChange={toggleMaterial}
+              />
+              <span>{mat}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 
   return (
-    <div className='flex flex-col sm:flex-col gap-1 sm:gap-10 main_bg content_color'>
-      {/* Container for filter and sidebar */}
-      <div className='flex flex-row justify-between items-start w-full p-10'>
-        {/* Filter Section */}
-        <div className=''>
-          <p
-            onClick={() => setShowFilter(!showFilter)}
-            className='my-2 text-xl flex items-center cursor-pointer gap-2'
-          >
-            BỘ LỌC
-            <img
-              className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`}
-              src={assets.dropdown_icon}
-              alt=""
-            />
-          </p>
-          {showFilter && (
-            <div className='flex flex-col gap-5'>
-              {/* LOC THEO DANH MUC */}
-              <div className='pl-5 py-3 mt-6 flex-1'>
-                <p className='mb-4 text-sm font-medium'>DANH MỤC SẢN PHẨM</p>
-                <div className='flex flex-col gap-2 text-sm font-light text-grey-700'>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'ban'} onChange={toggleCategory}/> Bàn
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'ghe'} onChange={toggleCategory}/> Ghế
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'gotunhien'} onChange={toggleCategory}/> Gỗ tự nhiên
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'dalon'} onChange={toggleCategory}/> Da lộn
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'cotton'} onChange={toggleCategory}/> Vải cotton
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'kimloai'} onChange={toggleCategory}/> Kim loại
-                  </p>
-                </div>
-              </div>
+    <div>
 
-              {/* LOC THEO CHAT LIỆU */}
-              <div className='pl-5 py-3 mt-6 flex-1'>
-                <p className='mb-3 text-sm font-medium'>CHẤT LIỆU SẢN PHẨM</p>
-                <div className='flex flex-col gap-2 text-sm font-light text-grey-700'>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'kimloai'} onChange={toggleSubCategory}/> Kim loại
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'gotunhien'} onChange={toggleSubCategory}/> Gỗ tự nhiên
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'dalon'} onChange={toggleSubCategory}/> Da lộn
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'cotton'} onChange={toggleSubCategory}/> Vải cotton
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'soitonghop'} onChange={toggleSubCategory}/> Sợi tổng hợp
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'ni'} onChange={toggleSubCategory}/> Nỉ
-                  </p>
-                  <p className='flex gap-2'>
-                    <input className="w-3" type="checkbox" value={'plastic'} onChange={toggleSubCategory}/> Plastic
-                  </p>
-                </div>
-              </div>
+      <ProductBanner />
+      <div className='flex flex-col sm:flex-row gap-1 sm:gap-5 main_bg content_color'>
+        {/* Mobile Filter Toggle */}
+        <div className='sm:hidden w-full p-4 ml-10'>
+          <div 
+            onClick={() => setShowMobileFilter(!showMobileFilter)}
+            className='flex items-center gap-2 cursor-pointer'
+          >
+            <h2 className='text-xl font-medium'><b>BỘ LỌC</b></h2>
+            <img 
+              className={`h-3 transition-transform duration-200 ${showMobileFilter ? 'rotate-180' : ''}`} 
+              src={assets.dropdown_icon} 
+              alt="toggle filter"
+            />
+          </div>
+          {/* Mobile Filter Content */}
+          {showMobileFilter && (
+            <div className='mt-4 p-4 border-t'>
+              <FilterContent />
             </div>
           )}
         </div>
 
-        {/* Sidebar - Hiển thị sản phẩm */}
-        <div className='flex flex-col justify-between w-full'>
-          <div className='flex justify-between text-base mt-4'>
-            <h1 className="left-text text-xl font-bold">TẤT CẢ SẢN PHẨM</h1>
-            <select onChange={(e) => setSortType(e.target.value)} className='border-2 bg_form text-sm px-2 banner-content' name="" id="">
+               {/* Desktop Filter - Always visible */}
+        <div className='hidden sm:block w-1/4 p-4 min-h-screen'>
+          <div className='sticky top-4'>
+            <h2 className='text-xl font-medium mb-6'>BỘ LỌC</h2>
+            <FilterContent />
+          </div>
+        </div>
+
+        {/* Product Grid */}
+        <div className='w-full sm:w-3/4 p-4'>
+          <div className='flex justify-between items-center mb-6'>
+            <h1 className="text-xl font-bold">TẤT CẢ SẢN PHẨM</h1>
+            <select 
+              onChange={(e) => setSortType(e.target.value)} 
+              className='border-2 bg_form text-sm px-4 py-2 rounded banner-content'
+            >
               <option value="low-high">Thấp đến cao</option>
               <option value="high-low">Cao đến thấp</option>
-              <option value="relevant">Giu Nguyen</option>
+              <option value="relevant">Giữ Nguyên</option>
             </select>
           </div>
-          {/* Hiển thị sản phẩm ở đây */}
-          <br /> <br />
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
-            {
-                filterProducts.map((item,index)=>(
-                    <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image}/>
-                ))
-            }
+          
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-6'>
+            {filterProducts.map((item, index) => (
+              <ProductItem 
+                key={index}
+                name={item.name}
+                id={item._id}
+                price={item.price}
+                image={item.image}
+              />
+            ))}
           </div>
         </div>
       </div>
     </div>
+
   );
-}
+};
 
 export default Product;
